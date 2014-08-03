@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2013/3 | Nil-Enn-Oct</title>
+  <title>Category: RaspberryPi | Nil-Enn-Oct</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
@@ -61,54 +61,6 @@
 
 
 <section id="main">
-  
-    <article id="post-raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs/" class="article-date">
-  <time datetime="2013-03-07T10:00:55.000Z" itemprop="datePublished">3月 7 2013</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs/">RaspberryPi搭建NAS之中文兼容性检测</a>
-    </h1>
-  
-
-      </header>
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>浙江大学嵌入式系统课程</p>
-<p>在RPi上搭建NAS的过程详见《<a href="http://www.nilennoct.com/raspberrypi-nas-samba-sftp/" target="_blank" rel="external">在RaspberryPi上搭建NAS</a>》</p>
-</blockquote>
-<p>NAS已经搭建好了，接下来我们要测试一下各种方式对中文路径名、文件名的兼容情况。</p>
-<p><strong>Samba</strong></p>
-<p>如下图所示，是Win8下访问通过Samba方式访问RPi的效果。我们可以发现不需要多余的设置，中文已经很完美的显示了。</p>
-<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_09_01.png" alt="Task_09_01"><br>
-        
-          <p class="article-more-link">
-            <a href="/raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-  </div>
-  
-</article>
-
-
   
     <article id="post-raspberrypi-airplay-shairport" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -330,9 +282,62 @@
 
 
   
+    <article id="post-mstsc-remote-desktop-access-raspberrypi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/mstsc-remote-desktop-access-raspberrypi/" class="article-date">
+  <time datetime="2013-03-02T06:14:26.000Z" itemprop="datePublished">3月 2 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/mstsc-remote-desktop-access-raspberrypi/">远程桌面访问RaspberryPi</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>既然说Raspberry Pi是一款基于Linux系统的个人电脑，那么GUI也必不可少。下面说说如何使用Windows自带的远程桌面连接登陆RPi。</p>
+<p><strong>借助vnc远程访问</strong></p>
+<p>Wheezy raspbian镜像中默认已经安装了TightVNC服务端，所以我们只需要简单的运行即可。</p>
+<ul>
+<li>用SSH登录RPi（具体方法就不赘述了），运行TightVNC服务端；</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tightvncserver</div></pre></td></tr></table></figure>
+
+<p>按提示设置好连接密码即可。最后会询问是否需要设置一个只能查看的密码，因为是自己使用我就没有设置，各位可按照自己的需要选择是否设置，如下图；</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_04_08.png" alt="Task_04_08"><br>
+        
+          <p class="article-more-link">
+            <a href="/mstsc-remote-desktop-access-raspberrypi/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2013/03/">&laquo; Prev</a><a class="page-number" href="/archives/2013/03/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2013/03/page/3/">3</a><a class="extend next" rel="next" href="/archives/2013/03/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/categories/RaspberryPi/page/2/">&laquo; Prev</a><a class="page-number" href="/categories/RaspberryPi/">1</a><a class="page-number" href="/categories/RaspberryPi/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/categories/RaspberryPi/page/4/">4</a><a class="extend next" rel="next" href="/categories/RaspberryPi/page/4/">Next &raquo;</a>
     </nav>
   
 </section>

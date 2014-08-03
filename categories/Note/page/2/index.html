@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: Note | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+  
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?1c4a8ec51af12949dd6b46712e821b53";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main">
+  
+    <article id="post-ubuntu-install-new-version-dropbox-daemon-note" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ubuntu-install-new-version-dropbox-daemon-note/" class="article-date">
+  <time datetime="2013-03-10T02:02:10.000Z" itemprop="datePublished">3月 10 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/ubuntu-install-new-version-dropbox-daemon-note/">Ubuntu安装新版Dropbox的注意事项</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前的ubuntu图方便是直接用wubi装的，结果前两天手贱把disk.img给误删了，无奈之下，干脆就重装了（可惜我配好的环境啊T T）。</p>
+<p>分区、安装什么的都很顺利，PPA软件源我直接用Ubuntu Tweak管理了，确实很方便。不过在安装Dropbox的时候倒是遇到了一些麻烦。</p>
+<p>Dropbox官网上提供的下载只不过是一个空壳而已，安装后需要使用如下命令安装daemon。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dropbox start -i</div></pre></td></tr></table></figure>
+
+<p>但是由于国内某些特殊原因，需要下载的内容无法直接下载。而因为SSL证书的问题，使用goagent也无法安装。于是提取了<a href="https://dl-web.dropbox.com/u/17/dropbox-lnx.x86-1.6.17.tar.gz" target="_blank" rel="external">下载地址</a>通过浏览器直接下载到了安装包dropbox-lnx.x86-1.6.17.tar.gz。</p>
+<p>按照以前的安装方式，直接解压到~目录，运行.dropbox-dist目录下的dropbox文件即可。不过这次的新版似乎有所不同，之前这样使用都可以开机自动运行，通过dropbox start命令也可以正常启动。但这次dropbox start却一直提示未安装，看来新版的dropbox daemon的安装还是有变化的= =<br>
+        
+          <p class="article-more-link">
+            <a href="/ubuntu-install-new-version-dropbox-daemon-note/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-apache-mod-rewrite-linux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/apache-mod-rewrite-linux/" class="article-date">
+  <time datetime="2012-08-12T16:39:14.000Z" itemprop="datePublished">8月 13 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/apache-mod-rewrite-linux/">Apache开启mod_rewrite</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>连接SSH或打开终端</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> a2enmod rewrite</div><div class="line"><span class="built_in">sudo</span> vim /etc/apache2/sites-available/default <span class="comment"># 按需求把AllowOverride None 改成 AllowOverride All</span></div><div class="line"><span class="built_in">sudo</span> service apache2 restart <span class="comment"># 或者 sudo /etc/init.d/apache2 restart</span></div></pre></td></tr></table></figure>
+
+<p>此时网页目录中的.htaccess文件即可生效。</p>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-chrome-google-analytics-invalid" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/chrome-google-analytics-invalid/" class="article-date">
+  <time datetime="2012-07-22T05:21:34.000Z" itemprop="datePublished">7月 22 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/chrome-google-analytics-invalid/">Chrome中Google Analytics无法跟踪</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前给博客加上Google Analytics后遇到了一个问题，就是用Chrome时Google Analytics无法获取到访问记录，但是用IE、Firefox却可以记录。通过Chrome的开发者工具中的Network工具，我发现是因为Google Analytics用来提交数据的__utm.gif文件载入失败。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2012/07/Network1.jpg" alt=""></p>
+<p>检查了Chrome、杀毒软件的设置后，均未发现可能造成该问题的选项。</p>
+<p>今天在给虚拟机中的Mac安装Chrome时，Chrome自动同步安装了AdBlock，在选择AdBlock的过滤清单时突然看到最后有一个“EasyPrivacy (隐私保护)”清单。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2012/07/filter-list.jpg" alt=""></p>
+<p>看到这个顿时明白问题的原因了。回到Win7的Chrome，打开AdBlock设置一看，果然是打着勾的。去掉以后刷新，Google Analytics就能正常统计了。</p>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vmware7-mac-xcode" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/vmware7-mac-xcode/" class="article-date">
+  <time datetime="2012-07-21T14:10:07.000Z" itemprop="datePublished">7月 21 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/vmware7-mac-xcode/">VMware7安装Mac+Xcode</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近给笔记本加了一条内存，达到了6G内存，所以之前想装Mac OS的想法又冒了出来。之前也试着用VMware装过一次Mac,但因为内存和版本的原因一直装不了Xcode，只得作罢。这次接着加内存的东风，就再尝试了一次，虽然中途遇到了很多的问题，但最终倒都是成功解决了，一下说说过程吧。</p>
+<p>准备工作：</p>
+<ul>
+<li>Mac OS X Snow Leopard 10.6.6 （<a href="http://adf.ly/AxlxV" target="_blank" rel="external">Torrent下载</a>）</li>
+<li>Empire EFI引导盘 （<a href="http://adf.ly/AxmMA" target="_blank" rel="external">ISO下载</a>）</li>
+<li>VMware Tools （<a href="http://adf.ly/AzPgo" target="_blank" rel="external">下载</a>）</li>
+</ul>
+<p>我这里用的是Hazard制作的破解版MacOS，一共9个分卷外加一个IOATAFamily补丁，约3.3G，包括了大部分破解驱动。<br>
+        
+          <p class="article-more-link">
+            <a href="/vmware7-mac-xcode/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/categories/Note/">&laquo; Prev</a><a class="page-number" href="/categories/Note/">1</a><span class="page-number current">2</span>
+    </nav>
+  
+</section>
+
+</body>
+</html>

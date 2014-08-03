@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: Web | Nil-Enn-Oct</title>
+  <title>Archives | Nil-Enn-Oct</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
@@ -62,98 +62,6 @@
 
 <section id="main">
   
-    <article id="post-shortest-ie-version-detect" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/shortest-ie-version-detect/" class="article-date">
-  <time datetime="2013-04-19T02:21:55.000Z" itemprop="datePublished">4月 19 2013</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/shortest-ie-version-detect/">最短的 IE 版本判断</a>
-    </h1>
-  
-
-      </header>
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>网上看到的一段很酷的代码，留着备用。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"><span class="comment">// A short snippet for detecting versions of IE in JavaScript</span></div><div class="line"><span class="comment">// without resorting to user-agent sniffing</span></div><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"><span class="comment">// If you're not in IE (or IE version is less than 5) then:</span></div><div class="line"><span class="comment">//     ie === undefined</span></div><div class="line"><span class="comment">// If you're in IE (&gt;=5) then you can determine which version:</span></div><div class="line"><span class="comment">//     ie === 7; // IE7</span></div><div class="line"><span class="comment">// Thus, to detect IE:</span></div><div class="line"><span class="comment">//     if (ie) {}</span></div><div class="line"><span class="comment">// And to detect the version:</span></div><div class="line"><span class="comment">//     ie === 6 // IE6</span></div><div class="line"><span class="comment">//     ie &gt; 7 // IE8, IE9 ...</span></div><div class="line"><span class="comment">//     ie &lt; 9 // Anything less than IE9</span></div><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"></div><div class="line"><span class="comment">// UPDATE: Now using Live NodeList idea from @jdalton</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> ie = (<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line"></div><div class="line">    <span class="keyword">var</span> undef,</div><div class="line">        v = <span class="number">3</span>,</div><div class="line">        div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>),</div><div class="line">        all = div.getElementsByTagName(<span class="string">'i'</span>);</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (</div><div class="line">        div.innerHTML = <span class="string">''</span>,</div><div class="line">        all[<span class="number">0</span>]</div><div class="line">    );</div><div class="line"></div><div class="line">    <span class="keyword">return</span> v &gt; <span class="number">4</span> ? v : undef;</div><div class="line"></div><div class="line">}());</div></pre></td></tr></table></figure>
-
-
-      
-    </div>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-jsdoc-definition" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/jsdoc-definition/" class="article-date">
-  <time datetime="2013-01-31T03:25:19.000Z" itemprop="datePublished">1月 31 2013</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/jsdoc-definition/">JSDoc描述</a>
-    </h1>
-  
-
-      </header>
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>@param @argument 指定参数名和说明来描述一个函数参数</p>
-<p>@returns 描述函数的返回值</p>
-<p>@author 指示代码的作者</p>
-<p>@deprecated 指示一个函数已经废弃，而且在将来的代码版本中将彻底删除。要避免使用这段代码</p>
-<p>@see 创建一个HTML链接，指向指定类的描述</p>
-<p>@version 指定发布版本</p>
-<p>@requires 创建一个HTML链接，指向这个类所需的指定类</p>
-<p>@throws @exception 描述函数可能抛出的异常的类型</p>
-<p>{@link} 创建一个HTML链接，指向指定的类。这与@see很类似，但{@link}能嵌在注释文本中</p>
-<p>@fileoverview 这是一个特殊的标记。如果在文件的第一个文档块中使用这个标记，则指定该文档块的余下部分将用来提供这个文件的概述</p>
-<p>@class 提供类的有关信息，用在构造函数的文档中</p>
-<p>@constructor 明确一个函数是某个类的构造函数</p>
-<p>@type 指定函数的返回类型</p>
-<p>@extends 指示一个类派生了另一个类。JSDoc通常自己就可以检测出这种信息，不过，在某些情况下则必须使用这个标记</p>
-<p>@private 指示一个类或函数是私有的。私有类和函数不会出现在HTML文档中，除非运行JSDoc时提供了—private命令行选项</p>
-<p>@final 指示一个值是常量值。要记住JavaScript无法真正保证一个值是常量</p>
-<p>@ignore JSDoc忽略有这个标记的函数</p>
-
-      
-    </div>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-js-jquery-countdown-millsecond" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/js-jquery-countdown-millsecond/" class="article-date">
@@ -189,6 +97,46 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> inter;</div><div class="line"><span class="keyword">var</span> countdown = <span class="function"><span class="keyword">function</span><span class="params">(min)</span> </span>{</div><div class="line">	<span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">	<span class="keyword">var</span> endTime = date.getTime() + <span class="built_in">parseInt</span>(min) * <span class="number">60</span> * <span class="number">1000</span>;</div><div class="line">	<span class="keyword">var</span> $min = $(<span class="string">'.min'</span>);</div><div class="line">    clearInterval(inter);</div><div class="line">	inter = setInterval(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">		<span class="keyword">var</span> st = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">		<span class="keyword">var</span> startTime = st.getTime();</div><div class="line">		<span class="keyword">var</span> leftTime = <span class="built_in">Math</span>.floor((endTime - startTime) / <span class="number">100</span>);</div><div class="line">		<span class="keyword">if</span> (leftTime &lt;= <span class="number">0</span>) {</div><div class="line">			clearInterval(inter);</div><div class="line">			inter = <span class="literal">null</span>;</div><div class="line">			$.each($min, <span class="function"><span class="keyword">function</span><span class="params">(i, t)</span> </span>{</div><div class="line">				$(t).text(<span class="string">'0'</span>).next().text(<span class="string">'0'</span>).next().text(<span class="string">'0'</span>);</div><div class="line">			});</div><div class="line">			<span class="keyword">return</span>;</div><div class="line">		}</div><div class="line">		$.each($min, <span class="function"><span class="keyword">function</span><span class="params">(i, t)</span> </span>{</div><div class="line">			$(t).text(<span class="built_in">Math</span>.floor(leftTime / <span class="number">600</span>)).next().text(<span class="built_in">Math</span>.floor(leftTime / <span class="number">10</span>) % <span class="number">60</span>).next().text(leftTime % <span class="number">10</span>);</div><div class="line">		});</div><div class="line">	}, <span class="number">100</span>);</div><div class="line">};</div></pre></td></tr></table></figure>
 
 <p>使用countdown(1)可实现一分钟的倒计时.</p>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-apache-mod-rewrite-linux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/apache-mod-rewrite-linux/" class="article-date">
+  <time datetime="2012-08-12T16:39:14.000Z" itemprop="datePublished">8月 13 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/apache-mod-rewrite-linux/">Apache开启mod_rewrite</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>连接SSH或打开终端</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> a2enmod rewrite</div><div class="line"><span class="built_in">sudo</span> vim /etc/apache2/sites-available/default <span class="comment"># 按需求把AllowOverride None 改成 AllowOverride All</span></div><div class="line"><span class="built_in">sudo</span> service apache2 restart <span class="comment"># 或者 sudo /etc/init.d/apache2 restart</span></div></pre></td></tr></table></figure>
+
+<p>此时网页目录中的.htaccess文件即可生效。</p>
 
       
     </div>
@@ -294,9 +242,51 @@
 
 
   
+    <article id="post-chrome-google-analytics-invalid" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/chrome-google-analytics-invalid/" class="article-date">
+  <time datetime="2012-07-22T05:21:34.000Z" itemprop="datePublished">7月 22 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/chrome-google-analytics-invalid/">Chrome中Google Analytics无法跟踪</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前给博客加上Google Analytics后遇到了一个问题，就是用Chrome时Google Analytics无法获取到访问记录，但是用IE、Firefox却可以记录。通过Chrome的开发者工具中的Network工具，我发现是因为Google Analytics用来提交数据的__utm.gif文件载入失败。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2012/07/Network1.jpg" alt=""></p>
+<p>检查了Chrome、杀毒软件的设置后，均未发现可能造成该问题的选项。</p>
+<p>今天在给虚拟机中的Mac安装Chrome时，Chrome自动同步安装了AdBlock，在选择AdBlock的过滤清单时突然看到最后有一个“EasyPrivacy (隐私保护)”清单。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2012/07/filter-list.jpg" alt=""></p>
+<p>看到这个顿时明白问题的原因了。回到Win7的Chrome，打开AdBlock设置一看，果然是打着勾的。去掉以后刷新，Google Analytics就能正常统计了。</p>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/categories/Web/page/2/">2</a><a class="extend next" rel="next" href="/categories/Web/page/2/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/archives/page/5/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/7/">Next &raquo;</a>
     </nav>
   
 </section>

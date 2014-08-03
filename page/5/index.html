@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+  
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?1c4a8ec51af12949dd6b46712e821b53";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main">
+  
+    <article id="post-raspberrypi-install-connect-note" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-install-connect-note/" class="article-date">
+  <time datetime="2013-03-03T14:19:13.000Z" itemprop="datePublished">3月 3 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-install-connect-note/">RaspberryPi安装、连接小记</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>树莓派（Raspberry Pi），是一款基于Linux系统的只有一张信用卡大小的单板机计算机。它由英国的树莓派基金会所开发，目的是以低价硬件及自由软件刺激在学校的基本的电脑科学教育。</p>
+<p>树莓派配备一枚700MHz博通出产的ARM架构BCM2835处理器，256MB内存（B型已升级到512MB内存），使用SD卡当作储存媒体，且拥有一个Ethernet，两个USB接口，以及HDMI(支持声音输出)和RCA接口输出支持。Raspberry Pi只有一张信用卡大小，体积大概是一个火柴盒大小，可以执行像雷神之锤III竞技场的游戏和进行1080p影片的播放。操作系统采用开源的Linux系统，比如Debian、ArchLinux，自带的Iceweasel、KOffice等软件能够满足基本的网络浏览，文字处理以及计算机学习的需要，分A,B两种型号，其中售价分别是A型25美元，B型35美元。</p>
+<p>树莓派基金会提供了基于ARM的Debian和Arch Linux的发行版供大众下载。还计划提供支持 Python 作为主要编程语言, 支持BBC BASIC , (通过 RISC OS 映像或者Linux的”Brandy Basic”克隆), C，和 Perl等编程语言。</p>
+<p>下面让我们来一步步走入RPi的美妙世界。<br><strong>准备工作</strong></p>
+<ul>
+<li>PC一台</li>
+<li>Raspberry Pi B型板</li>
+<li>2012-12-16-wheezy-raspbian.img镜像 <a href="http://pan.baidu.com/share/link?shareid=321044&amp;uk=3842409107" target="_blank" rel="external">[下载]</a></li>
+<li>输出电流700mA以上的电源一个（移动电源、充电器均可），我选用了iPad的充电器，输出电流2A</li>
+<li>Micro USB数据线一条，用于供电</li>
+<li>8G SD卡一张</li>
+<li>USB-Serial数据线一条</li>
+<li>网线一条</li>
+<li>折腾的精神</li>
+</ul>
+<p>
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-install-connect-note/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mstsc-remote-desktop-access-raspberrypi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/mstsc-remote-desktop-access-raspberrypi/" class="article-date">
+  <time datetime="2013-03-02T06:14:26.000Z" itemprop="datePublished">3月 2 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/mstsc-remote-desktop-access-raspberrypi/">远程桌面访问RaspberryPi</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>既然说Raspberry Pi是一款基于Linux系统的个人电脑，那么GUI也必不可少。下面说说如何使用Windows自带的远程桌面连接登陆RPi。</p>
+<p><strong>借助vnc远程访问</strong></p>
+<p>Wheezy raspbian镜像中默认已经安装了TightVNC服务端，所以我们只需要简单的运行即可。</p>
+<ul>
+<li>用SSH登录RPi（具体方法就不赘述了），运行TightVNC服务端；</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tightvncserver</div></pre></td></tr></table></figure>
+
+<p>按提示设置好连接密码即可。最后会询问是否需要设置一个只能查看的密码，因为是自己使用我就没有设置，各位可按照自己的需要选择是否设置，如下图；</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_04_08.png" alt="Task_04_08"><br>
+        
+          <p class="article-more-link">
+            <a href="/mstsc-remote-desktop-access-raspberrypi/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-find-raspberrypi-in-lan" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/find-raspberrypi-in-lan/" class="article-date">
+  <time datetime="2013-03-02T02:36:38.000Z" itemprop="datePublished">3月 2 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/find-raspberrypi-in-lan/">在局域网内查找RaspberryPi</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>使用路由器连接Raspberry Pi，可以很容易的使用SSH登录管理Raspberry Pi，不过这首先需要知道RPi在路由器上分配到的IP地址。</p>
+<p>比较简单的方法就是进入路由器的管理界面，在DHCP客户端列表查找以“b8:27:eb”开始的MAC地址，如下图所示；</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_06_01.png" alt="Task_06_01"></p>
+<p>此外，我们也可以通过编写脚本自动扫描所在局域网内的所有IP，然后从ARP表中寻找符合条件的MAC地址和IP。</p>
+<p>以BAT脚本为例。<br>
+        
+          <p class="article-more-link">
+            <a href="/find-raspberrypi-in-lan/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-raspberrypi-install-lamp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-install-lamp/" class="article-date">
+  <time datetime="2013-03-01T16:22:43.000Z" itemprop="datePublished">3月 2 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-install-lamp/">在RaspberryPi上安装LAMP</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>既然已经在RaspberryPi上安装了Linux系统，很自然的我们可以想到在其上安装LAMP，使其变为随身服务器。</p>
+<p>本文设备环境：</p>
+<ul>
+<li><p>Raspberry Pi B板</p>
+</li>
+<li><p>系统镜像：2012-12-16-wheezy-raspbian.img[<a href="http://pan.baidu.com/share/link?shareid=318970&amp;uk=3842409107" target="_blank" rel="external">下载</a>]</p>
+</li>
+</ul>
+<p><strong>图文攻略：</strong></p>
+<p><strong>使用putty连接并登陆Raspberry</strong></p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301214608.png" alt=""></p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301214644.png" alt=""><br>
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-install-lamp/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-jsdoc-definition" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/jsdoc-definition/" class="article-date">
+  <time datetime="2013-01-31T03:25:19.000Z" itemprop="datePublished">1月 31 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/jsdoc-definition/">JSDoc描述</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>@param @argument 指定参数名和说明来描述一个函数参数</p>
+<p>@returns 描述函数的返回值</p>
+<p>@author 指示代码的作者</p>
+<p>@deprecated 指示一个函数已经废弃，而且在将来的代码版本中将彻底删除。要避免使用这段代码</p>
+<p>@see 创建一个HTML链接，指向指定类的描述</p>
+<p>@version 指定发布版本</p>
+<p>@requires 创建一个HTML链接，指向这个类所需的指定类</p>
+<p>@throws @exception 描述函数可能抛出的异常的类型</p>
+<p>{@link} 创建一个HTML链接，指向指定的类。这与@see很类似，但{@link}能嵌在注释文本中</p>
+<p>@fileoverview 这是一个特殊的标记。如果在文件的第一个文档块中使用这个标记，则指定该文档块的余下部分将用来提供这个文件的概述</p>
+<p>@class 提供类的有关信息，用在构造函数的文档中</p>
+<p>@constructor 明确一个函数是某个类的构造函数</p>
+<p>@type 指定函数的返回类型</p>
+<p>@extends 指示一个类派生了另一个类。JSDoc通常自己就可以检测出这种信息，不过，在某些情况下则必须使用这个标记</p>
+<p>@private 指示一个类或函数是私有的。私有类和函数不会出现在HTML文档中，除非运行JSDoc时提供了—private命令行选项</p>
+<p>@final 指示一个值是常量值。要记住JavaScript无法真正保证一个值是常量</p>
+<p>@ignore JSDoc忽略有这个标记的函数</p>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+    </nav>
+  
+</section>
+
+</body>
+</html>

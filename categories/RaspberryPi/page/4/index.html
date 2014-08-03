@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: RaspberryPi | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.ico">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+  
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?1c4a8ec51af12949dd6b46712e821b53";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main">
+  
+    <article id="post-find-raspberrypi-in-lan" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/find-raspberrypi-in-lan/" class="article-date">
+  <time datetime="2013-03-02T02:36:38.000Z" itemprop="datePublished">3月 2 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/find-raspberrypi-in-lan/">在局域网内查找RaspberryPi</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>使用路由器连接Raspberry Pi，可以很容易的使用SSH登录管理Raspberry Pi，不过这首先需要知道RPi在路由器上分配到的IP地址。</p>
+<p>比较简单的方法就是进入路由器的管理界面，在DHCP客户端列表查找以“b8:27:eb”开始的MAC地址，如下图所示；</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_06_01.png" alt="Task_06_01"></p>
+<p>此外，我们也可以通过编写脚本自动扫描所在局域网内的所有IP，然后从ARP表中寻找符合条件的MAC地址和IP。</p>
+<p>以BAT脚本为例。<br>
+        
+          <p class="article-more-link">
+            <a href="/find-raspberrypi-in-lan/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-raspberrypi-install-lamp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-install-lamp/" class="article-date">
+  <time datetime="2013-03-01T16:22:43.000Z" itemprop="datePublished">3月 2 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-install-lamp/">在RaspberryPi上安装LAMP</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>既然已经在RaspberryPi上安装了Linux系统，很自然的我们可以想到在其上安装LAMP，使其变为随身服务器。</p>
+<p>本文设备环境：</p>
+<ul>
+<li><p>Raspberry Pi B板</p>
+</li>
+<li><p>系统镜像：2012-12-16-wheezy-raspbian.img[<a href="http://pan.baidu.com/share/link?shareid=318970&amp;uk=3842409107" target="_blank" rel="external">下载</a>]</p>
+</li>
+</ul>
+<p><strong>图文攻略：</strong></p>
+<p><strong>使用putty连接并登陆Raspberry</strong></p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301214608.png" alt=""></p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301214644.png" alt=""><br>
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-install-lamp/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/categories/RaspberryPi/page/3/">&laquo; Prev</a><a class="page-number" href="/categories/RaspberryPi/">1</a><a class="page-number" href="/categories/RaspberryPi/page/2/">2</a><a class="page-number" href="/categories/RaspberryPi/page/3/">3</a><span class="page-number current">4</span>
+    </nav>
+  
+</section>
+
+</body>
+</html>

@@ -62,10 +62,10 @@
 
 <section id="main">
   
-    <article id="post-raspberrypi-install-connect-note" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-raspberry-pi-arm-instruction" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/raspberrypi-install-connect-note/" class="article-date">
-  <time datetime="2013-03-03T14:19:13.000Z" itemprop="datePublished">3月 3 2013</time>
+    <a href="/raspberry-pi-arm-instruction/" class="article-date">
+  <time datetime="2013-04-10T18:02:35.000Z" itemprop="datePublished">4月 11 2013</time>
 </a>
     
   <div class="article-category">
@@ -80,7 +80,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/raspberrypi-install-connect-note/">RaspberryPi安装、连接小记</a>
+      <a class="article-title" href="/raspberry-pi-arm-instruction/">[RPi] ARM指令</a>
     </h1>
   
 
@@ -92,25 +92,121 @@
         <blockquote>
 <p>浙江大学嵌入式系统课程</p>
 </blockquote>
-<p>树莓派（Raspberry Pi），是一款基于Linux系统的只有一张信用卡大小的单板机计算机。它由英国的树莓派基金会所开发，目的是以低价硬件及自由软件刺激在学校的基本的电脑科学教育。</p>
-<p>树莓派配备一枚700MHz博通出产的ARM架构BCM2835处理器，256MB内存（B型已升级到512MB内存），使用SD卡当作储存媒体，且拥有一个Ethernet，两个USB接口，以及HDMI(支持声音输出)和RCA接口输出支持。Raspberry Pi只有一张信用卡大小，体积大概是一个火柴盒大小，可以执行像雷神之锤III竞技场的游戏和进行1080p影片的播放。操作系统采用开源的Linux系统，比如Debian、ArchLinux，自带的Iceweasel、KOffice等软件能够满足基本的网络浏览，文字处理以及计算机学习的需要，分A,B两种型号，其中售价分别是A型25美元，B型35美元。</p>
-<p>树莓派基金会提供了基于ARM的Debian和Arch Linux的发行版供大众下载。还计划提供支持 Python 作为主要编程语言, 支持BBC BASIC , (通过 RISC OS 映像或者Linux的”Brandy Basic”克隆), C，和 Perl等编程语言。</p>
-<p>下面让我们来一步步走入RPi的美妙世界。<br><strong>准备工作</strong></p>
-<ul>
-<li>PC一台</li>
-<li>Raspberry Pi B型板</li>
-<li>2012-12-16-wheezy-raspbian.img镜像 <a href="http://pan.baidu.com/share/link?shareid=321044&amp;uk=3842409107" target="_blank" rel="external">[下载]</a></li>
-<li>输出电流700mA以上的电源一个（移动电源、充电器均可），我选用了iPad的充电器，输出电流2A</li>
-<li>Micro USB数据线一条，用于供电</li>
-<li>8G SD卡一张</li>
-<li>USB-Serial数据线一条</li>
-<li>网线一条</li>
-<li>折腾的精神</li>
-</ul>
+<p><strong>生成了Thumb指令还是ARM指令，如何通过编译参数改变</strong></p>
+<p>编写测试代码arm.c。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> main() {</div><div class="line">	<span class="keyword">int</span> a = <span class="number">0</span>;</div><div class="line">	a++;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>用如下命令编译，并使用objdump查看。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">gcc -c arm.c</div><div class="line">objdump -d arm.o</div><div class="line"></div><div class="line">arm.o:     file format elf32-littlearm</div><div class="line"></div><div class="line">Disassembly of section .text:</div><div class="line"></div><div class="line"><span class="number">00000000</span> &lt;main&gt;:</div><div class="line">   <span class="number">0</span>:	e52db004 	push	{fp}		; (str fp, [sp, <span class="preprocessor">#-4]!)</span></div><div class="line">   <span class="number">4</span>:	e28db000 	add	fp, sp, <span class="preprocessor">#0</span></div><div class="line">   <span class="number">8</span>:	e24dd00c 	sub	sp, sp, <span class="preprocessor">#12</span></div><div class="line">   c:	e3a03000 	mov	r3, <span class="preprocessor">#0</span></div><div class="line">  <span class="number">10</span>:	e50b3008 	str	r3, [fp, <span class="preprocessor">#-8]</span></div><div class="line">  <span class="number">14</span>:	e51b3008 	ldr	r3, [fp, <span class="preprocessor">#-8]</span></div><div class="line">  <span class="number">18</span>:	e2833001 	add	r3, r3, <span class="preprocessor">#1</span></div><div class="line">  <span class="number">1</span>c:	e50b3008 	str	r3, [fp, <span class="preprocessor">#-8]</span></div><div class="line">  <span class="number">20</span>:	e3a03000 	mov	r3, <span class="preprocessor">#0</span></div><div class="line">  <span class="number">24</span>:	e1a00003 	mov	r0, r3</div><div class="line">  <span class="number">28</span>:	e28bd000 	add	sp, fp, <span class="preprocessor">#0</span></div><div class="line">  <span class="number">2</span>c:	e8bd0800 	pop	{fp}</div><div class="line">  <span class="number">30</span>:	e12fff1e 	bx	lr</div></pre></td></tr></table></figure>
+
+<p>可以看到指令长度都是32位的，说明gcc默认是以arm指令编译的。使用如下命令查找如何以Thumb编译。<br>
+        
+          <p class="article-more-link">
+            <a href="/raspberry-pi-arm-instruction/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-raspberrypi-ramdisk" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-ramdisk/" class="article-date">
+  <time datetime="2013-03-19T05:37:56.000Z" itemprop="datePublished">3月 19 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-ramdisk/">在RaspberryPi上使用Ramdisk</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+<p>RAM盘是通过使用软件将RAM模拟当做硬盘来使用的一种技术。相对于传统的硬盘文件访问来说，这种技术可以极大的提高在其上进行的文件访问的速度。新版B版的RPi内存达到了512MB，对于Raspbian来说是绰绰有余了。所以可以考虑把一部分RAM模拟成硬盘来加快存取速度。<br>Raspbian默认已经支持了Ramdisk，我们只需要格式化一个RamDisk，并将其mount到某一个目录上就可以了。</p>
+</blockquote>
+<p><strong>查看所有可用的ramdisk</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -al /dev/ram*</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_25_01.png" alt="Task_25_01"></p>
+<p><strong>创建Ramdisk</strong></p>
+<p>一般是使用ext2文件系统格式化Ramdisk。而在此之前，即使/dev/目录中有ram*设备文件，他们也是不占空间，必须进行格式化之后才能使用。因为Ramdisk是临时性的，所以没有必要使用带日志的文件系统，所以一般用ext2格式化就可以了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> mke2fs /dev/ram0</div></pre></td></tr></table></figure>
+
+
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-ramdisk/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-raspberrypi-cross-compile" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-cross-compile/" class="article-date">
+  <time datetime="2013-03-17T09:05:47.000Z" itemprop="datePublished">3月 17 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-cross-compile/">搭建RaspberryPi的交叉编译环境</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p><strong>安装交叉编译工具</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install gcc-arm-linux-gnueabi</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_02_01.png" alt="Lab_02_01"></p>
+<p><strong>编写测试程序hello.c并编译</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arm-linux-gnueabi-gcc hello.c</div></pre></td></tr></table></figure>
+
 <p>
         
           <p class="article-more-link">
-            <a href="/raspberrypi-install-connect-note/#more">Read More</a>
+            <a href="/raspberrypi-cross-compile/#more">Read More</a>
           </p>
         
       
@@ -121,10 +217,10 @@
 
 
   
-    <article id="post-mstsc-remote-desktop-access-raspberrypi" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-raspberrypi-install-ruby" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/mstsc-remote-desktop-access-raspberrypi/" class="article-date">
-  <time datetime="2013-03-02T06:14:26.000Z" itemprop="datePublished">3月 2 2013</time>
+    <a href="/raspberrypi-install-ruby/" class="article-date">
+  <time datetime="2013-03-10T03:14:53.000Z" itemprop="datePublished">3月 10 2013</time>
 </a>
     
   <div class="article-category">
@@ -139,7 +235,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/mstsc-remote-desktop-access-raspberrypi/">远程桌面访问RaspberryPi</a>
+      <a class="article-title" href="/raspberrypi-install-ruby/">在RaspberryPi上安装Ruby</a>
     </h1>
   
 
@@ -151,19 +247,17 @@
         <blockquote>
 <p>浙江大学嵌入式系统课程</p>
 </blockquote>
-<p>既然说Raspberry Pi是一款基于Linux系统的个人电脑，那么GUI也必不可少。下面说说如何使用Windows自带的远程桌面连接登陆RPi。</p>
-<p><strong>借助vnc远程访问</strong></p>
-<p>Wheezy raspbian镜像中默认已经安装了TightVNC服务端，所以我们只需要简单的运行即可。</p>
-<ul>
-<li>用SSH登录RPi（具体方法就不赘述了），运行TightVNC服务端；</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tightvncserver</div></pre></td></tr></table></figure>
+<p><strong>安装Ruby</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install ruby</div></pre></td></tr></table></figure>
 
-<p>按提示设置好连接密码即可。最后会询问是否需要设置一个只能查看的密码，因为是自己使用我就没有设置，各位可按照自己的需要选择是否设置，如下图；</p>
-<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_04_08.png" alt="Task_04_08"><br>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_13_01.png" alt="Task_13_01"></p>
+<p><strong>安装ri文档查阅工具</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install ri</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_13_02.png" alt="Task_13_02"><br>
         
           <p class="article-more-link">
-            <a href="/mstsc-remote-desktop-access-raspberrypi/#more">Read More</a>
+            <a href="/raspberrypi-install-ruby/#more">Read More</a>
           </p>
         
       
@@ -174,210 +268,10 @@
 
 
   
-    <article id="post-find-raspberrypi-in-lan" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-ubuntu-install-new-version-dropbox-daemon-note" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/find-raspberrypi-in-lan/" class="article-date">
-  <time datetime="2013-03-02T02:36:38.000Z" itemprop="datePublished">3月 2 2013</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/find-raspberrypi-in-lan/">在局域网内查找RaspberryPi</a>
-    </h1>
-  
-
-      </header>
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>浙江大学嵌入式系统课程</p>
-</blockquote>
-<p>使用路由器连接Raspberry Pi，可以很容易的使用SSH登录管理Raspberry Pi，不过这首先需要知道RPi在路由器上分配到的IP地址。</p>
-<p>比较简单的方法就是进入路由器的管理界面，在DHCP客户端列表查找以“b8:27:eb”开始的MAC地址，如下图所示；</p>
-<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_06_01.png" alt="Task_06_01"></p>
-<p>此外，我们也可以通过编写脚本自动扫描所在局域网内的所有IP，然后从ARP表中寻找符合条件的MAC地址和IP。</p>
-<p>以BAT脚本为例。<br>
-        
-          <p class="article-more-link">
-            <a href="/find-raspberrypi-in-lan/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-raspberrypi-install-lamp" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/raspberrypi-install-lamp/" class="article-date">
-  <time datetime="2013-03-01T16:22:43.000Z" itemprop="datePublished">3月 2 2013</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/raspberrypi-install-lamp/">在RaspberryPi上安装LAMP</a>
-    </h1>
-  
-
-      </header>
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>浙江大学嵌入式系统课程</p>
-</blockquote>
-<p>既然已经在RaspberryPi上安装了Linux系统，很自然的我们可以想到在其上安装LAMP，使其变为随身服务器。</p>
-<p>本文设备环境：</p>
-<ul>
-<li><p>Raspberry Pi B板</p>
-</li>
-<li><p>系统镜像：2012-12-16-wheezy-raspbian.img[<a href="http://pan.baidu.com/share/link?shareid=318970&amp;uk=3842409107" target="_blank" rel="external">下载</a>]</p>
-</li>
-</ul>
-<p><strong>图文攻略：</strong></p>
-<p><strong>使用putty连接并登陆Raspberry</strong></p>
-<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301214608.png" alt=""></p>
-<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301214644.png" alt=""><br>
-        
-          <p class="article-more-link">
-            <a href="/raspberrypi-install-lamp/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-jsdoc-definition" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/jsdoc-definition/" class="article-date">
-  <time datetime="2013-01-31T03:25:19.000Z" itemprop="datePublished">1月 31 2013</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/jsdoc-definition/">JSDoc描述</a>
-    </h1>
-  
-
-      </header>
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>@param @argument 指定参数名和说明来描述一个函数参数</p>
-<p>@returns 描述函数的返回值</p>
-<p>@author 指示代码的作者</p>
-<p>@deprecated 指示一个函数已经废弃，而且在将来的代码版本中将彻底删除。要避免使用这段代码</p>
-<p>@see 创建一个HTML链接，指向指定类的描述</p>
-<p>@version 指定发布版本</p>
-<p>@requires 创建一个HTML链接，指向这个类所需的指定类</p>
-<p>@throws @exception 描述函数可能抛出的异常的类型</p>
-<p>{@link} 创建一个HTML链接，指向指定的类。这与@see很类似，但{@link}能嵌在注释文本中</p>
-<p>@fileoverview 这是一个特殊的标记。如果在文件的第一个文档块中使用这个标记，则指定该文档块的余下部分将用来提供这个文件的概述</p>
-<p>@class 提供类的有关信息，用在构造函数的文档中</p>
-<p>@constructor 明确一个函数是某个类的构造函数</p>
-<p>@type 指定函数的返回类型</p>
-<p>@extends 指示一个类派生了另一个类。JSDoc通常自己就可以检测出这种信息，不过，在某些情况下则必须使用这个标记</p>
-<p>@private 指示一个类或函数是私有的。私有类和函数不会出现在HTML文档中，除非运行JSDoc时提供了—private命令行选项</p>
-<p>@final 指示一个值是常量值。要记住JavaScript无法真正保证一个值是常量</p>
-<p>@ignore JSDoc忽略有这个标记的函数</p>
-
-      
-    </div>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-js-jquery-countdown-millsecond" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/js-jquery-countdown-millsecond/" class="article-date">
-  <time datetime="2012-08-27T09:42:50.000Z" itemprop="datePublished">8月 27 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/js-jquery-countdown-millsecond/">JS实现倒计时的一种方法</a>
-    </h1>
-  
-
-      </header>
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近因为需要试着用Javascript写了一个带毫秒倒计时的小程序，代码如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"min"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>:<span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"sec"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>.<span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"millisec"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> inter;</div><div class="line"><span class="keyword">var</span> countdown = <span class="function"><span class="keyword">function</span><span class="params">(min)</span> </span>{</div><div class="line">	<span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">	<span class="keyword">var</span> endTime = date.getTime() + <span class="built_in">parseInt</span>(min) * <span class="number">60</span> * <span class="number">1000</span>;</div><div class="line">	<span class="keyword">var</span> $min = $(<span class="string">'.min'</span>);</div><div class="line">    clearInterval(inter);</div><div class="line">	inter = setInterval(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">		<span class="keyword">var</span> st = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">		<span class="keyword">var</span> startTime = st.getTime();</div><div class="line">		<span class="keyword">var</span> leftTime = <span class="built_in">Math</span>.floor((endTime - startTime) / <span class="number">100</span>);</div><div class="line">		<span class="keyword">if</span> (leftTime &lt;= <span class="number">0</span>) {</div><div class="line">			clearInterval(inter);</div><div class="line">			inter = <span class="literal">null</span>;</div><div class="line">			$.each($min, <span class="function"><span class="keyword">function</span><span class="params">(i, t)</span> </span>{</div><div class="line">				$(t).text(<span class="string">'0'</span>).next().text(<span class="string">'0'</span>).next().text(<span class="string">'0'</span>);</div><div class="line">			});</div><div class="line">			<span class="keyword">return</span>;</div><div class="line">		}</div><div class="line">		$.each($min, <span class="function"><span class="keyword">function</span><span class="params">(i, t)</span> </span>{</div><div class="line">			$(t).text(<span class="built_in">Math</span>.floor(leftTime / <span class="number">600</span>)).next().text(<span class="built_in">Math</span>.floor(leftTime / <span class="number">10</span>) % <span class="number">60</span>).next().text(leftTime % <span class="number">10</span>);</div><div class="line">		});</div><div class="line">	}, <span class="number">100</span>);</div><div class="line">};</div></pre></td></tr></table></figure>
-
-<p>使用countdown(1)可实现一分钟的倒计时.</p>
-
-      
-    </div>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-apache-mod-rewrite-linux" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/apache-mod-rewrite-linux/" class="article-date">
-  <time datetime="2012-08-12T16:39:14.000Z" itemprop="datePublished">8月 13 2012</time>
+    <a href="/ubuntu-install-new-version-dropbox-daemon-note/" class="article-date">
+  <time datetime="2013-03-10T02:02:10.000Z" itemprop="datePublished">3月 10 2013</time>
 </a>
     
   <div class="article-category">
@@ -392,7 +286,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/apache-mod-rewrite-linux/">Apache开启mod_rewrite</a>
+      <a class="article-title" href="/ubuntu-install-new-version-dropbox-daemon-note/">Ubuntu安装新版Dropbox的注意事项</a>
     </h1>
   
 
@@ -401,149 +295,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>连接SSH或打开终端</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> a2enmod rewrite</div><div class="line"><span class="built_in">sudo</span> vim /etc/apache2/sites-available/default <span class="comment"># 按需求把AllowOverride None 改成 AllowOverride All</span></div><div class="line"><span class="built_in">sudo</span> service apache2 restart <span class="comment"># 或者 sudo /etc/init.d/apache2 restart</span></div></pre></td></tr></table></figure>
+        <p>之前的ubuntu图方便是直接用wubi装的，结果前两天手贱把disk.img给误删了，无奈之下，干脆就重装了（可惜我配好的环境啊T T）。</p>
+<p>分区、安装什么的都很顺利，PPA软件源我直接用Ubuntu Tweak管理了，确实很方便。不过在安装Dropbox的时候倒是遇到了一些麻烦。</p>
+<p>Dropbox官网上提供的下载只不过是一个空壳而已，安装后需要使用如下命令安装daemon。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dropbox start -i</div></pre></td></tr></table></figure>
 
-<p>此时网页目录中的.htaccess文件即可生效。</p>
-
-      
-    </div>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ie6-position-fixed-bug" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/ie6-position-fixed-bug/" class="article-date">
-  <time datetime="2012-08-09T07:38:09.000Z" itemprop="datePublished">8月 9 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/ie6-position-fixed-bug/">完美解决IE6不支持position:fixed的bug</a>
-    </h1>
-  
-
-      </header>
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近在写前端的时候发现IE6下存在不支持position:fixed的bug。通过查找资料找到了较完美的的解决方法。代码如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 除IE6浏览器的通用方法 */</span></div><div class="line"><span class="class">.ie6fixedTL</span><span class="rules">{<span class="rule"><span class="attribute">position</span>:<span class="value">fixed</span></span>;<span class="rule"><span class="attribute">left</span>:<span class="value"><span class="number">0</span></span></span>;<span class="rule"><span class="attribute">top</span>:<span class="value"><span class="number">0</span></span></span></span>}</div><div class="line"><span class="class">.ie6fixedBR</span><span class="rules">{<span class="rule"><span class="attribute">position</span>:<span class="value">fixed</span></span>;<span class="rule"><span class="attribute">right</span>:<span class="value"><span class="number">0</span></span></span>;<span class="rule"><span class="attribute">bottom</span>:<span class="value"><span class="number">0</span></span></span></span>}</div><div class="line"><span class="comment">/* IE6浏览器的特有方法 */</span></div><div class="line"><span class="comment">/* 修正IE6振动bug */</span></div><div class="line">* <span class="tag">html</span>,* <span class="tag">html</span> <span class="tag">body</span><span class="rules">{<span class="rule"><span class="attribute">background-image</span>:<span class="value"><span class="function">url</span>(about:blank)</span></span>;<span class="rule"><span class="attribute">background-attachment</span>:<span class="value">fixed</span></span></span>}</div><div class="line">* <span class="tag">html</span> <span class="class">.ie6fixedTL</span><span class="rules">{<span class="rule"><span class="attribute">position</span>:<span class="value">absolute</span></span>;<span class="rule"><span class="attribute">left</span>:<span class="value"><span class="function">expression</span>(<span class="function">eval</span>(document.documentElement.scrollLeft))</span></span>;<span class="rule"><span class="attribute">top</span>:<span class="value"><span class="function">expression</span>(<span class="function">eval</span>(document.documentElement.scrollTop))</span></span></span>}</div><div class="line">* <span class="tag">html</span> <span class="class">.ie6fixedBR</span><span class="rules">{<span class="rule"><span class="attribute">position</span>:<span class="value">absolute</span></span>;<span class="rule"><span class="attribute">left</span>:<span class="value"><span class="function">expression</span>(<span class="function">eval</span>(document.documentElement.scrollLeft+document.documentElement.clientWidth-this.offsetWidth)<span class="function">-</span>(<span class="function">parseInt</span>(this.currentStyle.marginLeft,<span class="number">10</span>)||<span class="number">0</span>)<span class="function">-</span>(<span class="function">parseInt</span>(this.currentStyle.marginRight,<span class="number">10</span>)||<span class="number">0</span>))</span></span>;<span class="rule"><span class="attribute">top</span>:<span class="value"><span class="function">expression</span>(<span class="function">eval</span>(document.documentElement.scrollTop+document.documentElement.clientHeight-this.<span class="function">offsetHeight-</span>(<span class="function">parseInt</span>(this.currentStyle.marginTop,<span class="number">10</span>)||<span class="number">0</span>)<span class="function">-</span>(<span class="function">parseInt</span>(this.currentStyle.marginBottom,<span class="number">10</span>)||<span class="number">0</span>)))</span></span></span>}</div></pre></td></tr></table></figure>
-
-
+<p>但是由于国内某些特殊原因，需要下载的内容无法直接下载。而因为SSL证书的问题，使用goagent也无法安装。于是提取了<a href="https://dl-web.dropbox.com/u/17/dropbox-lnx.x86-1.6.17.tar.gz" target="_blank" rel="external">下载地址</a>通过浏览器直接下载到了安装包dropbox-lnx.x86-1.6.17.tar.gz。</p>
+<p>按照以前的安装方式，直接解压到~目录，运行.dropbox-dist目录下的dropbox文件即可。不过这次的新版似乎有所不同，之前这样使用都可以开机自动运行，通过dropbox start命令也可以正常启动。但这次dropbox start却一直提示未安装，看来新版的dropbox daemon的安装还是有变化的= =<br>
         
           <p class="article-more-link">
-            <a href="/ie6-position-fixed-bug/#more">Read More</a>
+            <a href="/ubuntu-install-new-version-dropbox-daemon-note/#more">Read More</a>
           </p>
         
-      
-    </div>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ie-word-wrap" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/ie-word-wrap/" class="article-date">
-  <time datetime="2012-08-07T07:46:07.000Z" itemprop="datePublished">8月 7 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/ie-word-wrap/">关于ie6、ie7折行问题</a>
-    </h1>
-  
-
-      </header>
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>HTML结构及CSS样式如下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">li</span> <span class="rules">{<span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>; <span class="rule"><span class="attribute">margin-right</span>:<span class="value"><span class="number">10px</span></span></span>; <span class="rule">}</span></span></div></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">”#"</span>&gt;</span>文本1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">”#"</span>&gt;</span>文本2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">”#"</span>&gt;</span>文本3<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
-
-<p>这个时候，在ie6、ie7中文字很可能出现断行（暂没发现其他浏览器出现这个问题）</p>
-<p>解决问题方法：</p>
-<ol>
-<li>如果文本中没有空格，用word-break属性的keep-all参数可解决这个问题。</li>
-<li>如果文本中有空格，用white-space属性的nowrap参数可解决问题。
-        
-          <p class="article-more-link">
-            <a href="/ie-word-wrap/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-chrome-google-analytics-invalid" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/chrome-google-analytics-invalid/" class="article-date">
-  <time datetime="2012-07-22T05:21:34.000Z" itemprop="datePublished">7月 22 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/chrome-google-analytics-invalid/">Chrome中Google Analytics无法跟踪</a>
-    </h1>
-  
-
-      </header>
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前给博客加上Google Analytics后遇到了一个问题，就是用Chrome时Google Analytics无法获取到访问记录，但是用IE、Firefox却可以记录。通过Chrome的开发者工具中的Network工具，我发现是因为Google Analytics用来提交数据的__utm.gif文件载入失败。</p>
-<p><img src="http://img.nilennoct.com/wp-content/uploads/2012/07/Network1.jpg" alt=""></p>
-<p>检查了Chrome、杀毒软件的设置后，均未发现可能造成该问题的选项。</p>
-<p>今天在给虚拟机中的Mac安装Chrome时，Chrome自动同步安装了AdBlock，在选择AdBlock的过滤清单时突然看到最后有一个“EasyPrivacy (隐私保护)”清单。</p>
-<p><img src="http://img.nilennoct.com/wp-content/uploads/2012/07/filter-list.jpg" alt=""></p>
-<p>看到这个顿时明白问题的原因了。回到Win7的Chrome，打开AdBlock设置一看，果然是打着勾的。去掉以后刷新，Google Analytics就能正常统计了。</p>
-
       
     </div>
   </div>
@@ -554,7 +317,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </section>

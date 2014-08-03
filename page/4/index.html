@@ -62,14 +62,14 @@
 
 <section id="main">
   
-    <article id="post-vmware7-mac-xcode" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-raspberrypi-install-dhcp-server" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/vmware7-mac-xcode/" class="article-date">
-  <time datetime="2012-07-21T14:10:07.000Z" itemprop="datePublished">7月 21 2012</time>
+    <a href="/raspberrypi-install-dhcp-server/" class="article-date">
+  <time datetime="2013-03-08T09:24:25.000Z" itemprop="datePublished">3月 8 2013</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
   </div>
 
   </div>
@@ -80,7 +80,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/vmware7-mac-xcode/">VMware7安装Mac+Xcode</a>
+      <a class="article-title" href="/raspberrypi-install-dhcp-server/">在RaspberryPi上安装DHCP服务器</a>
     </h1>
   
 
@@ -89,17 +89,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近给笔记本加了一条内存，达到了6G内存，所以之前想装Mac OS的想法又冒了出来。之前也试着用VMware装过一次Mac,但因为内存和版本的原因一直装不了Xcode，只得作罢。这次接着加内存的东风，就再尝试了一次，虽然中途遇到了很多的问题，但最终倒都是成功解决了，一下说说过程吧。</p>
-<p>准备工作：</p>
-<ul>
-<li>Mac OS X Snow Leopard 10.6.6 （<a href="http://adf.ly/AxlxV" target="_blank" rel="external">Torrent下载</a>）</li>
-<li>Empire EFI引导盘 （<a href="http://adf.ly/AxmMA" target="_blank" rel="external">ISO下载</a>）</li>
-<li>VMware Tools （<a href="http://adf.ly/AzPgo" target="_blank" rel="external">下载</a>）</li>
-</ul>
-<p>我这里用的是Hazard制作的破解版MacOS，一共9个分卷外加一个IOATAFamily补丁，约3.3G，包括了大部分破解驱动。<br>
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p><strong>确定DHCP服务端软件</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dpkg --list | grep dhcp</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_11_01.png" alt="Task_11_01"></p>
+<p>由图中可知道，RPi默认安装的dhcp客户端是isc-dhcp-client，不难想到对应的服务端应该是isc-dhcp-server。<br>
         
           <p class="article-more-link">
-            <a href="/vmware7-mac-xcode/#more">Read More</a>
+            <a href="/raspberrypi-install-dhcp-server/#more">Read More</a>
           </p>
         
       
@@ -110,14 +110,14 @@
 
 
   
-    <article id="post-ios-l2tp-no-secret-key" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/ios-l2tp-no-secret-key/" class="article-date">
-  <time datetime="2012-07-14T15:36:26.000Z" itemprop="datePublished">7月 14 2012</time>
+    <a href="/raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs/" class="article-date">
+  <time datetime="2013-03-07T10:00:55.000Z" itemprop="datePublished">3月 7 2013</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
   </div>
 
   </div>
@@ -128,7 +128,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/ios-l2tp-no-secret-key/">iOS免密钥连接L2TP协议VPN</a>
+      <a class="article-title" href="/raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs/">RaspberryPi搭建NAS之中文兼容性检测</a>
     </h1>
   
 
@@ -137,136 +137,178 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>学校里使用的VPN采用的是不需要密钥验证的L2TP协议，而iOS系统中连接L2TP的VPN时必须输入密钥，否则无法保存VPN设置。碰到这种情况可以用iFile或者iTools在 /etc/ppp/ 目录中新建一名为”options”的文本文件，打开输入以下内容：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">plugin</span> L2TP.ppp</div><div class="line">l2tpnoipsec</div></pre></td></tr></table></figure>
-
-<p>即可实现免密钥连接L2TP协议的VPN了（若不行请重启SpringBoard）。</p>
-
-      
-    </div>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-ssh-wordpress-plugin" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/ssh-wordpress-plugin/" class="article-date">
-  <time datetime="2012-07-07T09:03:58.000Z" itemprop="datePublished">7月 7 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Wordpress/">Wordpress</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/ssh-wordpress-plugin/">SF通过SSH安装Wordpress插件</a>
-    </h1>
-  
-
-      </header>
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Putty登录SourceForge的SSH：</p>
-<ol>
-<li>Session</li>
-</ol>
-<p>host name: shell.sourceforge.net, port: 22, SSH</p>
-<ol>
-<li>Connection-&gt;Data</li>
-</ol>
-<p>Login detail Auto-login username: user,project-name</p>
-<ol>
-<li>Connection-&gt;SSH</li>
-</ol>
-<p>Remote command: create (必填，否则会闪退)</p>
-<p>安装插件：</p>
-<p><strong>进入Wordpress插件目录</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /home/project-web/项目名称/htdocs/blog/wp-content/pluginswget</div></pre></td></tr></table></figure>
-
-<p><strong>下载插件包</strong></p>
-<p>在<a href="http://wordpress.org/extend/plugins/" target="_blank" rel="external">http://wordpress.org/extend/plugins/</a>找到链接地址(<a href="http://downloads.wordpress.org/plugin/syntaxhighlighter.zip)，用wget命令下载" target="_blank" rel="external">http://downloads.wordpress.org/plugin/syntaxhighlighter.zip)，用wget命令下载</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://downloads.wordpress.org/plugin/syntaxhighlighter.zip</div></pre></td></tr></table></figure>
-
-<p><strong>解压</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unzip syntaxhighlighter.zip</div></pre></td></tr></table></figure>
-
-<p><strong>进入wordpress后台启用插件</strong></p>
-
-      
-    </div>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-css-naming-specification" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/css-naming-specification/" class="article-date">
-  <time datetime="2012-07-06T23:17:19.000Z" itemprop="datePublished">7月 7 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/css-naming-specification/">关于团队合作的css命名规范</a>
-    </h1>
-  
-
-      </header>
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>(一)常用的css命名规则</strong></p>
-<p>头：header</p>
-<p>内容：content/container</p>
-<p>尾：footer</p>
-<p>导航：nav</p>
-<p>侧栏：sidebar</p>
-<p>栏目：column</p>
-<p>页面外围控制整体布局宽度：wrapper</p>
-<p>左右中：left right center</p>
-<p>登录条：loginbar</p>
-<p>标志：logo</p>
-<p>广告：banner</p>
-<p>页面主体：main</p>
-<p>热点：hot</p>
-<p>新闻：news</p>
-<p>下载：download</p>
-<p>子导航：subnav</p>
-<p>菜单：menu</p>
-<p>子菜单：submenu</p>
-<p>搜索：search</p>
-<p>友情链接：friendlink</p>
-<p>页脚：footer</p>
-<p>版权：copyright</p>
-<p>滚动：scroll</p>
-<p>内容：content</p>
-<p>
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+<p>在RPi上搭建NAS的过程详见《<a href="http://www.nilennoct.com/raspberrypi-nas-samba-sftp/" target="_blank" rel="external">在RaspberryPi上搭建NAS</a>》</p>
+</blockquote>
+<p>NAS已经搭建好了，接下来我们要测试一下各种方式对中文路径名、文件名的兼容情况。</p>
+<p><strong>Samba</strong></p>
+<p>如下图所示，是Win8下访问通过Samba方式访问RPi的效果。我们可以发现不需要多余的设置，中文已经很完美的显示了。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_09_01.png" alt="Task_09_01"><br>
         
           <p class="article-more-link">
-            <a href="/css-naming-specification/#more">Read More</a>
+            <a href="/raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-raspberrypi-airplay-shairport" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-airplay-shairport/" class="article-date">
+  <time datetime="2013-03-05T14:56:35.000Z" itemprop="datePublished">3月 5 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-airplay-shairport/">在RaspberryPi上启用AirPlay</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p><strong>准备工作</strong></p>
+<ul>
+<li>连入局域网的Raspberry Pi（有线或无线均可）</li>
+<li>迷你音箱一个</li>
+<li>连入相同局域网内的iOS设备</li>
+</ul>
+<p><strong>更改缺省的音频输出端口</strong></p>
+<p>将缺省的音频输出端口指向标准耳机端口而非原先的HDMI。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> amixer cset numid=<span class="number">3</span> <span class="number">1</span></div></pre></td></tr></table></figure>
+
+<p><strong>安装shairport所需的包</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install git libao-dev libssl-dev libcrypt-openssl-rsa-perl libio-socket-inet6-perl libwww-perl avahi-utils libmodule-build-perl</div></pre></td></tr></table></figure>
+
+
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-airplay-shairport/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-raspberrypi-nas-samba-sftp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-nas-samba-sftp/" class="article-date">
+  <time datetime="2013-03-05T07:08:18.000Z" itemprop="datePublished">3月 5 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-nas-samba-sftp/">在RaspberryPi上搭建NAS</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>给RPi连接上移动硬盘，可以很方便的将其变为NAS（Network Attached Storage）供远程使用。</p>
+<p><strong>连接移动硬盘</strong></p>
+<p>在连接移动硬盘时遇到了一点问题，就是RPi的USB输出功率太小，即使移动硬盘的数据口和供电口（在同一条USB线上）都插在RPi上也依然带不动移动硬盘。最后我把移动硬盘的供电口插在了笔记本上移动硬盘才能正常使用。</p>
+<p>所在若是你在连接移动硬盘后无法在/dev目录中找到设备，请检查移动硬盘供电是否充足。</p>
+<p>因为我是通过ssh连接RPi的，接上移动硬盘后RPi并没有自动挂载。输入如下命令挂载。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> mkdir /media/NAS</div><div class="line"><span class="built_in">sudo</span> mount -o uid=pi,gid=pi /dev/sda5 /media/NAS</div></pre></td></tr></table></figure>
+
+
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-nas-samba-sftp/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-raspberrypi-install-jre-jdk" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-install-jre-jdk/" class="article-date">
+  <time datetime="2013-03-03T15:32:16.000Z" itemprop="datePublished">3月 3 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-install-jre-jdk/">RaspberryPi安装JRE&amp;JDK</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>一开始我参考的是Oracle官网上的《<a href="http://www.oracle.com/technetwork/articles/java/raspberrypi-1704896.html" target="_blank" rel="external">Getting Started with Java® SE Embedded on the Raspberry Pi</a>》，从Oracle的网站上下载了ejre-7u10-fcs-b18-linux-arm-vfp-client_headless-28_nov_2012.tar.gz并进行了安装，方法如下。</p>
+<ul>
+<li><p>上传ejre-7u10-fcs-b18-linux-arm-vfp-client_headless-28_nov_2012.tar.gz文件到RPi的/home/pi/文件夹。</p>
+</li>
+<li><p>安装EJRE。</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> mkdir /opt/java</div><div class="line"><span class="built_in">sudo</span> mv ~/ejre-<span class="number">7</span>u10-fcs-b18-linux-arm-vfp-client_headless-<span class="number">28</span>_nov_2012.tar.gz /opt/java</div><div class="line"><span class="built_in">sudo</span> tar -zxvf ejre-<span class="number">7</span>u10-fcs-b18-linux-arm-vfp-client_headless-<span class="number">28</span>_nov_2012.tar.gz</div></pre></td></tr></table></figure>
+
+
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-install-jre-jdk/#more">Read More</a>
           </p>
         
       
@@ -279,7 +321,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 </section>

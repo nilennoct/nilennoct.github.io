@@ -62,10 +62,10 @@
 
 <section id="main">
   
-    <article id="post-raspberrypi-install-lamp" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-raspberrypi-install-ruby" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/raspberrypi-install-lamp/" class="article-date">
-  <time datetime="2013-03-01T16:22:43.000Z" itemprop="datePublished">3月 2 2013</time>
+    <a href="/raspberrypi-install-ruby/" class="article-date">
+  <time datetime="2013-03-10T03:14:53.000Z" itemprop="datePublished">3月 10 2013</time>
 </a>
     
   <div class="article-category">
@@ -80,7 +80,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/raspberrypi-install-lamp/">在RaspberryPi上安装LAMP</a>
+      <a class="article-title" href="/raspberrypi-install-ruby/">在RaspberryPi上安装Ruby</a>
     </h1>
   
 
@@ -92,21 +92,17 @@
         <blockquote>
 <p>浙江大学嵌入式系统课程</p>
 </blockquote>
-<p>既然已经在RaspberryPi上安装了Linux系统，很自然的我们可以想到在其上安装LAMP，使其变为随身服务器。</p>
-<p>本文设备环境：</p>
-<ul>
-<li><p>Raspberry Pi B板</p>
-</li>
-<li><p>系统镜像：2012-12-16-wheezy-raspbian.img[<a href="http://pan.baidu.com/share/link?shareid=318970&amp;uk=3842409107" target="_blank" rel="external">下载</a>]</p>
-</li>
-</ul>
-<p><strong>图文攻略：</strong></p>
-<p><strong>使用putty连接并登陆Raspberry</strong></p>
-<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301214608.png" alt=""></p>
-<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301214644.png" alt=""><br>
+<p><strong>安装Ruby</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install ruby</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_13_01.png" alt="Task_13_01"></p>
+<p><strong>安装ri文档查阅工具</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install ri</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_13_02.png" alt="Task_13_02"><br>
         
           <p class="article-more-link">
-            <a href="/raspberrypi-install-lamp/#more">Read More</a>
+            <a href="/raspberrypi-install-ruby/#more">Read More</a>
           </p>
         
       
@@ -117,14 +113,14 @@
 
 
   
-    <article id="post-jsdoc-definition" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-ubuntu-install-new-version-dropbox-daemon-note" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/jsdoc-definition/" class="article-date">
-  <time datetime="2013-01-31T03:25:19.000Z" itemprop="datePublished">1月 31 2013</time>
+    <a href="/ubuntu-install-new-version-dropbox-daemon-note/" class="article-date">
+  <time datetime="2013-03-10T02:02:10.000Z" itemprop="datePublished">3月 10 2013</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
+    <a class="article-category-link" href="/categories/Note/">Note</a>
   </div>
 
   </div>
@@ -135,7 +131,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/jsdoc-definition/">JSDoc描述</a>
+      <a class="article-title" href="/ubuntu-install-new-version-dropbox-daemon-note/">Ubuntu安装新版Dropbox的注意事项</a>
     </h1>
   
 
@@ -144,24 +140,171 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>@param @argument 指定参数名和说明来描述一个函数参数</p>
-<p>@returns 描述函数的返回值</p>
-<p>@author 指示代码的作者</p>
-<p>@deprecated 指示一个函数已经废弃，而且在将来的代码版本中将彻底删除。要避免使用这段代码</p>
-<p>@see 创建一个HTML链接，指向指定类的描述</p>
-<p>@version 指定发布版本</p>
-<p>@requires 创建一个HTML链接，指向这个类所需的指定类</p>
-<p>@throws @exception 描述函数可能抛出的异常的类型</p>
-<p>{@link} 创建一个HTML链接，指向指定的类。这与@see很类似，但{@link}能嵌在注释文本中</p>
-<p>@fileoverview 这是一个特殊的标记。如果在文件的第一个文档块中使用这个标记，则指定该文档块的余下部分将用来提供这个文件的概述</p>
-<p>@class 提供类的有关信息，用在构造函数的文档中</p>
-<p>@constructor 明确一个函数是某个类的构造函数</p>
-<p>@type 指定函数的返回类型</p>
-<p>@extends 指示一个类派生了另一个类。JSDoc通常自己就可以检测出这种信息，不过，在某些情况下则必须使用这个标记</p>
-<p>@private 指示一个类或函数是私有的。私有类和函数不会出现在HTML文档中，除非运行JSDoc时提供了—private命令行选项</p>
-<p>@final 指示一个值是常量值。要记住JavaScript无法真正保证一个值是常量</p>
-<p>@ignore JSDoc忽略有这个标记的函数</p>
+        <p>之前的ubuntu图方便是直接用wubi装的，结果前两天手贱把disk.img给误删了，无奈之下，干脆就重装了（可惜我配好的环境啊T T）。</p>
+<p>分区、安装什么的都很顺利，PPA软件源我直接用Ubuntu Tweak管理了，确实很方便。不过在安装Dropbox的时候倒是遇到了一些麻烦。</p>
+<p>Dropbox官网上提供的下载只不过是一个空壳而已，安装后需要使用如下命令安装daemon。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dropbox start -i</div></pre></td></tr></table></figure>
 
+<p>但是由于国内某些特殊原因，需要下载的内容无法直接下载。而因为SSL证书的问题，使用goagent也无法安装。于是提取了<a href="https://dl-web.dropbox.com/u/17/dropbox-lnx.x86-1.6.17.tar.gz" target="_blank" rel="external">下载地址</a>通过浏览器直接下载到了安装包dropbox-lnx.x86-1.6.17.tar.gz。</p>
+<p>按照以前的安装方式，直接解压到~目录，运行.dropbox-dist目录下的dropbox文件即可。不过这次的新版似乎有所不同，之前这样使用都可以开机自动运行，通过dropbox start命令也可以正常启动。但这次dropbox start却一直提示未安装，看来新版的dropbox daemon的安装还是有变化的= =<br>
+        
+          <p class="article-more-link">
+            <a href="/ubuntu-install-new-version-dropbox-daemon-note/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-raspberrypi-install-dhcp-server" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-install-dhcp-server/" class="article-date">
+  <time datetime="2013-03-08T09:24:25.000Z" itemprop="datePublished">3月 8 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-install-dhcp-server/">在RaspberryPi上安装DHCP服务器</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p><strong>确定DHCP服务端软件</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dpkg --list | grep dhcp</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_11_01.png" alt="Task_11_01"></p>
+<p>由图中可知道，RPi默认安装的dhcp客户端是isc-dhcp-client，不难想到对应的服务端应该是isc-dhcp-server。<br>
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-install-dhcp-server/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs/" class="article-date">
+  <time datetime="2013-03-07T10:00:55.000Z" itemprop="datePublished">3月 7 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs/">RaspberryPi搭建NAS之中文兼容性检测</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+<p>在RPi上搭建NAS的过程详见《<a href="http://www.nilennoct.com/raspberrypi-nas-samba-sftp/" target="_blank" rel="external">在RaspberryPi上搭建NAS</a>》</p>
+</blockquote>
+<p>NAS已经搭建好了，接下来我们要测试一下各种方式对中文路径名、文件名的兼容情况。</p>
+<p><strong>Samba</strong></p>
+<p>如下图所示，是Win8下访问通过Samba方式访问RPi的效果。我们可以发现不需要多余的设置，中文已经很完美的显示了。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_09_01.png" alt="Task_09_01"><br>
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-raspberrypi-airplay-shairport" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-airplay-shairport/" class="article-date">
+  <time datetime="2013-03-05T14:56:35.000Z" itemprop="datePublished">3月 5 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-airplay-shairport/">在RaspberryPi上启用AirPlay</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p><strong>准备工作</strong></p>
+<ul>
+<li>连入局域网的Raspberry Pi（有线或无线均可）</li>
+<li>迷你音箱一个</li>
+<li>连入相同局域网内的iOS设备</li>
+</ul>
+<p><strong>更改缺省的音频输出端口</strong></p>
+<p>将缺省的音频输出端口指向标准耳机端口而非原先的HDMI。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> amixer cset numid=<span class="number">3</span> <span class="number">1</span></div></pre></td></tr></table></figure>
+
+<p><strong>安装shairport所需的包</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install git libao-dev libssl-dev libcrypt-openssl-rsa-perl libio-socket-inet6-perl libwww-perl avahi-utils libmodule-build-perl</div></pre></td></tr></table></figure>
+
+
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-airplay-shairport/#more">Read More</a>
+          </p>
+        
       
     </div>
   </div>
@@ -172,7 +315,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2013/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/2013/">1</a><a class="page-number" href="/archives/2013/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/archives/2013/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/2013/">1</a><a class="page-number" href="/archives/2013/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2013/page/4/">4</a><a class="page-number" href="/archives/2013/page/5/">5</a><a class="extend next" rel="next" href="/archives/2013/page/4/">Next &raquo;</a>
     </nav>
   
 </section>
