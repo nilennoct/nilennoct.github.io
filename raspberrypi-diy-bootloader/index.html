@@ -5,6 +5,40 @@
   
   <title>用于Raspberry Pi的简易bootloader | Nil-Enn-Oct</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="浙江大学嵌入式系统课程
+
+这是一次痛并快乐着的实验。
+以下引用实验要求：
+
+David Welch的 GitHub 的bootloader05给出了一个非常简单的RPi bootloader，他的代码链接在内存的0x00020000位置，一直在监听串口是否有XMODEM协议的文件下载，如果有就开始接收数据，并复制到0x00008000位置，传输完成后跳转到 0x00008000去执行。
+TA写了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用于Raspberry Pi的简易bootloader">
+<meta property="og:url" content="http://www.nilennoct.com//raspberrypi-diy-bootloader/">
+<meta property="og:site_name" content="Nil-Enn-Oct">
+<meta property="og:description" content="浙江大学嵌入式系统课程
+
+这是一次痛并快乐着的实验。
+以下引用实验要求：
+
+David Welch的 GitHub 的bootloader05给出了一个非常简单的RPi bootloader，他的代码链接在内存的0x00020000位置，一直在监听串口是否有XMODEM协议的文件下载，如果有就开始接收数据，并复制到0x00008000位置，传输完成后跳转到 0x00008000去执行。
+TA写了">
+<meta property="og:image" content="http://img.nilennoct.com/wp-content/uploads/2013/05/bootloader05.origin.png">
+<meta property="og:image" content="http://img.nilennoct.com/wp-content/uploads/2013/05/bootloader05.neo_.png">
+<meta property="og:image" content="http://img.nilennoct.com/wp-content/uploads/2013/05/Lab_05_01.png">
+<meta property="og:image" content="http://img.nilennoct.com/wp-content/uploads/2013/05/Lab_05_02.png">
+<meta property="og:image" content="http://img.nilennoct.com/wp-content/uploads/2013/05/Lab_05_03.png">
+<meta property="og:image" content="http://img.nilennoct.com/wp-content/uploads/2013/05/Lab_05_04.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用于Raspberry Pi的简易bootloader">
+<meta name="twitter:description" content="浙江大学嵌入式系统课程
+
+这是一次痛并快乐着的实验。
+以下引用实验要求：
+
+David Welch的 GitHub 的bootloader05给出了一个非常简单的RPi bootloader，他的代码链接在内存的0x00020000位置，一直在监听串口是否有XMODEM协议的文件下载，如果有就开始接收数据，并复制到0x00008000位置，传输完成后跳转到 0x00008000去执行。
+TA写了">
+
 
   <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
 
