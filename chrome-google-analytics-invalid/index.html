@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Chrome中Google Analytics无法跟踪 | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-chrome-google-analytics-invalid" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/chrome-google-analytics-invalid/" class="article-date">
+  <time datetime="2012-07-22T05:21:34.000Z" itemprop="datePublished">7月 22 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Chrome中Google Analytics无法跟踪
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前给博客加上Google Analytics后遇到了一个问题，就是用Chrome时Google Analytics无法获取到访问记录，但是用IE、Firefox却可以记录。通过Chrome的开发者工具中的Network工具，我发现是因为Google Analytics用来提交数据的__utm.gif文件载入失败。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2012/07/Network1.jpg" alt=""></p>
+<p>检查了Chrome、杀毒软件的设置后，均未发现可能造成该问题的选项。</p>
+<p>今天在给虚拟机中的Mac安装Chrome时，Chrome自动同步安装了AdBlock，在选择AdBlock的过滤清单时突然看到最后有一个“EasyPrivacy (隐私保护)”清单。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2012/07/filter-list.jpg" alt=""></p>
+<p>看到这个顿时明白问题的原因了。回到Win7的Chrome，打开AdBlock设置一看，果然是打着勾的。去掉以后刷新，Google Analytics就能正常统计了。</p>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/ie-word-wrap/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          关于ie6、ie7折行问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/vmware7-mac-xcode/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">VMware7安装Mac+Xcode</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

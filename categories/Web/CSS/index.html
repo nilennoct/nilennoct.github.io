@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: CSS | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main">
+  
+    <article id="post-ie6-position-fixed-bug" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ie6-position-fixed-bug/" class="article-date">
+  <time datetime="2012-08-09T07:38:09.000Z" itemprop="datePublished">8月 9 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/ie6-position-fixed-bug/">完美解决IE6不支持position:fixed的bug</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在写前端的时候发现IE6下存在不支持position:fixed的bug。通过查找资料找到了较完美的的解决方法。代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 除IE6浏览器的通用方法 */</span></div><div class="line"><span class="class">.ie6fixedTL</span><span class="rules">{<span class="rule"><span class="attribute">position</span>:<span class="value">fixed</span></span>;<span class="rule"><span class="attribute">left</span>:<span class="value"><span class="number">0</span></span></span>;<span class="rule"><span class="attribute">top</span>:<span class="value"><span class="number">0</span></span></span></span>}</div><div class="line"><span class="class">.ie6fixedBR</span><span class="rules">{<span class="rule"><span class="attribute">position</span>:<span class="value">fixed</span></span>;<span class="rule"><span class="attribute">right</span>:<span class="value"><span class="number">0</span></span></span>;<span class="rule"><span class="attribute">bottom</span>:<span class="value"><span class="number">0</span></span></span></span>}</div><div class="line"><span class="comment">/* IE6浏览器的特有方法 */</span></div><div class="line"><span class="comment">/* 修正IE6振动bug */</span></div><div class="line">* <span class="tag">html</span>,* <span class="tag">html</span> <span class="tag">body</span><span class="rules">{<span class="rule"><span class="attribute">background-image</span>:<span class="value"><span class="function">url</span>(about:blank)</span></span>;<span class="rule"><span class="attribute">background-attachment</span>:<span class="value">fixed</span></span></span>}</div><div class="line">* <span class="tag">html</span> <span class="class">.ie6fixedTL</span><span class="rules">{<span class="rule"><span class="attribute">position</span>:<span class="value">absolute</span></span>;<span class="rule"><span class="attribute">left</span>:<span class="value"><span class="function">expression</span>(<span class="function">eval</span>(document.documentElement.scrollLeft))</span></span>;<span class="rule"><span class="attribute">top</span>:<span class="value"><span class="function">expression</span>(<span class="function">eval</span>(document.documentElement.scrollTop))</span></span></span>}</div><div class="line">* <span class="tag">html</span> <span class="class">.ie6fixedBR</span><span class="rules">{<span class="rule"><span class="attribute">position</span>:<span class="value">absolute</span></span>;<span class="rule"><span class="attribute">left</span>:<span class="value"><span class="function">expression</span>(<span class="function">eval</span>(document.documentElement.scrollLeft+document.documentElement.clientWidth-this.offsetWidth)<span class="function">-</span>(<span class="function">parseInt</span>(this.currentStyle.marginLeft,<span class="number">10</span>)||<span class="number">0</span>)<span class="function">-</span>(<span class="function">parseInt</span>(this.currentStyle.marginRight,<span class="number">10</span>)||<span class="number">0</span>))</span></span>;<span class="rule"><span class="attribute">top</span>:<span class="value"><span class="function">expression</span>(<span class="function">eval</span>(document.documentElement.scrollTop+document.documentElement.clientHeight-this.<span class="function">offsetHeight-</span>(<span class="function">parseInt</span>(this.currentStyle.marginTop,<span class="number">10</span>)||<span class="number">0</span>)<span class="function">-</span>(<span class="function">parseInt</span>(this.currentStyle.marginBottom,<span class="number">10</span>)||<span class="number">0</span>)))</span></span></span>}</div></pre></td></tr></table></figure>
+
+
+        
+          <p class="article-more-link">
+            <a href="/ie6-position-fixed-bug/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ie-word-wrap" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ie-word-wrap/" class="article-date">
+  <time datetime="2012-08-07T07:46:07.000Z" itemprop="datePublished">8月 7 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/ie-word-wrap/">关于ie6、ie7折行问题</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>HTML结构及CSS样式如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">li</span> <span class="rules">{<span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>; <span class="rule"><span class="attribute">margin-right</span>:<span class="value"><span class="number">10px</span></span></span>; <span class="rule">}</span></span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">”#"</span>&gt;</span>文本1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">”#"</span>&gt;</span>文本2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">”#"</span>&gt;</span>文本3<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>这个时候，在ie6、ie7中文字很可能出现断行（暂没发现其他浏览器出现这个问题）</p>
+<p>解决问题方法：</p>
+<ol>
+<li>如果文本中没有空格，用word-break属性的keep-all参数可解决这个问题。</li>
+<li>如果文本中有空格，用white-space属性的nowrap参数可解决问题。
+        
+          <p class="article-more-link">
+            <a href="/ie-word-wrap/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-css-naming-specification" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/css-naming-specification/" class="article-date">
+  <time datetime="2012-07-06T23:17:19.000Z" itemprop="datePublished">7月 7 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/css-naming-specification/">关于团队合作的css命名规范</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>(一)常用的css命名规则</strong></p>
+<p>头：header</p>
+<p>内容：content/container</p>
+<p>尾：footer</p>
+<p>导航：nav</p>
+<p>侧栏：sidebar</p>
+<p>栏目：column</p>
+<p>页面外围控制整体布局宽度：wrapper</p>
+<p>左右中：left right center</p>
+<p>登录条：loginbar</p>
+<p>标志：logo</p>
+<p>广告：banner</p>
+<p>页面主体：main</p>
+<p>热点：hot</p>
+<p>新闻：news</p>
+<p>下载：download</p>
+<p>子导航：subnav</p>
+<p>菜单：menu</p>
+<p>子菜单：submenu</p>
+<p>搜索：search</p>
+<p>友情链接：friendlink</p>
+<p>页脚：footer</p>
+<p>版权：copyright</p>
+<p>滚动：scroll</p>
+<p>内容：content</p>
+<p>
+        
+          <p class="article-more-link">
+            <a href="/css-naming-specification/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+
+</body>
+</html>

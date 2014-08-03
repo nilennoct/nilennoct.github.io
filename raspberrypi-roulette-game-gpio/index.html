@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>用Raspberry Pi制作简单的轮盘游戏机 | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-raspberrypi-roulette-game-gpio" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-roulette-game-gpio/" class="article-date">
+  <time datetime="2013-06-10T11:50:00.000Z" itemprop="datePublished">6月 10 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      用Raspberry Pi制作简单的轮盘游戏机
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>之前在Raspberry Pi上做了许多好玩的事情，但与物理计算却是一点关系也没有。所以这次我们来尝试用RPi做一个简单的轮盘游戏机。因为材料有限，“轮盘”将使用一个2位8段数码管模拟。</p>
+<p>材料准备：</p>
+<ul>
+<li>Raspberry Pi</li>
+<li>面包板一块</li>
+<li>2位8段数码管一个</li>
+<li>按钮2个</li>
+<li>1K~10KΩ电阻2个</li>
+<li>面包线+杜邦线若干</li>
+</ul>
+<p><strong>在RPi上安装wiringPi</strong></p>
+<p>使用串口或SSH连接RPi，输入以下命令安装wiringPi。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /tmp/</div><div class="line">$ git clone git://git.drogon.net/wiringPi</div><div class="line">$ <span class="built_in">cd</span> wiringPi</div><div class="line">$ <span class="built_in">sudo</span> ./build</div></pre></td></tr></table></figure>
+
+<p>安装完成后，你可以使用命令<code>gpio -v</code>测试wiringPi是否已经正确安装。<br><a id="more"></a><br><strong>连线</strong></p>
+<p>RPi上的GPIO与wiringPi中的Pin的对应关系可以参看下表。</p>
+<table style="width: 450px;border: 1px solid #e7e7e7;"><br><tbody><br><tr><br><th style="text-align: center;">wiringPi<br><br>Pin</th><br><th style="text-align: center;">BCM<br><br>GPIO</th><br><th style="text-align: center;">Name</th><br><th style="text-align: center;">Header</th><br><th style="text-align: center;">Name</th><br><th style="text-align: center;">BCM<br><br>GPIO</th><br><th style="text-align: center;">wiringPi<br><br>Pin</th><br></tr><br><tr><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br><td style="text-align: center;"><span style="color: #ff0000;">3.3v</span></td><br><th style="text-align: center;">1 | 2</th><br><td style="text-align: center;" align="center"><span style="color: #ff6600;">5v</span></td><br><td style="text-align: center;" align="center">–</td><br><td style="text-align: center;" align="center">–</td><br></tr><br><tr><br><td style="text-align: center;">8</td><br><td style="text-align: center;">R1:0/R2:2</td><br><td style="text-align: center;"><span style="color: #33cccc;">SDA0</span></td><br><th style="text-align: center;">3 | 4</th><br><td style="text-align: center;"><span style="color: #ff6600;">5v</span></td><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br></tr><br><tr><br><td style="text-align: center;">9</td><br><td style="text-align: center;">R1:1/R2:3</td><br><td style="text-align: center;"><span style="color: #33cccc;">SCL0</span></td><br><th style="text-align: center;">5 | 6</th><br><td style="text-align: center;"><span style="color: #000000;">0v</span></td><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br></tr><br><tr><br><td style="text-align: center;">7</td><br><td style="text-align: center;">4</td><br><td style="text-align: center;"><span style="color: #008000;">GPIO7</span></td><br><th style="text-align: center;">7 | 8</th><br><td style="text-align: center;"><span style="color: #ffff00;">TxD</span></td><br><td style="text-align: center;">14</td><br><td style="text-align: center;">15</td><br></tr><br><tr><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br><td style="text-align: center;"><span style="color: #000000;">0v</span></td><br><th style="text-align: center;">9 | 10</th><br><td style="text-align: center;"><span style="color: #ffff00;">RxD</span></td><br><td style="text-align: center;">15</td><br><td style="text-align: center;">16</td><br></tr><br><tr><br><td style="text-align: center;">0</td><br><td style="text-align: center;">17</td><br><td style="text-align: center;"><span style="color: #008000;">GPIO0</span></td><br><th style="text-align: center;">11 | 12</th><br><td style="text-align: center;"><span style="color: #008000;">GPIO1</span></td><br><td style="text-align: center;">18</td><br><td style="text-align: center;">1</td><br></tr><br><tr><br><td style="text-align: center;">2</td><br><td style="text-align: center;">R1:21/R2:27</td><br><td style="text-align: center;"><span style="color: #008000;">GPIO2</span></td><br><th style="text-align: center;">13 | 14</th><br><td style="text-align: center;"><span style="color: #000000;">0v</span></td><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br></tr><br><tr><br><td style="text-align: center;">3</td><br><td style="text-align: center;">22</td><br><td style="text-align: center;"><span style="color: #008000;">GPIO3</span></td><br><th style="text-align: center;">15 | 16</th><br><td style="text-align: center;"><span style="color: #008000;">GPIO4</span></td><br><td style="text-align: center;">23</td><br><td style="text-align: center;">4</td><br></tr><br><tr><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br><td style="text-align: center;"><span style="color: #ff0000;">3.3v</span></td><br><th style="text-align: center;">17 | 18</th><br><td style="text-align: center;"><span style="color: #008000;">GPIO5</span></td><br><td style="text-align: center;">24</td><br><td style="text-align: center;">5</td><br></tr><br><tr><br><td style="text-align: center;">12</td><br><td style="text-align: center;">10</td><br><td style="text-align: center;"><span style="color: #800080;">MOSI</span></td><br><th style="text-align: center;">19 | 20</th><br><td style="text-align: center;"><span style="color: #000000;">0v</span></td><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br></tr><br><tr><br><td style="text-align: center;">13</td><br><td style="text-align: center;">9</td><br><td style="text-align: center;"><span style="color: #800080;">MISO</span></td><br><th style="text-align: center;">21 | 22</th><br><td style="text-align: center;"><span style="color: #008000;">GPIO6</span></td><br><td style="text-align: center;">25</td><br><td style="text-align: center;">6</td><br></tr><br><tr><br><td style="text-align: center;">14</td><br><td style="text-align: center;">11</td><br><td style="text-align: center;"><span style="color: #800080;">SCLK</span></td><br><th style="text-align: center;">23 | 24</th><br><td style="text-align: center;"><span style="color: #800080;">CE0</span></td><br><td style="text-align: center;">8</td><br><td style="text-align: center;">10</td><br></tr><br><tr><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br><td style="text-align: center;"><span style="color: #000000;">0v</span></td><br><th style="text-align: center;">25 | 26</th><br><td style="text-align: center;"><span style="color: #800080;">CE1</span></td><br><td style="text-align: center;">7</td><br><td style="text-align: center;">11</td><br></tr><br><tr><br><th style="text-align: center;">wiringPi<br><br>Pin</th><br><th style="text-align: center;">BCM<br><br>GPIO</th><br><th style="text-align: center;">Name</th><br><th style="text-align: center;">Header</th><br><th style="text-align: center;">Name</th><br><th style="text-align: center;">BCM<br><br>GPIO</th><br><th style="text-align: center;">wiringPi<br><br>Pin</th><br></tr><br></tbody><br></table>
+
+<blockquote>
+<p>更多信息请参看<a href="https://projects.drogon.net/raspberry-pi/wiringpi/pins/" target="_blank" rel="external">wiringPi Pins</a></p>
+</blockquote>
+<p>了解了GPIO排布后，开始连接各个元件，连线结果如下图。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/06/Rolb.png" alt="Wire_IMG"></p>
+<blockquote>
+<p><strong>需要注意的是，我们使用的面包板上的XY两行不是全部连通的，经我测试是分成了3-4-3三组，如果程序运行后不停地出现Start &amp; Stop，请检查XY两行上的线是否在同一组内。</strong></p>
+</blockquote>
+<p><strong>编写控制代码<code>roll.c</code></strong></p>
+<figure class="highlight c"><figcaption><span>roll.c</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;wiringPi.h&gt;</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdlib.h&gt;</span></div><div class="line"></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> DIGIT0 8</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> DIGIT1 9</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> BTN0 10</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> BTN1 11</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> main() {</div><div class="line">    <span class="keyword">int</span> pin;</div><div class="line">    <span class="keyword">int</span> m = <span class="number">0</span>, n = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> flag = <span class="number">1</span>;</div><div class="line">    <span class="keyword">int</span> run = <span class="number">0</span>;</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> time0 = <span class="number">0</span>, time1 = <span class="number">0</span>;</div><div class="line">    <span class="keyword">char</span> digit[<span class="number">10</span>][<span class="number">8</span>] = {</div><div class="line">        {<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>},</div><div class="line">        {<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>},</div><div class="line">        {<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>},</div><div class="line">        {<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>},</div><div class="line">        {<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>},</div><div class="line">        {<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>},</div><div class="line">        {<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>},</div><div class="line">        {<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>},</div><div class="line">        {<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>},</div><div class="line">        {<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>}</div><div class="line">    };</div><div class="line">    <span class="keyword">char</span> roll[<span class="number">6</span>][<span class="number">8</span>] = {</div><div class="line">        {<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>},</div><div class="line">        {<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>},</div><div class="line">        {<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>},</div><div class="line">        {<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>},</div><div class="line">        {<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>},</div><div class="line">        {<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>},</div><div class="line">    };</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (wiringPiSetup () == -<span class="number">1</span>)</div><div class="line">        <span class="built_in">exit</span> (<span class="number">1</span>) ;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (pin = <span class="number">0</span> ; pin &lt; <span class="number">8</span> ; ++pin) {</div><div class="line">        pinMode (pin, OUTPUT) ;</div><div class="line">        digitalWrite(pin, HIGH);</div><div class="line">    }</div><div class="line"></div><div class="line">    pinMode(DIGIT0, OUTPUT);</div><div class="line">    pinMode(DIGIT1, OUTPUT);</div><div class="line">    pinMode(BTN0, INPUT);</div><div class="line">    pinMode(BTN1, INPUT);</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>) {</div><div class="line">        time1 = millis();</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (digitalRead(BTN0) && run == <span class="number">0</span>) {</div><div class="line">            <span class="built_in">puts</span>(<span class="string">"Start!"</span>);</div><div class="line">            run = <span class="number">1</span>;</div><div class="line">            m = <span class="number">0</span>;</div><div class="line">            n = <span class="number">0</span>;</div><div class="line">            time0 = millis();</div><div class="line">        }</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (digitalRead(BTN1) && run == <span class="number">1</span>) {</div><div class="line">            <span class="built_in">puts</span>(<span class="string">"Stop!"</span>);</div><div class="line">            run = <span class="number">0</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (time1 - time0 &gt;= <span class="number">50</span> && run == <span class="number">1</span>) {</div><div class="line">            time0 = time1;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, n);</div><div class="line">            m = ++m % <span class="number">6</span>;</div><div class="line">            n = ++n % <span class="number">10</span>;</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (pin = <span class="number">0</span>; pin &lt; <span class="number">8</span>; pin++) {</div><div class="line">            digitalWrite(pin, flag ? digit[n][pin] : roll[m][pin]);</div><div class="line">        }</div><div class="line"></div><div class="line">        digitalWrite(DIGIT0, flag);</div><div class="line">        digitalWrite(DIGIT1, (flag = <span class="number">1</span> - flag));</div><div class="line">        delay(<span class="number">10</span>);</div><div class="line">    }</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>保存后执行以下命令编译并运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ gcc roll.c -o roll -lwiringPi</div><div class="line">$ <span class="built_in">sudo</span> ./roll</div></pre></td></tr></table></figure>
+
+<p><strong>测试结果</strong></p>
+<p>在RPi上运行控制程序后，按一下连线图中左边的按钮，可以看到左边的数码管LED一次点亮如同旋转起来一般，右边的数码管则显示依次增大的数字，同时终端中同步输出当前显示的数字。若按一下右边的按钮则变化将停止。再按左边的按钮可以重新开始。</p>
+<p>具体效果可观看视频^_^</p>
+<iframe height="480" width="640" src="http://player.youku.com/embed/XNTY5MTQ1ODg4" frameborder="0" allowfullscreen></iframe>
+
+<p><strong>部分原理说明</strong></p>
+<ul>
+<li>按键处理</li>
+</ul>
+<p>通常情况下，在使用按键时只需将按键的一端接到3.3V上，另一端接到GPIO口上，通过读取GPIO口的电压值就可以得到按键的通断状态。但在某些特殊环境下，仅仅是把手靠近开关就可能在GPIO上读到高电平，这是因为电路中没有下拉电阻，使得外界干扰影响了对按键的判断。</p>
+<p>如下图所示是一个下拉电阻的常见接法。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/06/btn_pull_down.png" alt="Pull_Down"></p>
+<p>在GPIO口与GND之间接一个1K-10KΩ的电阻。当外界有干扰源的时候，干扰源在通向GND的过程中，会被电阻消耗掉，保证按键状态检测的准确性。</p>
+<ul>
+<li>2位8段数码管的使用</li>
+</ul>
+<p>实验中使用的是一个共阳极数码管，其内部电路如下图所示：</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/06/dgt_sgmt_line.png" alt="Segment_Display_Line"></p>
+<p>另外此2位数码管的引脚位置如下图所示：</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/06/dgt_sgmt_pin.png" alt="Segment_Display_Pin"></p>
+<p>连线时与内部电路对照着即可，其中5、10为两个数位的控制位，送入高电平时会点亮相应数位。需要注意的是引脚的顺序和数码管上LED的排布顺序不一致，连线时要注意。</p>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/use-swt-in-intellij-idea/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          在IntelliJ Idea中使用SWT
+        
+      </div>
+    </a>
+  
+  
+    <a href="/raspberrypi-ucos/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Raspberry Pi上μC/OS II的移植</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

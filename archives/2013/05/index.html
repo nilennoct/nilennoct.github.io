@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives: 2013/5 | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main">
+  
+    <article id="post-raspberrypi-ucos" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-ucos/" class="article-date">
+  <time datetime="2013-05-30T12:30:00.000Z" itemprop="datePublished">5月 30 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-ucos/">Raspberry Pi上μC/OS II的移植</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>下载μCOS II for Raspberry Pi源码，修改makefile文件</strong></p>
+<p>　　根据自己使用的交叉编译工具链，修改源码根目录下的<code>makefile</code>文件，主要修改的地方有如下两处：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="constant">ARMGNU ?</span>= arm-linux-gnueabi</div><div class="line"><span class="constant"></span></div><div class="line">INCLUDEPATH ?= <span class="string">"./h"</span></div></pre></td></tr></table></figure>
+
+<p><strong>检查源码错误</strong></p>
+<p>　　不知道助教是不是有意“增加”实验难度，这次提供的源码中存在不少小错误，比如<code>makefile</code>文件的第59行的<code>ucos_bcm2835.elf</code>最后多了一个“.”、没有注意文件名大小写（这个与操作系统有关）等。这步可以通过执行<code>make</code>命令找出错误的地方，很快就能解决。<br>
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-ucos/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-raspberrypi-diy-bootloader" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-diy-bootloader/" class="article-date">
+  <time datetime="2013-05-17T05:16:00.000Z" itemprop="datePublished">5月 17 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-diy-bootloader/">用于Raspberry Pi的简易bootloader</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>这是一次痛并快乐着的实验。</p>
+<p>以下引用实验要求：</p>
+<blockquote>
+<p>David Welch的 <a href="https://github.com/dwelch67/raspberrypi" target="_blank" rel="external">GitHub</a> 的<code>bootloader05</code>给出了一个非常简单的RPi bootloader，他的代码链接在内存的0x00020000位置，一直在监听串口是否有XMODEM协议的文件下载，如果有就开始接收数据，并复制到0x00008000位置，传输完成后跳转到 0x00008000去执行。</p>
+<p>TA写了一个Python脚本，按照下面的命令调用脚本可以下载并执行用户程序<code>python xmodem-loader.py -p com3 -b 115200 output.bin</code></p>
+<p>你的任务是修改bootloader和python脚本实现如下功能：</p>
+<p>调用命令<code>python xmodem-loader.py -p com3 -b 115200</code>启动脚本并且与板卡建立串口连接，之后可以发送下面的命令。</p>
+<pre><code>    <span class="operator"><span class="keyword">load</span> *.<span class="keyword">bin</span> 下载程序*.<span class="keyword">bin</span>
+    <span class="keyword">go</span> 执行已下载的程序
+    peek addr 以一个字为单位读取内存中addr位置的数据（addr是<span class="number">4</span>字节对齐，十六进行的形式，长度为<span class="number">8</span>，例如 <span class="number">0x00008000</span>），并以十六进制的形式输出
+    poke addr <span class="keyword">data</span> 以一个字为单位修改内存中addr位置的数据为<span class="keyword">data</span>（addr是<span class="number">4</span>字节对齐，十六进行的形式，长 度为<span class="number">8</span>， <span class="keyword">data</span>也是十六进行的形式，长度为<span class="number">8</span>）
+    verify *.<span class="keyword">bin</span> 验证已下载的程序和*.<span class="keyword">bin</span>是否完全相同。</span>
+</code></pre><p>
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-diy-bootloader/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-octopress-on-github-and-bitbucket" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/octopress-on-github-and-bitbucket/" class="article-date">
+  <time datetime="2013-05-10T06:05:00.000Z" itemprop="datePublished">5月 10 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/octopress-on-github-and-bitbucket/">Octopress搭建小记</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>偶然看到了<a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>的介绍，我便被它惊人的载入速度和独特的离线写作模式吸引了。虽然之前的Wordpress使用的也挺不错的，但细想之下其实我还真用不到那么多功能，顿时让我有了把博客迁移到Octopress上的冲动。</p>
+<p>网络上关于Octopress的部署教程已经有很多了，一种不错的方案是使用<a href="http://pages.github.com/" target="_blank" rel="external">Github Pages</a>服务。不过考虑到数据的安全性（比如<code>_config.yml</code>、一些第三方服务的API Key等），我决定同时使用Bitbucket和Github，即使用Bitbucket的私有Repo管理source，使用Github管理生成的页面。</p>
+<p>Ruby环境的搭建以及Octopress的安装方法可以在Octopress的文档中找到，这里主要记录部署过程(Ubuntu环境)。</p>
+<blockquote>
+<p><a href="http://octopress.org/docs/" target="_blank" rel="external">Octopress Documentation</a></p>
+</blockquote>
+
+        
+          <p class="article-more-link">
+            <a href="/octopress-on-github-and-bitbucket/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+
+</body>
+</html>

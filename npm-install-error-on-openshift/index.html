@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>解决 OpenShift 部署 node 应用不能自动重启 | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-npm-install-error-on-openshift" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/npm-install-error-on-openshift/" class="article-date">
+  <time datetime="2014-06-05T02:42:34.000Z" itemprop="datePublished">6月 5 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      解决 OpenShift 部署 node 应用不能自动重启
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在做一个 node.js  的小项目，用来管理 blog 中使用的图片，部署在 openshift 上，但是一直有一个奇怪的问题，就是每次用 git push 完代码以后，应用都是一直处于 building 状态而不会自动重启。查看日志以后发现是 npm 在安装 package 的时候找不到有效的版本：</p>
+<blockquote>
+<p>remote: npm ERR! Error: No compatible version found: body-parser@’^1.2.0’</p>
+</blockquote>
+<p>但在给出的 Valid install targets 中却明明包含了 <code>body-parser 1.2.0</code>。因为这个问题，每次部署完都得手动重启应用，实在是让人觉得有些麻烦。</p>
+<p>既然本地运行没有问题，说明应该是服务器的 npm 或 node.js 的版本问题。可以在本地安装好所需要的 package 后，使用 <code>npm shrinkwrap</code> 锁定已安装的 package 的版本，此次目录下会生成一个 <code>npm-shrinkwrap.json</code> 文件，重新 push 到服务器部署就不会再出现原来的问题了。只是这样 package 的安装、更新等管理工作就需要放在本地了。</p>
+<blockquote>
+<p><strong>npm shrinkwrap</strong></p>
+<p>This command locks down the versions of a package’s dependencies so that you can control exactly which versions of each dependency will be used when your package is installed. The “package.json” file is still required if you want to use “npm install”.</p>
+<p><a href="https://www.npmjs.org/doc/cli/npm-shrinkwrap.html" target="_blank" rel="external">More about npm shrinkwrap</a></p>
+</blockquote>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/angularjs-first-experience/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          AngularJS 使用体验
+        
+      </div>
+    </a>
+  
+  
+    <a href="/javascript-crc32-fix/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript中的CRC32()修正</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

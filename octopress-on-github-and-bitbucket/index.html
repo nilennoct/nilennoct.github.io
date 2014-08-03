@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Octopress搭建小记 | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-octopress-on-github-and-bitbucket" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/octopress-on-github-and-bitbucket/" class="article-date">
+  <time datetime="2013-05-10T06:05:00.000Z" itemprop="datePublished">5月 10 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Octopress搭建小记
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>偶然看到了<a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>的介绍，我便被它惊人的载入速度和独特的离线写作模式吸引了。虽然之前的Wordpress使用的也挺不错的，但细想之下其实我还真用不到那么多功能，顿时让我有了把博客迁移到Octopress上的冲动。</p>
+<p>网络上关于Octopress的部署教程已经有很多了，一种不错的方案是使用<a href="http://pages.github.com/" target="_blank" rel="external">Github Pages</a>服务。不过考虑到数据的安全性（比如<code>_config.yml</code>、一些第三方服务的API Key等），我决定同时使用Bitbucket和Github，即使用Bitbucket的私有Repo管理source，使用Github管理生成的页面。</p>
+<p>Ruby环境的搭建以及Octopress的安装方法可以在Octopress的文档中找到，这里主要记录部署过程(Ubuntu环境)。</p>
+<blockquote>
+<p><a href="http://octopress.org/docs/" target="_blank" rel="external">Octopress Documentation</a></p>
+</blockquote>
+<a id="more"></a>
+
+<p>首先登陆Bitbucket，选择<code>Import repository</code>（亦可依次按下<code>i</code>、<code>r</code>），填写Github上Octopress的项目地址：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">URL</span>: <span class="string">git@github.com:imathis/octopress.git</span></div><div class="line"><span class="attribute">Name</span>: <span class="string">octopress</span></div></pre></td></tr></table></figure>
+
+<p>接下来登陆Github，以<code>github_username.github.io</code>为Repository name建立一个新的repo，这个将用来存放博客页面。</p>
+<blockquote>
+<p>详见 <a href="https://help.github.com/articles/user-organization-and-project-pages" target="_blank" rel="external">User, Organization and Project Pages</a></p>
+</blockquote>
+<p>接下来clone刚建立的repo到本地。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~</div><div class="line">$ git clone git@bitbucket.org:bitbucket_username/octopress.git octopress</div><div class="line">$ <span class="built_in">cd</span> octopress</div><div class="line">$ git remote add octopress https://github.com/imathis/octopress</div></pre></td></tr></table></figure>
+
+<p>最后一条命令将Github上的官方repo添加到当前git配置中，以后可以用来升级Octopress系统。</p>
+<p>按官方文档的方法安装好Octopress，执行以下命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ rake generate</div><div class="line">$ rake deploy</div></pre></td></tr></table></figure>
+
+<p>Octopress会自动生成一个<code>_deploy</code>文件夹，里面存放的就是用来发布到Github上的静态页面。不过因为还没有配置，所以此时是发布到了Bitbucket的gh-pages分支中。</p>
+<p>打开<code>Rakefile</code>，修改<code>deploy_branch</code>的值为<code>master</code>，然后修改<code>_deploy</code>目录中的git配置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> _deploy</div><div class="line">$ nano .git/config</div></pre></td></tr></table></figure>
+
+<p>修改<code>[remote &quot;origin&quot;]</code>中的<code>url</code>，将其修改为</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git<span class="variable">@github</span>.<span class="symbol">com:</span>github_username/github_username.github.io.git</div></pre></td></tr></table></figure>
+
+<p>保存git配置后，切换分支为master，上传文件。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>git branch master</div><div class="line"><span class="variable">$ </span>git checkout master</div><div class="line"><span class="variable">$ </span>git push -u origin master</div></pre></td></tr></table></figure>
+
+<p>大约过10分钟后，访问<code>github_username.github.io</code>就可以看到你的博客了。</p>
+<p>Github Pages支持绑定域名，首先在你的域名管理中，添加一个<code>CNAME</code>记录，指向<code>github_username.github.io</code>，然后执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~/octopress</div><div class="line">$ <span class="built_in">echo</span> your_domain &gt; <span class="built_in">source</span>/CNAME</div><div class="line">$ rake generate</div><div class="line">$ rake deploy</div></pre></td></tr></table></figure>
+
+<p>稍候片刻，待域名信息更新后就可以通过绑定的域名访问博客了。</p>
+<blockquote>
+<p>详见 <a href="https://help.github.com/articles/setting-up-a-custom-domain-with-pages" target="_blank" rel="external">Setting up a custom domain with Pages</a></p>
+</blockquote>
+<p>至此Octopress的安装部署就完成了。以后写完日志，只需要执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># pwd is ~/octopress</span></div><div class="line">$ rake generate</div><div class="line">$ rake deploy</div><div class="line">$ git push origin master</div></pre></td></tr></table></figure>
+
+<p>即可实现博客的更新以及Bitbucket的数据备份。</p>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/raspberrypi-diy-bootloader/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          用于Raspberry Pi的简易bootloader
+        
+      </div>
+    </a>
+  
+  
+    <a href="/raspberrypi-add-linux-syscall/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">给RaspberryPi增加一个系统调用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

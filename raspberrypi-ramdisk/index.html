@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>在RaspberryPi上使用Ramdisk | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-raspberrypi-ramdisk" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-ramdisk/" class="article-date">
+  <time datetime="2013-03-19T05:37:56.000Z" itemprop="datePublished">3月 19 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      在RaspberryPi上使用Ramdisk
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+<p>RAM盘是通过使用软件将RAM模拟当做硬盘来使用的一种技术。相对于传统的硬盘文件访问来说，这种技术可以极大的提高在其上进行的文件访问的速度。新版B版的RPi内存达到了512MB，对于Raspbian来说是绰绰有余了。所以可以考虑把一部分RAM模拟成硬盘来加快存取速度。<br>Raspbian默认已经支持了Ramdisk，我们只需要格式化一个RamDisk，并将其mount到某一个目录上就可以了。</p>
+</blockquote>
+<p><strong>查看所有可用的ramdisk</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -al /dev/ram*</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_25_01.png" alt="Task_25_01"></p>
+<p><strong>创建Ramdisk</strong></p>
+<p>一般是使用ext2文件系统格式化Ramdisk。而在此之前，即使/dev/目录中有ram*设备文件，他们也是不占空间，必须进行格式化之后才能使用。因为Ramdisk是临时性的，所以没有必要使用带日志的文件系统，所以一般用ext2格式化就可以了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> mke2fs /dev/ram0</div></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>如下图所示，ram0已经成功被格式化了。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_25_02.png" alt="Task_25_02"></p>
+<p><strong>挂载Ramdisk，查看结果</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> mount /dev/ram0 /var</div><div class="line">mount | grep ram</div><div class="line">df -h | grep ram</div></pre></td></tr></table></figure>
+
+<p>如下图所示，ram0已经成功挂载在了/var目录上，大小为3.9M。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_25_03.png" alt="Task_25_03"></p>
+<p>除此之外，也可以创建一个Ramdisk挂载在/tmp上，这样可以大大提高系统运行速度，而且每次重启都会自动清理/tmp目录，可谓一举两得了。</p>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/raspberry-pi-arm-instruction/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          [RPi] ARM指令
+        
+      </div>
+    </a>
+  
+  
+    <a href="/raspberrypi-cross-compile/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">搭建RaspberryPi的交叉编译环境</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

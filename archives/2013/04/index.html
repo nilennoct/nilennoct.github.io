@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives: 2013/4 | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main">
+  
+    <article id="post-raspberrypi-add-linux-syscall" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-add-linux-syscall/" class="article-date">
+  <time datetime="2013-04-22T04:10:43.000Z" itemprop="datePublished">4月 22 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-add-linux-syscall/">给RaspberryPi增加一个系统调用</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p><strong>安装交叉编译工具，并设置NAS</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install gcc-arm-linux-gnueabi</div><div class="line"><span class="built_in">cd</span> ~</div><div class="line">mkdir pi</div><div class="line"><span class="built_in">sudo</span> mount <span class="number">192.168</span>.<span class="number">0.4</span>:/home/pi /home/neo/pi</div></pre></td></tr></table></figure>
+
+<p>详情见<a href="http://www.nilennoct.com/raspberrypi-cross-compile/" target="_blank" rel="external">搭建RaspberryPi的交叉编译环境</a>。</p>
+<p><strong>下载Raspberry Pi的源码</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># PC</span></div><div class="line"><span class="built_in">cd</span> ~/pi</div><div class="line">mkdir kernel</div><div class="line"><span class="built_in">cd</span> kernel</div><div class="line">git clone https://github.com/raspberrypi/linux.git</div><div class="line">git clone https://github.com/raspberrypi/firmware.git</div></pre></td></tr></table></figure>
+
+<p>因为网络原因这一步耗时较长，需要耐心等待。也可以直接在github上下载zip压缩包自行解压，不过无论是使用RPi解压或是通过NAS解压速度都不快，可以考虑取下SD卡在PC上直接解压。<br>
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-add-linux-syscall/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-shortest-ie-version-detect" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/shortest-ie-version-detect/" class="article-date">
+  <time datetime="2013-04-19T02:21:55.000Z" itemprop="datePublished">4月 19 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/shortest-ie-version-detect/">最短的 IE 版本判断</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>网上看到的一段很酷的代码，留着备用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"><span class="comment">// A short snippet for detecting versions of IE in JavaScript</span></div><div class="line"><span class="comment">// without resorting to user-agent sniffing</span></div><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"><span class="comment">// If you're not in IE (or IE version is less than 5) then:</span></div><div class="line"><span class="comment">//     ie === undefined</span></div><div class="line"><span class="comment">// If you're in IE (&gt;=5) then you can determine which version:</span></div><div class="line"><span class="comment">//     ie === 7; // IE7</span></div><div class="line"><span class="comment">// Thus, to detect IE:</span></div><div class="line"><span class="comment">//     if (ie) {}</span></div><div class="line"><span class="comment">// And to detect the version:</span></div><div class="line"><span class="comment">//     ie === 6 // IE6</span></div><div class="line"><span class="comment">//     ie &gt; 7 // IE8, IE9 ...</span></div><div class="line"><span class="comment">//     ie &lt; 9 // Anything less than IE9</span></div><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"></div><div class="line"><span class="comment">// UPDATE: Now using Live NodeList idea from @jdalton</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> ie = (<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line"></div><div class="line">    <span class="keyword">var</span> undef,</div><div class="line">        v = <span class="number">3</span>,</div><div class="line">        div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>),</div><div class="line">        all = div.getElementsByTagName(<span class="string">'i'</span>);</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (</div><div class="line">        div.innerHTML = <span class="string">''</span>,</div><div class="line">        all[<span class="number">0</span>]</div><div class="line">    );</div><div class="line"></div><div class="line">    <span class="keyword">return</span> v &gt; <span class="number">4</span> ? v : undef;</div><div class="line"></div><div class="line">}());</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-raspberry-pi-arm-instruction" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberry-pi-arm-instruction/" class="article-date">
+  <time datetime="2013-04-10T18:02:35.000Z" itemprop="datePublished">4月 11 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberry-pi-arm-instruction/">[RPi] ARM指令</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p><strong>生成了Thumb指令还是ARM指令，如何通过编译参数改变</strong></p>
+<p>编写测试代码arm.c。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> main() {</div><div class="line">	<span class="keyword">int</span> a = <span class="number">0</span>;</div><div class="line">	a++;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>用如下命令编译，并使用objdump查看。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">gcc -c arm.c</div><div class="line">objdump -d arm.o</div><div class="line"></div><div class="line">arm.o:     file format elf32-littlearm</div><div class="line"></div><div class="line">Disassembly of section .text:</div><div class="line"></div><div class="line"><span class="number">00000000</span> &lt;main&gt;:</div><div class="line">   <span class="number">0</span>:	e52db004 	push	{fp}		; (str fp, [sp, <span class="preprocessor">#-4]!)</span></div><div class="line">   <span class="number">4</span>:	e28db000 	add	fp, sp, <span class="preprocessor">#0</span></div><div class="line">   <span class="number">8</span>:	e24dd00c 	sub	sp, sp, <span class="preprocessor">#12</span></div><div class="line">   c:	e3a03000 	mov	r3, <span class="preprocessor">#0</span></div><div class="line">  <span class="number">10</span>:	e50b3008 	str	r3, [fp, <span class="preprocessor">#-8]</span></div><div class="line">  <span class="number">14</span>:	e51b3008 	ldr	r3, [fp, <span class="preprocessor">#-8]</span></div><div class="line">  <span class="number">18</span>:	e2833001 	add	r3, r3, <span class="preprocessor">#1</span></div><div class="line">  <span class="number">1</span>c:	e50b3008 	str	r3, [fp, <span class="preprocessor">#-8]</span></div><div class="line">  <span class="number">20</span>:	e3a03000 	mov	r3, <span class="preprocessor">#0</span></div><div class="line">  <span class="number">24</span>:	e1a00003 	mov	r0, r3</div><div class="line">  <span class="number">28</span>:	e28bd000 	add	sp, fp, <span class="preprocessor">#0</span></div><div class="line">  <span class="number">2</span>c:	e8bd0800 	pop	{fp}</div><div class="line">  <span class="number">30</span>:	e12fff1e 	bx	lr</div></pre></td></tr></table></figure>
+
+<p>可以看到指令长度都是32位的，说明gcc默认是以arm指令编译的。使用如下命令查找如何以Thumb编译。<br>
+        
+          <p class="article-more-link">
+            <a href="/raspberry-pi-arm-instruction/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives: 2012/8 | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main">
+  
+    <article id="post-js-jquery-countdown-millsecond" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/js-jquery-countdown-millsecond/" class="article-date">
+  <time datetime="2012-08-27T09:42:50.000Z" itemprop="datePublished">8月 27 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/js-jquery-countdown-millsecond/">JS实现倒计时的一种方法</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近因为需要试着用Javascript写了一个带毫秒倒计时的小程序，代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"min"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>:<span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"sec"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>.<span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"millisec"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> inter;</div><div class="line"><span class="keyword">var</span> countdown = <span class="function"><span class="keyword">function</span><span class="params">(min)</span> </span>{</div><div class="line">	<span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">	<span class="keyword">var</span> endTime = date.getTime() + <span class="built_in">parseInt</span>(min) * <span class="number">60</span> * <span class="number">1000</span>;</div><div class="line">	<span class="keyword">var</span> $min = $(<span class="string">'.min'</span>);</div><div class="line">    clearInterval(inter);</div><div class="line">	inter = setInterval(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">		<span class="keyword">var</span> st = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">		<span class="keyword">var</span> startTime = st.getTime();</div><div class="line">		<span class="keyword">var</span> leftTime = <span class="built_in">Math</span>.floor((endTime - startTime) / <span class="number">100</span>);</div><div class="line">		<span class="keyword">if</span> (leftTime &lt;= <span class="number">0</span>) {</div><div class="line">			clearInterval(inter);</div><div class="line">			inter = <span class="literal">null</span>;</div><div class="line">			$.each($min, <span class="function"><span class="keyword">function</span><span class="params">(i, t)</span> </span>{</div><div class="line">				$(t).text(<span class="string">'0'</span>).next().text(<span class="string">'0'</span>).next().text(<span class="string">'0'</span>);</div><div class="line">			});</div><div class="line">			<span class="keyword">return</span>;</div><div class="line">		}</div><div class="line">		$.each($min, <span class="function"><span class="keyword">function</span><span class="params">(i, t)</span> </span>{</div><div class="line">			$(t).text(<span class="built_in">Math</span>.floor(leftTime / <span class="number">600</span>)).next().text(<span class="built_in">Math</span>.floor(leftTime / <span class="number">10</span>) % <span class="number">60</span>).next().text(leftTime % <span class="number">10</span>);</div><div class="line">		});</div><div class="line">	}, <span class="number">100</span>);</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>使用countdown(1)可实现一分钟的倒计时.</p>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-apache-mod-rewrite-linux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/apache-mod-rewrite-linux/" class="article-date">
+  <time datetime="2012-08-12T16:39:14.000Z" itemprop="datePublished">8月 13 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/apache-mod-rewrite-linux/">Apache开启mod_rewrite</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>连接SSH或打开终端</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> a2enmod rewrite</div><div class="line"><span class="built_in">sudo</span> vim /etc/apache2/sites-available/default <span class="comment"># 按需求把AllowOverride None 改成 AllowOverride All</span></div><div class="line"><span class="built_in">sudo</span> service apache2 restart <span class="comment"># 或者 sudo /etc/init.d/apache2 restart</span></div></pre></td></tr></table></figure>
+
+<p>此时网页目录中的.htaccess文件即可生效。</p>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ie6-position-fixed-bug" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ie6-position-fixed-bug/" class="article-date">
+  <time datetime="2012-08-09T07:38:09.000Z" itemprop="datePublished">8月 9 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/ie6-position-fixed-bug/">完美解决IE6不支持position:fixed的bug</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在写前端的时候发现IE6下存在不支持position:fixed的bug。通过查找资料找到了较完美的的解决方法。代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 除IE6浏览器的通用方法 */</span></div><div class="line"><span class="class">.ie6fixedTL</span><span class="rules">{<span class="rule"><span class="attribute">position</span>:<span class="value">fixed</span></span>;<span class="rule"><span class="attribute">left</span>:<span class="value"><span class="number">0</span></span></span>;<span class="rule"><span class="attribute">top</span>:<span class="value"><span class="number">0</span></span></span></span>}</div><div class="line"><span class="class">.ie6fixedBR</span><span class="rules">{<span class="rule"><span class="attribute">position</span>:<span class="value">fixed</span></span>;<span class="rule"><span class="attribute">right</span>:<span class="value"><span class="number">0</span></span></span>;<span class="rule"><span class="attribute">bottom</span>:<span class="value"><span class="number">0</span></span></span></span>}</div><div class="line"><span class="comment">/* IE6浏览器的特有方法 */</span></div><div class="line"><span class="comment">/* 修正IE6振动bug */</span></div><div class="line">* <span class="tag">html</span>,* <span class="tag">html</span> <span class="tag">body</span><span class="rules">{<span class="rule"><span class="attribute">background-image</span>:<span class="value"><span class="function">url</span>(about:blank)</span></span>;<span class="rule"><span class="attribute">background-attachment</span>:<span class="value">fixed</span></span></span>}</div><div class="line">* <span class="tag">html</span> <span class="class">.ie6fixedTL</span><span class="rules">{<span class="rule"><span class="attribute">position</span>:<span class="value">absolute</span></span>;<span class="rule"><span class="attribute">left</span>:<span class="value"><span class="function">expression</span>(<span class="function">eval</span>(document.documentElement.scrollLeft))</span></span>;<span class="rule"><span class="attribute">top</span>:<span class="value"><span class="function">expression</span>(<span class="function">eval</span>(document.documentElement.scrollTop))</span></span></span>}</div><div class="line">* <span class="tag">html</span> <span class="class">.ie6fixedBR</span><span class="rules">{<span class="rule"><span class="attribute">position</span>:<span class="value">absolute</span></span>;<span class="rule"><span class="attribute">left</span>:<span class="value"><span class="function">expression</span>(<span class="function">eval</span>(document.documentElement.scrollLeft+document.documentElement.clientWidth-this.offsetWidth)<span class="function">-</span>(<span class="function">parseInt</span>(this.currentStyle.marginLeft,<span class="number">10</span>)||<span class="number">0</span>)<span class="function">-</span>(<span class="function">parseInt</span>(this.currentStyle.marginRight,<span class="number">10</span>)||<span class="number">0</span>))</span></span>;<span class="rule"><span class="attribute">top</span>:<span class="value"><span class="function">expression</span>(<span class="function">eval</span>(document.documentElement.scrollTop+document.documentElement.clientHeight-this.<span class="function">offsetHeight-</span>(<span class="function">parseInt</span>(this.currentStyle.marginTop,<span class="number">10</span>)||<span class="number">0</span>)<span class="function">-</span>(<span class="function">parseInt</span>(this.currentStyle.marginBottom,<span class="number">10</span>)||<span class="number">0</span>)))</span></span></span>}</div></pre></td></tr></table></figure>
+
+
+        
+          <p class="article-more-link">
+            <a href="/ie6-position-fixed-bug/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ie-word-wrap" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ie-word-wrap/" class="article-date">
+  <time datetime="2012-08-07T07:46:07.000Z" itemprop="datePublished">8月 7 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/ie-word-wrap/">关于ie6、ie7折行问题</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>HTML结构及CSS样式如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">li</span> <span class="rules">{<span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>; <span class="rule"><span class="attribute">margin-right</span>:<span class="value"><span class="number">10px</span></span></span>; <span class="rule">}</span></span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">”#"</span>&gt;</span>文本1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">”#"</span>&gt;</span>文本2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">”#"</span>&gt;</span>文本3<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>这个时候，在ie6、ie7中文字很可能出现断行（暂没发现其他浏览器出现这个问题）</p>
+<p>解决问题方法：</p>
+<ol>
+<li>如果文本中没有空格，用word-break属性的keep-all参数可解决这个问题。</li>
+<li>如果文本中有空格，用white-space属性的nowrap参数可解决问题。
+        
+          <p class="article-more-link">
+            <a href="/ie-word-wrap/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>在RaspberryPi上启用AirPlay | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-raspberrypi-airplay-shairport" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-airplay-shairport/" class="article-date">
+  <time datetime="2013-03-05T14:56:35.000Z" itemprop="datePublished">3月 5 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      在RaspberryPi上启用AirPlay
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p><strong>准备工作</strong></p>
+<ul>
+<li>连入局域网的Raspberry Pi（有线或无线均可）</li>
+<li>迷你音箱一个</li>
+<li>连入相同局域网内的iOS设备</li>
+</ul>
+<p><strong>更改缺省的音频输出端口</strong></p>
+<p>将缺省的音频输出端口指向标准耳机端口而非原先的HDMI。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> amixer cset numid=<span class="number">3</span> <span class="number">1</span></div></pre></td></tr></table></figure>
+
+<p><strong>安装shairport所需的包</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install git libao-dev libssl-dev libcrypt-openssl-rsa-perl libio-socket-inet6-perl libwww-perl avahi-utils libmodule-build-perl</div></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p><strong>安装Perl Net-SDP，主要用于兼容iOS6</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/njh/perl-net-sdp.git perl-net-sdp</div><div class="line"><span class="built_in">cd</span> perl-net-sdp</div><div class="line">perl Build.PL</div><div class="line"><span class="built_in">sudo</span> ./Build</div><div class="line"><span class="built_in">sudo</span> ./Build test</div><div class="line"><span class="built_in">sudo</span> ./Build install</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_08_01.png" alt="Task_08_01"></p>
+<p><strong>安装shairport并启动服务</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/hendrikw82/shairport.git</div><div class="line"><span class="built_in">cd</span> shairport</div><div class="line"><span class="built_in">sudo</span> make</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_08_02.png" alt="Task_08_02"></p>
+<p><strong>在RPi上开启shairport</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./shairport.pl <span class="operator">-a</span> NeoAir</div></pre></td></tr></table></figure>
+
+<p>其中NeoAi为Airport的服务名称，可以更具需要自行设置。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_08_03.png" alt="Task_08_03"></p>
+<p><strong>测试</strong></p>
+<p>打开iPad，在播放音乐时选择NeoAir，声音即在RPi上播放出来了。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_08_04.png" alt="Task_08_04"></p>
+<p>实际使用过程中，初次播放时有比较大的噪音。断开重新连接AirPlay后声音恢复正常。</p>
+<blockquote>
+<p>本文内容参考 <a href="http://jordanburgess.com/post/38986434391/raspberry-pi-airplay" target="_blank" rel="external">Hacking a Raspberry Pi into a wireless airplay speaker</a></p>
+</blockquote>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          RaspberryPi搭建NAS之中文兼容性检测
+        
+      </div>
+    </a>
+  
+  
+    <a href="/raspberrypi-nas-samba-sftp/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">在RaspberryPi上搭建NAS</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

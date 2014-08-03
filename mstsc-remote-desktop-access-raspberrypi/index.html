@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>远程桌面访问RaspberryPi | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-mstsc-remote-desktop-access-raspberrypi" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/mstsc-remote-desktop-access-raspberrypi/" class="article-date">
+  <time datetime="2013-03-02T06:14:26.000Z" itemprop="datePublished">3月 2 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      远程桌面访问RaspberryPi
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>既然说Raspberry Pi是一款基于Linux系统的个人电脑，那么GUI也必不可少。下面说说如何使用Windows自带的远程桌面连接登陆RPi。</p>
+<p><strong>借助vnc远程访问</strong></p>
+<p>Wheezy raspbian镜像中默认已经安装了TightVNC服务端，所以我们只需要简单的运行即可。</p>
+<ul>
+<li>用SSH登录RPi（具体方法就不赘述了），运行TightVNC服务端；</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tightvncserver</div></pre></td></tr></table></figure>
+
+<p>按提示设置好连接密码即可。最后会询问是否需要设置一个只能查看的密码，因为是自己使用我就没有设置，各位可按照自己的需要选择是否设置，如下图；</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_04_08.png" alt="Task_04_08"><br><a id="more"></a></p>
+<p>此时vnc服务器会自动生成一个:1桌面。</p>
+<ul>
+<li>打开vnc客户端；</li>
+</ul>
+<p>推荐使用RealVNC公司出品的VNC-Viewer，这是一款免费的VNC客户端，提供了Windows/MacOS/Linux多个版本，可以在 <a href="http://www.realvnc.com/download/viewer/" target="_blank" rel="external">http://www.realvnc.com/download/viewer/</a> 下载使用（下载前需要填写姓名和邮箱等信息，但不进行验证）。</p>
+<p>运行VNC Viewer，填写VNC Server的地址。注意到之前自动生成的桌面是:1，所以这里要填写IP:1，如下图。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_04_10.png" alt="Task_04_10"></p>
+<p>点击Connect后会弹出下图所示的警告，直接Continue即可。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_04_11.png" alt="Task_04_11"></p>
+<p>随后输入密码，即之前运行tightvncserver时设置的密码，就可以看到RPi的桌面了。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_04_12.png" alt="Task_04_12"></p>
+<p>查看连接信息可以发现默认的分辨率为1024*768，若是感觉看着别扭可以结束当前桌面并重建一个。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vncserver -kill :<span class="number">1</span></div><div class="line">vncserver :<span class="number">1</span> -geometry <span class="number">1366</span>x768 -depth <span class="number">24</span></div></pre></td></tr></table></figure>
+
+<p>注意第二行命令中的“1366x768”中间是字母‘x’而非符号‘*’。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_04_13.png" alt="Task_04_13"></p>
+<p>重新连接就可以看到分辨率已经改为1366*768了。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_04_14.png" alt="Task_04_14"></p>
+<p><strong>借助xrdp用Windows远程桌面访问</strong></p>
+<ul>
+<li>用SSH登录RPi，安装xrdp；</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install xrdp</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_04_01.png" alt="Task_04_01"></p>
+<ul>
+<li>打开远程桌面连接，填写RPi的IP地址和登陆用户名pi；</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_04_02.png" alt="Task_04_02"></p>
+<ul>
+<li>点击连接，填写登录密码（若是在自己的电脑上可以勾选“记住我的凭证”）；</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_04_03.png" alt="Task_04_03"></p>
+<ul>
+<li>稍等片刻，就可以看到RPi的桌面了（如下图）；</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_04_04.png" alt="Task_04_04"></p>
+<p>可以使用桌面上的Midori浏览器浏览互联网（因为CPU主频只有700MHz所以感觉速度略卡）；</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_04_05.png" alt="Task_04_05"></p>
+<p>浏览本地服务器上的页面也没有任何问题。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_04_06.png" alt="Task_04_06"></p>
+<p>通过浏览RPi的“开始菜单”，我们可以发现wheezy-raspbian已经预装了不少使用软件，比如Midori、xpdf、python、scratch等，基本可以满足日常需要。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_04_07.png" alt="Task_04_07"></p>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/raspberrypi-install-connect-note/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          RaspberryPi安装、连接小记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/find-raspberrypi-in-lan/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">在局域网内查找RaspberryPi</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>RaspberryPi搭建NAS之中文兼容性检测 | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs/" class="article-date">
+  <time datetime="2013-03-07T10:00:55.000Z" itemprop="datePublished">3月 7 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      RaspberryPi搭建NAS之中文兼容性检测
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+<p>在RPi上搭建NAS的过程详见《<a href="http://www.nilennoct.com/raspberrypi-nas-samba-sftp/" target="_blank" rel="external">在RaspberryPi上搭建NAS</a>》</p>
+</blockquote>
+<p>NAS已经搭建好了，接下来我们要测试一下各种方式对中文路径名、文件名的兼容情况。</p>
+<p><strong>Samba</strong></p>
+<p>如下图所示，是Win8下访问通过Samba方式访问RPi的效果。我们可以发现不需要多余的设置，中文已经很完美的显示了。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_09_01.png" alt="Task_09_01"><br><a id="more"></a></p>
+<p>同样的，在iPad上可以正常显示。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/2013-03-07-10.32.53.png" alt="2013-03-07 10.32.53"></p>
+<hr>
+<p><strong>SFTP</strong></p>
+<p>打开WinSCP，使用默认设置连接RPi，会发现中文全都变成了乱码，如下图。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_09_02.png" alt="Task_09_02"></p>
+<p>解决的方法很简单，打开WinSCP的登录界面，若是已经存储了会话，先读取。点击左侧的“环境”，将右侧的“文件名UTF-8编码”改为开启，如下图所示。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_09_03.png" alt="Task_09_03"></p>
+<p>重新连接，可以看到这下中文正常显示了（若是使用其他客户端，请寻找类似选项做类似的修改）。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_09_04.png" alt="Task_09_04"></p>
+<hr>
+<p><strong>DLNA</strong></p>
+<p>在RPi上启动minidlna，在iPad上打开AcePlayer，选择Media Servers，会自动搜索局域网内的DLNA服务器。如下图所示。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/2013-03-07-11.33.35.png" alt="2013-03-07 11.33.35"></p>
+<p>选择raspberry:minidlna，即可查看各种媒体文件，如下图。可以看到中文也正常显示了。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/2013-03-07-11.08.22.png" alt="2013-03-07 11.08.22"></p>
+<hr>
+<p><strong>NFS（之前的文章未提到该方法，在此作补充）</strong></p>
+<p>首先安装NFS</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install nfs-kernel-server</div></pre></td></tr></table></figure>
+
+<p>编辑/etc/exports文件，在最后添加以下内容。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/media/NAS *(rw,<span class="keyword">sync</span>,no_root_squash)</div></pre></td></tr></table></figure>
+
+<p>启动rpcbind。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> update-rc.d rpcbind enable && update-rc.d nfs-common enable</div><div class="line"><span class="built_in">sudo</span> service rpcbind start</div></pre></td></tr></table></figure>
+
+<p>重启nfs-kernel-server</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> service nfs-kernel-server restart</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_09_05.png" alt="Task_09_05"></p>
+<p>进入ubuntu，打开终端，输入以下命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div><div class="line">mkdir nfs</div><div class="line"><span class="built_in">sudo</span> mount <span class="number">192.168</span>.<span class="number">0.4</span>:/media/NAS /home/neo/nfs</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_09_06.png" alt="Task_09_06"></p>
+<p>可以看到通过NFS方式访问RPi也能正常的显示中文。</p>
+<p>若出现如下错误提示</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mount: wrong fs type, bad <span class="keyword">option</span>, bad superblock <span class="keyword">on</span> fs2:/data3,</div><div class="line">missing codepage <span class="keyword">or</span> helper program, <span class="keyword">or</span> other <span class="keyword">error</span></div><div class="line">(<span class="keyword">for</span> several filesystems (e.g. nfs, cifs) you might</div><div class="line">need a /sbin/mount. helper program)</div><div class="line"><span class="keyword">In</span> some cases useful info <span class="keyword">is</span> found <span class="keyword">in</span> syslog - <span class="keyword">try</span></div><div class="line">dmesg | tail <span class="keyword">or</span> so</div></pre></td></tr></table></figure>
+
+<p>请执行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install nfs-common</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/raspberrypi-install-dhcp-server/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          在RaspberryPi上安装DHCP服务器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/raspberrypi-airplay-shairport/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">在RaspberryPi上启用AirPlay</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

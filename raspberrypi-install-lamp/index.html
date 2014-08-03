@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>在RaspberryPi上安装LAMP | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-raspberrypi-install-lamp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-install-lamp/" class="article-date">
+  <time datetime="2013-03-01T16:22:43.000Z" itemprop="datePublished">3月 2 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      在RaspberryPi上安装LAMP
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>既然已经在RaspberryPi上安装了Linux系统，很自然的我们可以想到在其上安装LAMP，使其变为随身服务器。</p>
+<p>本文设备环境：</p>
+<ul>
+<li><p>Raspberry Pi B板</p>
+</li>
+<li><p>系统镜像：2012-12-16-wheezy-raspbian.img[<a href="http://pan.baidu.com/share/link?shareid=318970&amp;uk=3842409107" target="_blank" rel="external">下载</a>]</p>
+</li>
+</ul>
+<p><strong>图文攻略：</strong></p>
+<p><strong>使用putty连接并登陆Raspberry</strong></p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301214608.png" alt=""></p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301214644.png" alt=""><br><a id="more"></a></p>
+<p><strong>更新软件源</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get update</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301215805.png" alt=""></p>
+<p><strong>安装LAMP</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install apache2 php5 mysql-server</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301220037.png" alt=""></p>
+<p><strong>安装完成，开始配置LAMP</strong></p>
+<ul>
+<li>设置MySQL的root账户的密码；</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301220725.png" alt=""></p>
+<ul>
+<li>重复一遍刚刚设置的root的密码；</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301220736.png" alt=""></p>
+<ul>
+<li>其余的按默认配置自动设置；</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301221327.png" alt=""></p>
+<p><strong>为了方便管理MySQL，接下来安装phpMyAdmin；</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install phpmyadmin</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301221522.png" alt=""></p>
+<ul>
+<li>选择apache2，高亮后按空格选中，回车；</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301221641.png" alt=""></p>
+<ul>
+<li>使用默认配置即可，选择Yes；</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301221936.png" alt=""></p>
+<ul>
+<li>输入之前设置的MySQL的root账户密码；</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301221955.png" alt=""></p>
+<ul>
+<li>设置用于phpMyAdmin在数据库中注册所用的密码，之后有重复输入验证；</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301222013.png" alt=""></p>
+<p><strong>设置/var/www/目录的所有者和权限；</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /var/</div><div class="line">id pi</div><div class="line"><span class="built_in">sudo</span> chown -R pi:pi www/</div><div class="line"><span class="built_in">sudo</span> chmod -R <span class="number">755</span> www/</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301223345.png" alt=""></p>
+<p><strong>在/var/www/目录中新建一个index.php文件；</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi index.php</div></pre></td></tr></table></figure>
+
+<p>文件内容如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">&lt;?php</span></div><div class="line"> phpinfo();</div><div class="line"><span class="preprocessor">?&gt;</span></div></pre></td></tr></table></figure>
+
+<p>在浏览器中打开 <a href="http://IP/index.php" target="_blank" rel="external">http://IP/index.php</a> （IP即你的Raspberry的IP），可看到如下图所示的页面。至此，RaspberryPi上LAMP的搭建就基本结束了。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301224143.png" alt=""></p>
+<p>打开地址 <a href="http://IP/phpmyadmin/" target="_blank" rel="external">http://IP/phpmyadmin/</a> 可以打开phpMyAdmin，如下图所示；</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301222509.png" alt=""></p>
+<p>用MySQL的root账户登录，即可很方便的对MySQL进行管理了。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301222539.png" alt=""></p>
+<p><strong>附加内容</strong></p>
+<p>要管理RaspberryPi上的服务器，可以使用filezilla等软件通过SSH登录，类似于FTP管理。</p>
+<p>这里以WinSCP为例。</p>
+<ul>
+<li>打开WinSCP，点击右上角的新建按钮，填入服务器信息；</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301234118.png" alt=""></p>
+<ul>
+<li>输入完毕后点击保存，（可以选择保存密码），选择刚刚新建的会话，点击登录；</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301222639.png" alt=""></p>
+<ul>
+<li>在文件浏览器中定位到/var/www/目录，上传网页文件即可。</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301222723.png" alt=""></p>
+<p>如下图，是我用Raspberry Pi运行之前做的数据库大程的截图。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Unnamed-QQ-Screenshot20130301224540.png" alt=""></p>
+<p>至此本文就结束啦，Enjoy it!</p>
+<p>若文中存在错误，欢迎斧正^_^</p>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/find-raspberrypi-in-lan/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          在局域网内查找RaspberryPi
+        
+      </div>
+    </a>
+  
+  
+    <a href="/jsdoc-definition/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JSDoc描述</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

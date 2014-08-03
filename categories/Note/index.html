@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: Note | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main">
+  
+    <article id="post-angularjs-first-experience" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/angularjs-first-experience/" class="article-date">
+  <time datetime="2014-07-10T02:52:57.000Z" itemprop="datePublished">7月 10 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/angularjs-first-experience/">AngularJS 使用体验</a>
+    </h1>
+  
+
+      </header>
+    
+    
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>AngularJS是一款开源 JavaScript函式库，由Google维护，用来协助单一页面应用程式运行的。它的目标是透过MVC模式 (MVC) 功能增强基于浏览器的应用，使开发和测试变得更加容易。</p>
+<p><strong>Angular的哲学</strong></p>
+<p>AngularJS是建立在这样的信念上的：即声明式编程应该用于构建用户界面以及编写软件构建，而指令式编程非常适合来表示业务逻辑。框架采用并扩展了传统HTML，通过双向的数据绑定来适应动态内容，双向的数据绑定允许模型和视图之间的自动同步。因此，AngularJS使得对DOM的操作不再重要并提升了可测试性。</p>
+<p>See more from <a href="http://en.wikipedia.org/wiki/AngularJS" target="_blank" rel="external">Wikipedia</a></p>
+</blockquote>
+<p>以上内容引自维基百科，简单的来说，AngularJS 就是一个使用了 MVC 设计模式的 Javascript 框架，类似的还有 Backbone.js、Atoms.js 等。因为之前也稍有接触 Backbone.js，所以先简单说说 AngularJS 和 Backbone.js 之间的区别。若与实际有出入，欢迎斧正。</p>
+
+        
+          <p class="article-more-link">
+            <a href="/angularjs-first-experience/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-npm-install-error-on-openshift" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/npm-install-error-on-openshift/" class="article-date">
+  <time datetime="2014-06-05T02:42:34.000Z" itemprop="datePublished">6月 5 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/npm-install-error-on-openshift/">解决 OpenShift 部署 node 应用不能自动重启</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在做一个 node.js  的小项目，用来管理 blog 中使用的图片，部署在 openshift 上，但是一直有一个奇怪的问题，就是每次用 git push 完代码以后，应用都是一直处于 building 状态而不会自动重启。查看日志以后发现是 npm 在安装 package 的时候找不到有效的版本：</p>
+<blockquote>
+<p>remote: npm ERR! Error: No compatible version found: body-parser@’^1.2.0’</p>
+</blockquote>
+<p>但在给出的 Valid install targets 中却明明包含了 <code>body-parser 1.2.0</code>。因为这个问题，每次部署完都得手动重启应用，实在是让人觉得有些麻烦。</p>
+<p>既然本地运行没有问题，说明应该是服务器的 npm 或 node.js 的版本问题。可以在本地安装好所需要的 package 后，使用 <code>npm shrinkwrap</code> 锁定已安装的 package 的版本，此次目录下会生成一个 <code>npm-shrinkwrap.json</code> 文件，重新 push 到服务器部署就不会再出现原来的问题了。只是这样 package 的安装、更新等管理工作就需要放在本地了。</p>
+<blockquote>
+<p><strong>npm shrinkwrap</strong></p>
+<p>This command locks down the versions of a package’s dependencies so that you can control exactly which versions of each dependency will be used when your package is installed. The “package.json” file is still required if you want to use “npm install”.</p>
+<p><a href="https://www.npmjs.org/doc/cli/npm-shrinkwrap.html" target="_blank" rel="external">More about npm shrinkwrap</a></p>
+</blockquote>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-javascript-crc32-fix" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/javascript-crc32-fix/" class="article-date">
+  <time datetime="2014-03-10T08:53:00.000Z" itemprop="datePublished">3月 10 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/javascript-crc32-fix/">JavaScript中的CRC32()修正</a>
+    </h1>
+  
+
+      </header>
+    
+    
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>循环冗余校验（英语：Cyclic redundancy check，通称“CRC”）是一种根据网络数据数据包或计算机文件等数据产生简短固定位数校验码的一种散列函數，主要用来检测或校验数据传输或者保存后可能出现的错误。生成的数字在传输或者存储之前计算出来并且附加到数据后面，然后接收方进行检验确定数据是否发生变化。一般来说，循环冗余校验的值都是32位的整数。由于本函数易于用二进制的计算机硬件使用、容易进行数学分析并且尤其善于检测传输通道干扰引起的错误，因此获得广泛应用。它是由W. Wesley Peterson在他1961年发表的论文中披露<a href="http://dx.doi.org/10.1109%2FJRPROC.1961.287814" target="_blank" rel="external">[1]</a>。</p>
+<p>详见 <a href="http://zh.wikipedia.org/zh-cn/循環冗餘校驗" target="_blank" rel="external">wiki 循环冗余校验</a>。</p>
+</blockquote>
+<p>最近在做一个项目时需要用到CRC32做URL的Hash，因为JavaScript自身并没有实现CRC32，所以我使用了php.js中的解决方案。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">crc32</span><span class="params">(str)</span> </span>{</div><div class="line">	<span class="comment">// discuss at: http://phpjs.org/functions/crc32/</span></div><div class="line">	<span class="comment">// original by: Webtoolkit.info (http://www.webtoolkit.info/)</span></div><div class="line">	<span class="comment">// improved by: T0bsn</span></div><div class="line">	<span class="comment">// depends on: utf8_encode</span></div><div class="line">	<span class="comment">// example 1: crc32('Kevin van Zonneveld');</span></div><div class="line">	<span class="comment">// returns 1: 1249991249</span></div><div class="line"></div><div class="line">	str = <span class="keyword">this</span>.utf8_encode(str);</div><div class="line">	<span class="keyword">var</span> table =</div><div class="line">		<span class="string">'00000000 77073096 EE0E612C 990951BA 076DC419 706AF48F E963A535 9E6495A3 0EDB8832 79DCB8A4 E0D5E91E 97D2D988 09B64C2B 7EB17CBD E7B82D07 90BF1D91 1DB71064 6AB020F2 F3B97148 84BE41DE 1ADAD47D 6DDDE4EB F4D4B551 83D385C7 136C9856 646BA8C0 FD62F97A 8A65C9EC 14015C4F 63066CD9 FA0F3D63 8D080DF5 3B6E20C8 4C69105E D56041E4 A2677172 3C03E4D1 4B04D447 D20D85FD A50AB56B 35B5A8FA 42B2986C DBBBC9D6 ACBCF940 32D86CE3 45DF5C75 DCD60DCF ABD13D59 26D930AC 51DE003A C8D75180 BFD06116 21B4F4B5 56B3C423 CFBA9599 B8BDA50F 2802B89E 5F058808 C60CD9B2 B10BE924 2F6F7C87 58684C11 C1611DAB B6662D3D 76DC4190 01DB7106 98D220BC EFD5102A 71B18589 06B6B51F 9FBFE4A5 E8B8D433 7807C9A2 0F00F934 9609A88E E10E9818 7F6A0DBB 086D3D2D 91646C97 E6635C01 6B6B51F4 1C6C6162 856530D8 F262004E 6C0695ED 1B01A57B 8208F4C1 F50FC457 65B0D9C6 12B7E950 8BBEB8EA FCB9887C 62DD1DDF 15DA2D49 8CD37CF3 FBD44C65 4DB26158 3AB551CE A3BC0074 D4BB30E2 4ADFA541 3DD895D7 A4D1C46D D3D6F4FB 4369E96A 346ED9FC AD678846 DA60B8D0 44042D73 33031DE5 AA0A4C5F DD0D7CC9 5005713C 270241AA BE0B1010 C90C2086 5768B525 206F85B3 B966D409 CE61E49F 5EDEF90E 29D9C998 B0D09822 C7D7A8B4 59B33D17 2EB40D81 B7BD5C3B C0BA6CAD EDB88320 9ABFB3B6 03B6E20C 74B1D29A EAD54739 9DD277AF 04DB2615 73DC1683 E3630B12 94643B84 0D6D6A3E 7A6A5AA8 E40ECF0B 9309FF9D 0A00AE27 7D079EB1 F00F9344 8708A3D2 1E01F268 6906C2FE F762575D 806567CB 196C3671 6E6B06E7 FED41B76 89D32BE0 10DA7A5A 67DD4ACC F9B9DF6F 8EBEEFF9 17B7BE43 60B08ED5 D6D6A3E8 A1D1937E 38D8C2C4 4FDFF252 D1BB67F1 A6BC5767 3FB506DD 48B2364B D80D2BDA AF0A1B4C 36034AF6 41047A60 DF60EFC3 A867DF55 316E8EEF 4669BE79 CB61B38C BC66831A 256FD2A0 5268E236 CC0C7795 BB0B4703 220216B9 5505262F C5BA3BBE B2BD0B28 2BB45A92 5CB36A04 C2D7FFA7 B5D0CF31 2CD99E8B 5BDEAE1D 9B64C2B0 EC63F226 756AA39C 026D930A 9C0906A9 EB0E363F 72076785 05005713 95BF4A82 E2B87A14 7BB12BAE 0CB61B38 92D28E9B E5D5BE0D 7CDCEFB7 0BDBDF21 86D3D2D4 F1D4E242 68DDB3F8 1FDA836E 81BE16CD F6B9265B 6FB077E1 18B74777 88085AE6 FF0F6A70 66063BCA 11010B5C 8F659EFF F862AE69 616BFFD3 166CCF45 A00AE278 D70DD2EE 4E048354 3903B3C2 A7672661 D06016F7 4969474D 3E6E77DB AED16A4A D9D65ADC 40DF0B66 37D83BF0 A9BCAE53 DEBB9EC5 47B2CF7F 30B5FFE9 BDBDF21C CABAC28A 53B39330 24B4A3A6 BAD03605 CDD70693 54DE5729 23D967BF B3667A2E C4614AB8 5D681B02 2A6F2B94 B40BBE37 C30C8EA1 5A05DF1B 2D02EF8D'</span>;</div><div class="line"></div><div class="line">	<span class="keyword">var</span> crc = <span class="number">0</span>;</div><div class="line">	<span class="keyword">var</span> x = <span class="number">0</span>;</div><div class="line">	<span class="keyword">var</span> y = <span class="number">0</span>;</div><div class="line"></div><div class="line">	crc = crc ^ (-<span class="number">1</span>);</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, iTop = str.length; i &lt; iTop; i++) {</div><div class="line">		y = (crc ^ str.charCodeAt(i)) & <span class="number">0xFF</span>;</div><div class="line">		x = <span class="string">'0x'</span> + table.substr(y * <span class="number">9</span>, <span class="number">8</span>);</div><div class="line">		crc = (crc &gt;&gt;&gt; <span class="number">8</span>) ^ x;</div><div class="line">	}</div><div class="line"></div><div class="line">	<span class="keyword">return</span> crc ^ (-<span class="number">1</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>然而在实际运用中，我发现经常出现与PHP中的<code>crc32()</code>函数计算出的结果匹配不了的情况。经检查是这个Javascript版的<code>crc32()</code>在某些情况下会得出负值。比如计算<code>crc32(&quot;usercard_show.php&quot;);</code>，用PHP得到的结果是<code>3345955374</code>，而JavaScript得到的是<code>-949011922</code>。如果单纯的适用JavaScript生成、检验CRC值当然没问题，但若与PHP联系起来就会出现很大的问题。</p>
+<p>看了代码实现，不难猜出问题出在有符号数和无符号数上。JavaScript采用IEEE 754标准定义的64位浮点格式表示数字，因此它的数字都是有符号的。在运算过程中虽然都使用了<code>&gt;&gt;&gt;</code>(Zero-fill right shift)，但是在最后返回结果的时候没有将有符号数转化为无符号数，因此出现了负数的情况。</p>
+<p>解决方法很简单，只需要修改最后一行就好了，如下。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">crc32</span><span class="params">(str)</span> </span>{</div><div class="line">	<span class="comment">/* …… */</span></div><div class="line">	crc = crc ^ (-<span class="number">1</span>);</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, iTop = str.length; i &lt; iTop; i++) {</div><div class="line">		y = (crc ^ str.charCodeAt(i)) & <span class="number">0xFF</span>;</div><div class="line">		x = <span class="string">'0x'</span> + table.substr(y * <span class="number">9</span>, <span class="number">8</span>);</div><div class="line">		crc = (crc &gt;&gt;&gt; <span class="number">8</span>) ^ x;</div><div class="line">	}</div><div class="line"></div><div class="line">	<span class="keyword">return</span> (crc ^ (-<span class="number">1</span>)) &gt;&gt;&gt; <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-use-swt-in-intellij-idea" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/use-swt-in-intellij-idea/" class="article-date">
+  <time datetime="2013-07-16T06:22:00.000Z" itemprop="datePublished">7月 16 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/use-swt-in-intellij-idea/">在IntelliJ Idea中使用SWT</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先下载<a href="http://www.eclipse.org/swt/" target="_blank" rel="external">SWT</a>,得到一个ZIP包，解压到IntelliJ Idea的Workspace目录。</p>
+<p>打开IntelliJ Idea，选择<code>File</code>-&gt;<code>Other Settings</code>-&gt;<code>Default Project Structure</code>，在<code>Global Libraries</code>中点击加号，选择刚才解压出来的SWT的路径，设置好名字后点<code>OK</code>保存。如下图所示。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/07/Default-Project-Structure.png" alt="Default Project Structure"><br>
+        
+          <p class="article-more-link">
+            <a href="/use-swt-in-intellij-idea/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-octopress-on-github-and-bitbucket" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/octopress-on-github-and-bitbucket/" class="article-date">
+  <time datetime="2013-05-10T06:05:00.000Z" itemprop="datePublished">5月 10 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/octopress-on-github-and-bitbucket/">Octopress搭建小记</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>偶然看到了<a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>的介绍，我便被它惊人的载入速度和独特的离线写作模式吸引了。虽然之前的Wordpress使用的也挺不错的，但细想之下其实我还真用不到那么多功能，顿时让我有了把博客迁移到Octopress上的冲动。</p>
+<p>网络上关于Octopress的部署教程已经有很多了，一种不错的方案是使用<a href="http://pages.github.com/" target="_blank" rel="external">Github Pages</a>服务。不过考虑到数据的安全性（比如<code>_config.yml</code>、一些第三方服务的API Key等），我决定同时使用Bitbucket和Github，即使用Bitbucket的私有Repo管理source，使用Github管理生成的页面。</p>
+<p>Ruby环境的搭建以及Octopress的安装方法可以在Octopress的文档中找到，这里主要记录部署过程(Ubuntu环境)。</p>
+<blockquote>
+<p><a href="http://octopress.org/docs/" target="_blank" rel="external">Octopress Documentation</a></p>
+</blockquote>
+
+        
+          <p class="article-more-link">
+            <a href="/octopress-on-github-and-bitbucket/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ubuntu-install-new-version-dropbox-daemon-note" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ubuntu-install-new-version-dropbox-daemon-note/" class="article-date">
+  <time datetime="2013-03-10T02:02:10.000Z" itemprop="datePublished">3月 10 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/ubuntu-install-new-version-dropbox-daemon-note/">Ubuntu安装新版Dropbox的注意事项</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前的ubuntu图方便是直接用wubi装的，结果前两天手贱把disk.img给误删了，无奈之下，干脆就重装了（可惜我配好的环境啊T T）。</p>
+<p>分区、安装什么的都很顺利，PPA软件源我直接用Ubuntu Tweak管理了，确实很方便。不过在安装Dropbox的时候倒是遇到了一些麻烦。</p>
+<p>Dropbox官网上提供的下载只不过是一个空壳而已，安装后需要使用如下命令安装daemon。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dropbox start -i</div></pre></td></tr></table></figure>
+
+<p>但是由于国内某些特殊原因，需要下载的内容无法直接下载。而因为SSL证书的问题，使用goagent也无法安装。于是提取了<a href="https://dl-web.dropbox.com/u/17/dropbox-lnx.x86-1.6.17.tar.gz" target="_blank" rel="external">下载地址</a>通过浏览器直接下载到了安装包dropbox-lnx.x86-1.6.17.tar.gz。</p>
+<p>按照以前的安装方式，直接解压到~目录，运行.dropbox-dist目录下的dropbox文件即可。不过这次的新版似乎有所不同，之前这样使用都可以开机自动运行，通过dropbox start命令也可以正常启动。但这次dropbox start却一直提示未安装，看来新版的dropbox daemon的安装还是有变化的= =<br>
+        
+          <p class="article-more-link">
+            <a href="/ubuntu-install-new-version-dropbox-daemon-note/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-apache-mod-rewrite-linux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/apache-mod-rewrite-linux/" class="article-date">
+  <time datetime="2012-08-12T16:39:14.000Z" itemprop="datePublished">8月 13 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/apache-mod-rewrite-linux/">Apache开启mod_rewrite</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>连接SSH或打开终端</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> a2enmod rewrite</div><div class="line"><span class="built_in">sudo</span> vim /etc/apache2/sites-available/default <span class="comment"># 按需求把AllowOverride None 改成 AllowOverride All</span></div><div class="line"><span class="built_in">sudo</span> service apache2 restart <span class="comment"># 或者 sudo /etc/init.d/apache2 restart</span></div></pre></td></tr></table></figure>
+
+<p>此时网页目录中的.htaccess文件即可生效。</p>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-chrome-google-analytics-invalid" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/chrome-google-analytics-invalid/" class="article-date">
+  <time datetime="2012-07-22T05:21:34.000Z" itemprop="datePublished">7月 22 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/chrome-google-analytics-invalid/">Chrome中Google Analytics无法跟踪</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前给博客加上Google Analytics后遇到了一个问题，就是用Chrome时Google Analytics无法获取到访问记录，但是用IE、Firefox却可以记录。通过Chrome的开发者工具中的Network工具，我发现是因为Google Analytics用来提交数据的__utm.gif文件载入失败。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2012/07/Network1.jpg" alt=""></p>
+<p>检查了Chrome、杀毒软件的设置后，均未发现可能造成该问题的选项。</p>
+<p>今天在给虚拟机中的Mac安装Chrome时，Chrome自动同步安装了AdBlock，在选择AdBlock的过滤清单时突然看到最后有一个“EasyPrivacy (隐私保护)”清单。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2012/07/filter-list.jpg" alt=""></p>
+<p>看到这个顿时明白问题的原因了。回到Win7的Chrome，打开AdBlock设置一看，果然是打着勾的。去掉以后刷新，Google Analytics就能正常统计了。</p>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vmware7-mac-xcode" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/vmware7-mac-xcode/" class="article-date">
+  <time datetime="2012-07-21T14:10:07.000Z" itemprop="datePublished">7月 21 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/vmware7-mac-xcode/">VMware7安装Mac+Xcode</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近给笔记本加了一条内存，达到了6G内存，所以之前想装Mac OS的想法又冒了出来。之前也试着用VMware装过一次Mac,但因为内存和版本的原因一直装不了Xcode，只得作罢。这次接着加内存的东风，就再尝试了一次，虽然中途遇到了很多的问题，但最终倒都是成功解决了，一下说说过程吧。</p>
+<p>准备工作：</p>
+<ul>
+<li>Mac OS X Snow Leopard 10.6.6 （<a href="http://adf.ly/AxlxV" target="_blank" rel="external">Torrent下载</a>）</li>
+<li>Empire EFI引导盘 （<a href="http://adf.ly/AxmMA" target="_blank" rel="external">ISO下载</a>）</li>
+<li>VMware Tools （<a href="http://adf.ly/AzPgo" target="_blank" rel="external">下载</a>）</li>
+</ul>
+<p>我这里用的是Hazard制作的破解版MacOS，一共9个分卷外加一个IOATAFamily补丁，约3.3G，包括了大部分破解驱动。<br>
+        
+          <p class="article-more-link">
+            <a href="/vmware7-mac-xcode/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+
+</body>
+</html>

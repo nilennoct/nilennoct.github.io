@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>NeoID3 - 轻松解决 MP3 标签乱码 | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/neoid3/index.html" class="article-date">
+  <time datetime="2014-05-19T02:47:00.000Z" itemprop="datePublished">5月 19 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NeoID3 - 轻松解决 MP3 标签乱码
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><a href="/neoid3-en">English version</a></p>
+</blockquote>
+<h2 id="关于">关于</h2>
+<p><a href="https://github.com/nilennoct/NeoID3" target="_blank" rel="external">NeoID3</a> 是一个轻量级的 Mac 应用，用于将 MP3 文件的 ID3 标签转换为 UTF-8 编码。</p>
+<blockquote>
+<p>ID3是一种metadata容器，多应用于MP3格式的音频文件中。它可以将相关的曲名、演唱者、专辑、音轨数等信息存储在MP3文件中。</p>
+<p>引用自 <a href="http://en.wikipedia.org/wiki/ID3" title="ID3" target="_blank" rel="external">维基百科</a>.</p>
+</blockquote>
+<p>ID3v2的标签可使用多种不同的编码，比如 ISO-8859-1、UTF-8等。然而像 iTunes、Vox 等多数常用的媒体播放器只支持读取 UTF-8 格式的标签，因此在 Mac 平台上打开来自 Windows 平台的 MP3 文件时经常会出现乱码。NeoID3 主要就是为了解决这一问题而产生的。</p>
+<h2 id="功能">功能</h2>
+<ul>
+<li>自动检测标签编码 (由 <a href="https://code.google.com/p/uchardet/" title="uchardet" target="_blank" rel="external">uchardet</a> 提供支持)；</li>
+<li>批量转换；</li>
+<li>编辑 MP3 ID3 标签。</li>
+</ul>
+<h2 id="支持编码">支持编码</h2>
+<ul>
+<li>UTF-8</li>
+<li>GB18030</li>
+<li>BIG5</li>
+<li>SHIFT_JIS</li>
+<li>EUC-KR</li>
+</ul>
+<h2 id="生成（Build）">生成（Build）</h2>
+<p>若要生成此工程，请确保已安装 TagLib 和 uchardet。（谁能告诉我 Build 到底译成什么比较好？构建？生成？编译&amp;连接？囧）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 使用 homebrew</span></div><div class="line">brew install taglib uchardet</div></pre></td></tr></table></figure>
+
+
+<p>Mac OS X 10.9.3 &amp; Xcode 5.1.1 测试通过。</p>
+<h2 id="注意">注意</h2>
+<p>NeoID3使用 <a href="http://taglib.github.io" title="TagLib" target="_blank" rel="external">TagLib</a> 读取和写入 ID3 标签，因此转换后会将 MP3 文件的 ID3 标签更新为 ID3v2.4 版本。请在转换前确定你使用的播放器是否支持 ID3v2.4，因此产生的问题本人概不负责。</p>
+<p>如果你同时使用 Mac OS X 和 Windows，并在 Windows 中使用 Windows Media Player 管理、播放 MP3 文件，请不要使用本软件。</p>
+<blockquote>
+<p>任何版本的Windows Explorer 和 Windows Media Player 都无法处理 ID3v2.4 标签, 包括 Windows 8 / Windows Media Player 12. Windows 最高支持到 ID3v2.3.<a href="http://arstechnica.com/features/2012/10/a-work-in-progress-the-windows-8-multimedia-experience/2/" title="Music and Video in Windows 8: a work in progress" target="_blank" rel="external">[1]</a><a href="http://answers.microsoft.com/en-us/windows/forum/windows_7-pictures/how-to-add-id3v24-support-for-windows-7-64bit/a9427521-eb6f-4fe4-affb-f61532846503" title="Microsoft support community" target="_blank" rel="external">[2]</a></p>
+</blockquote>
+<p><a href="http://pan.baidu.com/s/1kT9g7cz" title="Download NeoID3 Now!" target="_blank" rel="external"><img src="../image/NeoID3-Download.png" alt="Download"></a></p>
+
+      
+    </div>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+
+</body>
+</html>

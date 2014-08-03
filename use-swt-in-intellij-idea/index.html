@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>在IntelliJ Idea中使用SWT | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-use-swt-in-intellij-idea" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/use-swt-in-intellij-idea/" class="article-date">
+  <time datetime="2013-07-16T06:22:00.000Z" itemprop="datePublished">7月 16 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      在IntelliJ Idea中使用SWT
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先下载<a href="http://www.eclipse.org/swt/" target="_blank" rel="external">SWT</a>,得到一个ZIP包，解压到IntelliJ Idea的Workspace目录。</p>
+<p>打开IntelliJ Idea，选择<code>File</code>-&gt;<code>Other Settings</code>-&gt;<code>Default Project Structure</code>，在<code>Global Libraries</code>中点击加号，选择刚才解压出来的SWT的路径，设置好名字后点<code>OK</code>保存。如下图所示。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/07/Default-Project-Structure.png" alt="Default Project Structure"><br><a id="more"></a><br>新建一个工程，选择<code>File</code>-&gt;<code>Project Structure</code>，在<code>Modules</code>选项卡的<code>Dependencies</code>中点击加号添加<code>Library</code>，选择<code>Global Libraries</code>中刚刚添加的<code>org.eclipse.swt</code>。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/07/Project-Structure.png" alt="Project Structure"></p>
+<p>现在来新建一个Java文件看看效果吧：</p>
+<figure class="highlight java"><figcaption><span>SwtTest.java</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.eclipse.swt.SWT;</div><div class="line"><span class="keyword">import</span> org.eclipse.swt.events.PaintEvent;</div><div class="line"><span class="keyword">import</span> org.eclipse.swt.events.PaintListener;</div><div class="line"><span class="keyword">import</span> org.eclipse.swt.graphics.Rectangle;</div><div class="line"><span class="keyword">import</span> org.eclipse.swt.widgets.Canvas;</div><div class="line"><span class="keyword">import</span> org.eclipse.swt.widgets.Display;</div><div class="line"><span class="keyword">import</span> org.eclipse.swt.widgets.Shell;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SwtTest</span> </span>{</div><div class="line">	<span class="keyword">static</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">main</span>(String args[]) {</div><div class="line">		Display display = <span class="keyword">new</span> Display();</div><div class="line">		<span class="keyword">final</span> Shell shell = <span class="keyword">new</span> Shell(display);</div><div class="line"></div><div class="line">		Canvas canvas = <span class="keyword">new</span> Canvas(shell, SWT.NONE);</div><div class="line">		canvas.setSize(<span class="number">400</span>, <span class="number">300</span>);</div><div class="line">		canvas.addPaintListener(<span class="keyword">new</span> PaintListener() {</div><div class="line">			<span class="annotation">@Override</span></div><div class="line">			<span class="keyword">public</span> <span class="keyword">void</span> <span class="title">paintControl</span>(PaintEvent e) {</div><div class="line">				Rectangle clientArea = shell.getClientArea();</div><div class="line">				e.gc.drawLine(<span class="number">0</span>, <span class="number">0</span>, clientArea.width, clientArea.height);</div><div class="line">				e.gc.drawLine(clientArea.width, <span class="number">0</span>, <span class="number">0</span>, clientArea.height);</div><div class="line">			}</div><div class="line">		});</div><div class="line"></div><div class="line">		shell.setText(<span class="string">"SwtTest"</span>);</div><div class="line">		shell.pack();</div><div class="line">		shell.open();</div><div class="line"></div><div class="line">		<span class="keyword">while</span> ( ! shell.isDisposed()) {</div><div class="line">			<span class="keyword">if</span> ( ! display.readAndDispatch()) {</div><div class="line">				display.sleep();</div><div class="line">			}</div><div class="line">		}</div><div class="line">		display.dispose();</div><div class="line">	}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>运行结果如下图：</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/07/SwtTest.png" alt="SwtTest"></p>
+<p>以后需要在工程中使用SWT时，只要做第三步就可以了，也还是挺方便的。</p>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/javascript-crc32-fix/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript中的CRC32()修正
+        
+      </div>
+    </a>
+  
+  
+    <a href="/raspberrypi-roulette-game-gpio/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">用Raspberry Pi制作简单的轮盘游戏机</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>用于Raspberry Pi的简易bootloader | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-raspberrypi-diy-bootloader" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-diy-bootloader/" class="article-date">
+  <time datetime="2013-05-17T05:16:00.000Z" itemprop="datePublished">5月 17 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      用于Raspberry Pi的简易bootloader
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>这是一次痛并快乐着的实验。</p>
+<p>以下引用实验要求：</p>
+<blockquote>
+<p>David Welch的 <a href="https://github.com/dwelch67/raspberrypi" target="_blank" rel="external">GitHub</a> 的<code>bootloader05</code>给出了一个非常简单的RPi bootloader，他的代码链接在内存的0x00020000位置，一直在监听串口是否有XMODEM协议的文件下载，如果有就开始接收数据，并复制到0x00008000位置，传输完成后跳转到 0x00008000去执行。</p>
+<p>TA写了一个Python脚本，按照下面的命令调用脚本可以下载并执行用户程序<code>python xmodem-loader.py -p com3 -b 115200 output.bin</code></p>
+<p>你的任务是修改bootloader和python脚本实现如下功能：</p>
+<p>调用命令<code>python xmodem-loader.py -p com3 -b 115200</code>启动脚本并且与板卡建立串口连接，之后可以发送下面的命令。</p>
+<pre><code>    <span class="operator"><span class="keyword">load</span> *.<span class="keyword">bin</span> 下载程序*.<span class="keyword">bin</span>
+    <span class="keyword">go</span> 执行已下载的程序
+    peek addr 以一个字为单位读取内存中addr位置的数据（addr是<span class="number">4</span>字节对齐，十六进行的形式，长度为<span class="number">8</span>，例如 <span class="number">0x00008000</span>），并以十六进制的形式输出
+    poke addr <span class="keyword">data</span> 以一个字为单位修改内存中addr位置的数据为<span class="keyword">data</span>（addr是<span class="number">4</span>字节对齐，十六进行的形式，长 度为<span class="number">8</span>， <span class="keyword">data</span>也是十六进行的形式，长度为<span class="number">8</span>）
+    verify *.<span class="keyword">bin</span> 验证已下载的程序和*.<span class="keyword">bin</span>是否完全相同。</span>
+</code></pre><p><a id="more"></a><br><strong>获取<code>bootloader05</code>的源码</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> ~</div><div class="line">mkdir pi</div><div class="line"><span class="built_in">cd</span> pi</div><div class="line">git clone git@github.com:dwelch67/raspberrypi.git</div><div class="line"><span class="built_in">cd</span> raspberrypi</div></pre></td></tr></table></figure>
+
+<p><strong>简要分析<code>bootload05.c</code></strong></p>
+<p>这个bootloader确实很短，不过想弄明白还是得花点时间的。其主要思想就是用状态机控制数据的传输过程，简单来说就像下面这样：</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/05/bootloader05.origin.png" alt="Bootloader05_Origin"></p>
+<p>可以看到传输过程中先发送一个<code>0x01</code>,即<code>SOH(start of headline)</code>，然后分别检查第二次和第三次接收到的数据是否为<code>block</code>和<code>255-block</code>，<code>block</code>为当前块号，通过后就开始接收128位的数据流，最后在<code>Statue 131</code>检查CRC的值。另外，在数据全部传输完成后bootloader会收到一个<code>0x04</code>信号，即<code>EOT (end of transmission)</code>，此时bootloader会跳转到0x00008000去执行下载的程序。</p>
+<p>弄清楚流程后修改就容易多了，为了区分指令类型我在第一个号后添加了一个指令信号，状态机如下图所示：</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/05/bootloader05.neo_.png" alt="Bootloader05_Neo"></p>
+<p>也就是把133-136这几个状态作为<code>PEEK</code>和<code>POKE</code>的<code>addr</code>，137-140作为<code>POKE</code>的<code>data</code>.</p>
+<p>另外原本的bootloader05对<code>0x04</code>这一信号的判定是放在状态机外的，总让人觉得不舒服，我就把它也合并到了<code>State 0</code>状态中去判断了。</p>
+<p><strong><code>xmodem-loader.py</code>的修改</strong></p>
+<p>没学过Python的表示压力山大，所幸TA提供的<code>xmodem-loader.py</code>已经把关键的数据传输部分写好了，剩下的就是写一个能够接受用户输入，并对Raspberry Pi作出相应请求的控制器就好了（说的这么厉害其实还不就是<code>while True</code>= =）</p>
+<p><strong>效果演示</strong></p>
+<ul>
+<li>load &amp; verify</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/05/Lab_05_01.png" alt="Lab_05_01"></p>
+<ul>
+<li>peek &amp; poke</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/05/Lab_05_02.png" alt="Lab_05_02"></p>
+<ul>
+<li>re-verify</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/05/Lab_05_03.png" alt="Lab_05_03"></p>
+<ul>
+<li>go</li>
+</ul>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/05/Lab_05_04.png" alt="Lab_05_04"></p>
+<p><strong>程序源码</strong></p>
+<p>因为代码实在太长了，就不贴在这篇博文里了，有兴趣的可以点 <a href="/raspberrypi-diy-bootloader-source/">这里</a> 查看。</p>
+<p><strong>补充内容</strong></p>
+<ul>
+<li><p>编译<code>kernel.img</code>和<code>blinker.bin</code></p>
+<p>  进入<code>bootloader05</code>目录，编辑Makefile第一行，修改ARMGNU为你使用的交叉编译器，如<code>ARMGNU ?= arm-linux-gnueabi</code>，保存后执行<code>make</code>命令。</p>
+<p>  另外据同学反应在ubuntu 12.04及以下版本可能会出现<code>arm-linux-gnueabi-as</code>错误。目前已知的解决方案是升级系统（别打我）。</p>
+</li>
+<li><p>找不到blinker.bin，python脚本提示 “file not exist”</p>
+<p>  确保blinker.bin与脚本在同一目录下。找不到blinker.bin的请先编译<code>kernel.img</code>和<code>blinker.bin</code>。</p>
+</li>
+</ul>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/raspberrypi-ucos/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Raspberry Pi上μC/OS II的移植
+        
+      </div>
+    </a>
+  
+  
+    <a href="/octopress-on-github-and-bitbucket/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Octopress搭建小记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

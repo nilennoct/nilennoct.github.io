@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>关于ie6、ie7折行问题 | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-ie-word-wrap" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ie-word-wrap/" class="article-date">
+  <time datetime="2012-08-07T07:46:07.000Z" itemprop="datePublished">8月 7 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      关于ie6、ie7折行问题
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>HTML结构及CSS样式如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">li</span> <span class="rules">{<span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>; <span class="rule"><span class="attribute">margin-right</span>:<span class="value"><span class="number">10px</span></span></span>; <span class="rule">}</span></span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">”#"</span>&gt;</span>文本1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">”#"</span>&gt;</span>文本2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">”#"</span>&gt;</span>文本3<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>这个时候，在ie6、ie7中文字很可能出现断行（暂没发现其他浏览器出现这个问题）</p>
+<p>解决问题方法：</p>
+<ol>
+<li>如果文本中没有空格，用word-break属性的keep-all参数可解决这个问题。</li>
+<li>如果文本中有空格，用white-space属性的nowrap参数可解决问题。<a id="more"></a>
+
+</li>
+</ol>
+<p>细节解释：</p>
+<ol>
+<li><p>在CSS中关于换行的属于有两个分别是word-break以及white-space，其中word-break是IE的专有属性，由于这个折行问题只在IE下会出现，所以先试一下word-break。</p>
+<p> word-break有三个参数：normal、break-all、keep-all</p>
+<ul>
+<li>normal : 依照亚洲语言和非亚洲语言的文本规则，允许在字内换行</li>
+<li>break-all : 该行为与亚洲语言的normal相同。也允许非亚洲语言文本行的任意字内断开。该值适合包含一些非亚洲文本的亚洲文本</li>
+<li><p>keep-all : 与所有非亚洲语言的normal相同。对于中文，韩文，日文，不允许字断开。适合包含少量亚洲文本的非亚洲文本</p>
+<p>由于是要不允许文本字间断行，所以使用第三个参数keep-all，当文字中有空格的时候，依然会出现折行的现象</p>
+</li>
+</ul>
+</li>
+<li><p>white-space则是检索对象的空格处理方式的，同样有三个参数：normal、pre、nowrap</p>
+<ul>
+<li>normal : 默认处理方式</li>
+<li>pre : 用等宽字体显示预先格式化的文本。不合并字间的空白距离和进行两端对齐。参阅pre对象</li>
+<li><p>nowrap : 强制在同一行内显示所有文本，直到文本结束或者遭遇br对象。参阅td，div等对象的nowrap属性（特性）</p>
+<p>所以当文本对象中存在空格，导致文本显示折行的话，可以使用white-space:nowrap，解决文本折行的问题。</p>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/ie6-position-fixed-bug/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          完美解决IE6不支持position:fixed的bug
+        
+      </div>
+    </a>
+  
+  
+    <a href="/chrome-google-analytics-invalid/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Chrome中Google Analytics无法跟踪</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

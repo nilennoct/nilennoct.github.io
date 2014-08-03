@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>搭建RaspberryPi的交叉编译环境 | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-raspberrypi-cross-compile" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-cross-compile/" class="article-date">
+  <time datetime="2013-03-17T09:05:47.000Z" itemprop="datePublished">3月 17 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      搭建RaspberryPi的交叉编译环境
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p><strong>安装交叉编译工具</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install gcc-arm-linux-gnueabi</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_02_01.png" alt="Lab_02_01"></p>
+<p><strong>编写测试程序hello.c并编译</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arm-linux-gnueabi-gcc hello.c</div></pre></td></tr></table></figure>
+
+<p><a id="more"></a><br><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_02_02.png" alt="Lab_02_02"></p>
+<p><strong>通过scp命令上传编译好的文件到RPi</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp a.out pi@<span class="number">192.168</span>.<span class="number">0.4</span>:~/coding/c</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_02_03.png" alt="Lab_02_03"></p>
+<p>测试结果如下图所示。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_02_04.png" alt="Lab_02_04"></p>
+<ol>
+<li>开启NFS服务</li>
+</ol>
+<p>每次上传文件都要用scp显然太麻烦了，所以可以开启NFS服务直接访问RPi。</p>
+<p>在RPi上的NFS服务端添加/home/pi，重新启动nfs-kernel-server（详细方法见“<a href="http://www.nilennoct.com/raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs/" target="_blank" rel="external">RaspberryPi搭建NAS之中文兼容性检测</a>”第4部分）。</p>
+<p>在ubuntu中执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div><div class="line">mkdir pi</div><div class="line"><span class="built_in">sudo</span> mount <span class="number">192.168</span>.<span class="number">0.4</span>:/home/pi /home/neo/pi</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_02_05.png" alt="Lab_02_05"></p>
+<ol>
+<li>编写float.c并编译</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arm-linux-gnueabi-gcc -o float float.c</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_02_06.png" alt="Lab_02_06"></p>
+<p>在RPi上运行float查看运行结果。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_02_07.png" alt="Lab_02_07"></p>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/raspberrypi-ramdisk/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          在RaspberryPi上使用Ramdisk
+        
+      </div>
+    </a>
+  
+  
+    <a href="/raspberrypi-install-ruby/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">在RaspberryPi上安装Ruby</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

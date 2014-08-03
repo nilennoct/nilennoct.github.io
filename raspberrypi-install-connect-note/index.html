@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>RaspberryPi安装、连接小记 | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-raspberrypi-install-connect-note" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-install-connect-note/" class="article-date">
+  <time datetime="2013-03-03T14:19:13.000Z" itemprop="datePublished">3月 3 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      RaspberryPi安装、连接小记
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>树莓派（Raspberry Pi），是一款基于Linux系统的只有一张信用卡大小的单板机计算机。它由英国的树莓派基金会所开发，目的是以低价硬件及自由软件刺激在学校的基本的电脑科学教育。</p>
+<p>树莓派配备一枚700MHz博通出产的ARM架构BCM2835处理器，256MB内存（B型已升级到512MB内存），使用SD卡当作储存媒体，且拥有一个Ethernet，两个USB接口，以及HDMI(支持声音输出)和RCA接口输出支持。Raspberry Pi只有一张信用卡大小，体积大概是一个火柴盒大小，可以执行像雷神之锤III竞技场的游戏和进行1080p影片的播放。操作系统采用开源的Linux系统，比如Debian、ArchLinux，自带的Iceweasel、KOffice等软件能够满足基本的网络浏览，文字处理以及计算机学习的需要，分A,B两种型号，其中售价分别是A型25美元，B型35美元。</p>
+<p>树莓派基金会提供了基于ARM的Debian和Arch Linux的发行版供大众下载。还计划提供支持 Python 作为主要编程语言, 支持BBC BASIC , (通过 RISC OS 映像或者Linux的”Brandy Basic”克隆), C，和 Perl等编程语言。</p>
+<p>下面让我们来一步步走入RPi的美妙世界。<br><strong>准备工作</strong></p>
+<ul>
+<li>PC一台</li>
+<li>Raspberry Pi B型板</li>
+<li>2012-12-16-wheezy-raspbian.img镜像 <a href="http://pan.baidu.com/share/link?shareid=321044&amp;uk=3842409107" target="_blank" rel="external">[下载]</a></li>
+<li>输出电流700mA以上的电源一个（移动电源、充电器均可），我选用了iPad的充电器，输出电流2A</li>
+<li>Micro USB数据线一条，用于供电</li>
+<li>8G SD卡一张</li>
+<li>USB-Serial数据线一条</li>
+<li>网线一条</li>
+<li>折腾的精神</li>
+</ul>
+<p><a id="more"></a><br><strong>向SD卡中写入系统镜像</strong></p>
+<p>RPi上没有硬盘，而是使用了一个SD卡槽，以SD卡完成了硬盘的作用。要使用RPi，首先要在SD卡上写入RPi的系统镜像。</p>
+<p>这里我们使用了2012-12-16-wheezy-raspbian.img这个镜像。</p>
+<p>写img镜像很简单，Windows用户可以使用Win32 Disk Imager或是RawWrite，MacOS/Linux用户可以使用dd命令。</p>
+<p>以Win32 Disk Imager为例。</p>
+<p>到 <a href="http://sourceforge.net/projects/win32diskimager/" target="_blank" rel="external">http://sourceforge.net/projects/win32diskimager/</a> 下载Win32 Disk Imager，打开后找到下载的2012-12-16-wheezy-raspbian.img镜像，Device选择SD卡，点击Write，等待程序完成。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_01_01.png" alt="Lab_01_01"></p>
+<p><strong>连接RPi</strong></p>
+<ul>
+<li>通过USB-Serial连接</li>
+</ul>
+<p>安装PL2303驱动。Win8下安装PL2303_Win_1_7_0.zip会出现“设备无法启动 代码10”错误，这是因为新版的驱动不再对山寨芯片(= =)提供支持，所以需要使用旧版驱动，推荐1.5.0（测试可用）。需要注意的是安装了1.5.0驱动后，Win8识别到PL2303芯片后会自动更新驱动使之失效，需要回滚驱动程序，确保驱动程序日期是2011/10/7。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_01_05.png" alt="Lab_01_05"></p>
+<p>连接串口线。如下图，将串口线上的黑线连接到Ground口（上左3），白线连接到GPIO 14（上左4），绿线连接到GPIO 15（上左5），红线不连接。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_01_GPIO.png" alt="Lab_01_GPIO"></p>
+<p>连接好如下图所示。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/RPi_small.jpg" alt="RPi_small"></p>
+<p>使用putty连接RPi。打开putty，按下图填写连接信息。Serial line需要根据实际情况填写，可以从设备管理器中查到。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_01_06.png" alt="Lab_01_06"></p>
+<p>点击Open按钮，给RPi上点，会看到putty中飞快的闪过启动引导是输出的信息，稍等片刻，待出现“raspberrypi login”后用pi账号登录，初始密码为raspberry。此时若看到如下图所示的样子，说明你已经成功连接上RPi啦！</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_01_08.png" alt="Lab_01_08"></p>
+<ul>
+<li>通过局域网连接RPi</li>
+</ul>
+<p>RPi上有一个Ethernet接口，可以通过它将RPi与路由器接连，然后把电脑接入同一个局域网通过ssh连接RPi。RPi的IP地址可以从路由器的DHCP列表中查到。如下图中的192.168.0.4即为我们的RPi的IP（RPi的MAC地址以b8:27:eb开始，据此可以很方便的找到）。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_06_01.png" alt="Task_06_01"></p>
+<p>再次打开putty，按下图填写连接信息（IP地址请根据实际情况填写）。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_01_02.png" alt="Lab_01_02"></p>
+<p>点击Open按钮，用密码raspberry登录即可。如下图。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_01_03.png" alt="Lab_01_03"></p>
+<p>此时已经成功通过SSH连接上了RPi。</p>
+<p><strong>RPi设置</strong></p>
+<p>第一次启动RPi需要运行raspi-config进行一些设置。在已经连接上RPi的putty执行如下命令，可以看到如下图界面。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> raspi-config</div></pre></td></tr></table></figure>
+
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_01_04.png" alt="Lab_01_04"></p>
+<p>首先选择第二项“expand_rootfs”。因为刚写好的镜像只能使用SD卡上2G的内容，执行这一项后可以扩展文件系统以充分利用SD卡的容量。</p>
+<p>第二次选择“change_timezone”修改系统的时区，选择“Asia”-&gt;“Shanghai”即可。</p>
+<p><strong>开始折腾吧</strong></p>
+<p>到此为止，RPi已经完全掌握在你的手中了，开始折腾吧&gt;_&lt;</p>
+<p>比如写个Hello World就不错。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Lab_01_09.png" alt="Lab_01_09"></p>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/raspberrypi-install-jre-jdk/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          RaspberryPi安装JRE&amp;JDK
+        
+      </div>
+    </a>
+  
+  
+    <a href="/mstsc-remote-desktop-access-raspberrypi/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">远程桌面访问RaspberryPi</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

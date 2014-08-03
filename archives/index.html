@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Archives | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main">
+  
+    <article id="post-angularjs-first-experience" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/angularjs-first-experience/" class="article-date">
+  <time datetime="2014-07-10T02:52:57.000Z" itemprop="datePublished">7月 10 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/angularjs-first-experience/">AngularJS 使用体验</a>
+    </h1>
+  
+
+      </header>
+    
+    
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>AngularJS是一款开源 JavaScript函式库，由Google维护，用来协助单一页面应用程式运行的。它的目标是透过MVC模式 (MVC) 功能增强基于浏览器的应用，使开发和测试变得更加容易。</p>
+<p><strong>Angular的哲学</strong></p>
+<p>AngularJS是建立在这样的信念上的：即声明式编程应该用于构建用户界面以及编写软件构建，而指令式编程非常适合来表示业务逻辑。框架采用并扩展了传统HTML，通过双向的数据绑定来适应动态内容，双向的数据绑定允许模型和视图之间的自动同步。因此，AngularJS使得对DOM的操作不再重要并提升了可测试性。</p>
+<p>See more from <a href="http://en.wikipedia.org/wiki/AngularJS" target="_blank" rel="external">Wikipedia</a></p>
+</blockquote>
+<p>以上内容引自维基百科，简单的来说，AngularJS 就是一个使用了 MVC 设计模式的 Javascript 框架，类似的还有 Backbone.js、Atoms.js 等。因为之前也稍有接触 Backbone.js，所以先简单说说 AngularJS 和 Backbone.js 之间的区别。若与实际有出入，欢迎斧正。</p>
+
+        
+          <p class="article-more-link">
+            <a href="/angularjs-first-experience/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-npm-install-error-on-openshift" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/npm-install-error-on-openshift/" class="article-date">
+  <time datetime="2014-06-05T02:42:34.000Z" itemprop="datePublished">6月 5 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/npm-install-error-on-openshift/">解决 OpenShift 部署 node 应用不能自动重启</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近在做一个 node.js  的小项目，用来管理 blog 中使用的图片，部署在 openshift 上，但是一直有一个奇怪的问题，就是每次用 git push 完代码以后，应用都是一直处于 building 状态而不会自动重启。查看日志以后发现是 npm 在安装 package 的时候找不到有效的版本：</p>
+<blockquote>
+<p>remote: npm ERR! Error: No compatible version found: body-parser@’^1.2.0’</p>
+</blockquote>
+<p>但在给出的 Valid install targets 中却明明包含了 <code>body-parser 1.2.0</code>。因为这个问题，每次部署完都得手动重启应用，实在是让人觉得有些麻烦。</p>
+<p>既然本地运行没有问题，说明应该是服务器的 npm 或 node.js 的版本问题。可以在本地安装好所需要的 package 后，使用 <code>npm shrinkwrap</code> 锁定已安装的 package 的版本，此次目录下会生成一个 <code>npm-shrinkwrap.json</code> 文件，重新 push 到服务器部署就不会再出现原来的问题了。只是这样 package 的安装、更新等管理工作就需要放在本地了。</p>
+<blockquote>
+<p><strong>npm shrinkwrap</strong></p>
+<p>This command locks down the versions of a package’s dependencies so that you can control exactly which versions of each dependency will be used when your package is installed. The “package.json” file is still required if you want to use “npm install”.</p>
+<p><a href="https://www.npmjs.org/doc/cli/npm-shrinkwrap.html" target="_blank" rel="external">More about npm shrinkwrap</a></p>
+</blockquote>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-javascript-crc32-fix" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/javascript-crc32-fix/" class="article-date">
+  <time datetime="2014-03-10T08:53:00.000Z" itemprop="datePublished">3月 10 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/javascript-crc32-fix/">JavaScript中的CRC32()修正</a>
+    </h1>
+  
+
+      </header>
+    
+    
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>循环冗余校验（英语：Cyclic redundancy check，通称“CRC”）是一种根据网络数据数据包或计算机文件等数据产生简短固定位数校验码的一种散列函數，主要用来检测或校验数据传输或者保存后可能出现的错误。生成的数字在传输或者存储之前计算出来并且附加到数据后面，然后接收方进行检验确定数据是否发生变化。一般来说，循环冗余校验的值都是32位的整数。由于本函数易于用二进制的计算机硬件使用、容易进行数学分析并且尤其善于检测传输通道干扰引起的错误，因此获得广泛应用。它是由W. Wesley Peterson在他1961年发表的论文中披露<a href="http://dx.doi.org/10.1109%2FJRPROC.1961.287814" target="_blank" rel="external">[1]</a>。</p>
+<p>详见 <a href="http://zh.wikipedia.org/zh-cn/循環冗餘校驗" target="_blank" rel="external">wiki 循环冗余校验</a>。</p>
+</blockquote>
+<p>最近在做一个项目时需要用到CRC32做URL的Hash，因为JavaScript自身并没有实现CRC32，所以我使用了php.js中的解决方案。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">crc32</span><span class="params">(str)</span> </span>{</div><div class="line">	<span class="comment">// discuss at: http://phpjs.org/functions/crc32/</span></div><div class="line">	<span class="comment">// original by: Webtoolkit.info (http://www.webtoolkit.info/)</span></div><div class="line">	<span class="comment">// improved by: T0bsn</span></div><div class="line">	<span class="comment">// depends on: utf8_encode</span></div><div class="line">	<span class="comment">// example 1: crc32('Kevin van Zonneveld');</span></div><div class="line">	<span class="comment">// returns 1: 1249991249</span></div><div class="line"></div><div class="line">	str = <span class="keyword">this</span>.utf8_encode(str);</div><div class="line">	<span class="keyword">var</span> table =</div><div class="line">		<span class="string">'00000000 77073096 EE0E612C 990951BA 076DC419 706AF48F E963A535 9E6495A3 0EDB8832 79DCB8A4 E0D5E91E 97D2D988 09B64C2B 7EB17CBD E7B82D07 90BF1D91 1DB71064 6AB020F2 F3B97148 84BE41DE 1ADAD47D 6DDDE4EB F4D4B551 83D385C7 136C9856 646BA8C0 FD62F97A 8A65C9EC 14015C4F 63066CD9 FA0F3D63 8D080DF5 3B6E20C8 4C69105E D56041E4 A2677172 3C03E4D1 4B04D447 D20D85FD A50AB56B 35B5A8FA 42B2986C DBBBC9D6 ACBCF940 32D86CE3 45DF5C75 DCD60DCF ABD13D59 26D930AC 51DE003A C8D75180 BFD06116 21B4F4B5 56B3C423 CFBA9599 B8BDA50F 2802B89E 5F058808 C60CD9B2 B10BE924 2F6F7C87 58684C11 C1611DAB B6662D3D 76DC4190 01DB7106 98D220BC EFD5102A 71B18589 06B6B51F 9FBFE4A5 E8B8D433 7807C9A2 0F00F934 9609A88E E10E9818 7F6A0DBB 086D3D2D 91646C97 E6635C01 6B6B51F4 1C6C6162 856530D8 F262004E 6C0695ED 1B01A57B 8208F4C1 F50FC457 65B0D9C6 12B7E950 8BBEB8EA FCB9887C 62DD1DDF 15DA2D49 8CD37CF3 FBD44C65 4DB26158 3AB551CE A3BC0074 D4BB30E2 4ADFA541 3DD895D7 A4D1C46D D3D6F4FB 4369E96A 346ED9FC AD678846 DA60B8D0 44042D73 33031DE5 AA0A4C5F DD0D7CC9 5005713C 270241AA BE0B1010 C90C2086 5768B525 206F85B3 B966D409 CE61E49F 5EDEF90E 29D9C998 B0D09822 C7D7A8B4 59B33D17 2EB40D81 B7BD5C3B C0BA6CAD EDB88320 9ABFB3B6 03B6E20C 74B1D29A EAD54739 9DD277AF 04DB2615 73DC1683 E3630B12 94643B84 0D6D6A3E 7A6A5AA8 E40ECF0B 9309FF9D 0A00AE27 7D079EB1 F00F9344 8708A3D2 1E01F268 6906C2FE F762575D 806567CB 196C3671 6E6B06E7 FED41B76 89D32BE0 10DA7A5A 67DD4ACC F9B9DF6F 8EBEEFF9 17B7BE43 60B08ED5 D6D6A3E8 A1D1937E 38D8C2C4 4FDFF252 D1BB67F1 A6BC5767 3FB506DD 48B2364B D80D2BDA AF0A1B4C 36034AF6 41047A60 DF60EFC3 A867DF55 316E8EEF 4669BE79 CB61B38C BC66831A 256FD2A0 5268E236 CC0C7795 BB0B4703 220216B9 5505262F C5BA3BBE B2BD0B28 2BB45A92 5CB36A04 C2D7FFA7 B5D0CF31 2CD99E8B 5BDEAE1D 9B64C2B0 EC63F226 756AA39C 026D930A 9C0906A9 EB0E363F 72076785 05005713 95BF4A82 E2B87A14 7BB12BAE 0CB61B38 92D28E9B E5D5BE0D 7CDCEFB7 0BDBDF21 86D3D2D4 F1D4E242 68DDB3F8 1FDA836E 81BE16CD F6B9265B 6FB077E1 18B74777 88085AE6 FF0F6A70 66063BCA 11010B5C 8F659EFF F862AE69 616BFFD3 166CCF45 A00AE278 D70DD2EE 4E048354 3903B3C2 A7672661 D06016F7 4969474D 3E6E77DB AED16A4A D9D65ADC 40DF0B66 37D83BF0 A9BCAE53 DEBB9EC5 47B2CF7F 30B5FFE9 BDBDF21C CABAC28A 53B39330 24B4A3A6 BAD03605 CDD70693 54DE5729 23D967BF B3667A2E C4614AB8 5D681B02 2A6F2B94 B40BBE37 C30C8EA1 5A05DF1B 2D02EF8D'</span>;</div><div class="line"></div><div class="line">	<span class="keyword">var</span> crc = <span class="number">0</span>;</div><div class="line">	<span class="keyword">var</span> x = <span class="number">0</span>;</div><div class="line">	<span class="keyword">var</span> y = <span class="number">0</span>;</div><div class="line"></div><div class="line">	crc = crc ^ (-<span class="number">1</span>);</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, iTop = str.length; i &lt; iTop; i++) {</div><div class="line">		y = (crc ^ str.charCodeAt(i)) & <span class="number">0xFF</span>;</div><div class="line">		x = <span class="string">'0x'</span> + table.substr(y * <span class="number">9</span>, <span class="number">8</span>);</div><div class="line">		crc = (crc &gt;&gt;&gt; <span class="number">8</span>) ^ x;</div><div class="line">	}</div><div class="line"></div><div class="line">	<span class="keyword">return</span> crc ^ (-<span class="number">1</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>然而在实际运用中，我发现经常出现与PHP中的<code>crc32()</code>函数计算出的结果匹配不了的情况。经检查是这个Javascript版的<code>crc32()</code>在某些情况下会得出负值。比如计算<code>crc32(&quot;usercard_show.php&quot;);</code>，用PHP得到的结果是<code>3345955374</code>，而JavaScript得到的是<code>-949011922</code>。如果单纯的适用JavaScript生成、检验CRC值当然没问题，但若与PHP联系起来就会出现很大的问题。</p>
+<p>看了代码实现，不难猜出问题出在有符号数和无符号数上。JavaScript采用IEEE 754标准定义的64位浮点格式表示数字，因此它的数字都是有符号的。在运算过程中虽然都使用了<code>&gt;&gt;&gt;</code>(Zero-fill right shift)，但是在最后返回结果的时候没有将有符号数转化为无符号数，因此出现了负数的情况。</p>
+<p>解决方法很简单，只需要修改最后一行就好了，如下。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">crc32</span><span class="params">(str)</span> </span>{</div><div class="line">	<span class="comment">/* …… */</span></div><div class="line">	crc = crc ^ (-<span class="number">1</span>);</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, iTop = str.length; i &lt; iTop; i++) {</div><div class="line">		y = (crc ^ str.charCodeAt(i)) & <span class="number">0xFF</span>;</div><div class="line">		x = <span class="string">'0x'</span> + table.substr(y * <span class="number">9</span>, <span class="number">8</span>);</div><div class="line">		crc = (crc &gt;&gt;&gt; <span class="number">8</span>) ^ x;</div><div class="line">	}</div><div class="line"></div><div class="line">	<span class="keyword">return</span> (crc ^ (-<span class="number">1</span>)) &gt;&gt;&gt; <span class="number">0</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-use-swt-in-intellij-idea" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/use-swt-in-intellij-idea/" class="article-date">
+  <time datetime="2013-07-16T06:22:00.000Z" itemprop="datePublished">7月 16 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/use-swt-in-intellij-idea/">在IntelliJ Idea中使用SWT</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先下载<a href="http://www.eclipse.org/swt/" target="_blank" rel="external">SWT</a>,得到一个ZIP包，解压到IntelliJ Idea的Workspace目录。</p>
+<p>打开IntelliJ Idea，选择<code>File</code>-&gt;<code>Other Settings</code>-&gt;<code>Default Project Structure</code>，在<code>Global Libraries</code>中点击加号，选择刚才解压出来的SWT的路径，设置好名字后点<code>OK</code>保存。如下图所示。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/07/Default-Project-Structure.png" alt="Default Project Structure"><br>
+        
+          <p class="article-more-link">
+            <a href="/use-swt-in-intellij-idea/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-raspberrypi-roulette-game-gpio" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-roulette-game-gpio/" class="article-date">
+  <time datetime="2013-06-10T11:50:00.000Z" itemprop="datePublished">6月 10 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-roulette-game-gpio/">用Raspberry Pi制作简单的轮盘游戏机</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>之前在Raspberry Pi上做了许多好玩的事情，但与物理计算却是一点关系也没有。所以这次我们来尝试用RPi做一个简单的轮盘游戏机。因为材料有限，“轮盘”将使用一个2位8段数码管模拟。</p>
+<p>材料准备：</p>
+<ul>
+<li>Raspberry Pi</li>
+<li>面包板一块</li>
+<li>2位8段数码管一个</li>
+<li>按钮2个</li>
+<li>1K~10KΩ电阻2个</li>
+<li>面包线+杜邦线若干</li>
+</ul>
+<p><strong>在RPi上安装wiringPi</strong></p>
+<p>使用串口或SSH连接RPi，输入以下命令安装wiringPi。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> /tmp/</div><div class="line">$ git clone git://git.drogon.net/wiringPi</div><div class="line">$ <span class="built_in">cd</span> wiringPi</div><div class="line">$ <span class="built_in">sudo</span> ./build</div></pre></td></tr></table></figure>
+
+<p>安装完成后，你可以使用命令<code>gpio -v</code>测试wiringPi是否已经正确安装。<br>
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-roulette-game-gpio/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-raspberrypi-ucos" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-ucos/" class="article-date">
+  <time datetime="2013-05-30T12:30:00.000Z" itemprop="datePublished">5月 30 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-ucos/">Raspberry Pi上μC/OS II的移植</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>下载μCOS II for Raspberry Pi源码，修改makefile文件</strong></p>
+<p>　　根据自己使用的交叉编译工具链，修改源码根目录下的<code>makefile</code>文件，主要修改的地方有如下两处：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="constant">ARMGNU ?</span>= arm-linux-gnueabi</div><div class="line"><span class="constant"></span></div><div class="line">INCLUDEPATH ?= <span class="string">"./h"</span></div></pre></td></tr></table></figure>
+
+<p><strong>检查源码错误</strong></p>
+<p>　　不知道助教是不是有意“增加”实验难度，这次提供的源码中存在不少小错误，比如<code>makefile</code>文件的第59行的<code>ucos_bcm2835.elf</code>最后多了一个“.”、没有注意文件名大小写（这个与操作系统有关）等。这步可以通过执行<code>make</code>命令找出错误的地方，很快就能解决。<br>
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-ucos/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-raspberrypi-diy-bootloader" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-diy-bootloader/" class="article-date">
+  <time datetime="2013-05-17T05:16:00.000Z" itemprop="datePublished">5月 17 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-diy-bootloader/">用于Raspberry Pi的简易bootloader</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p>这是一次痛并快乐着的实验。</p>
+<p>以下引用实验要求：</p>
+<blockquote>
+<p>David Welch的 <a href="https://github.com/dwelch67/raspberrypi" target="_blank" rel="external">GitHub</a> 的<code>bootloader05</code>给出了一个非常简单的RPi bootloader，他的代码链接在内存的0x00020000位置，一直在监听串口是否有XMODEM协议的文件下载，如果有就开始接收数据，并复制到0x00008000位置，传输完成后跳转到 0x00008000去执行。</p>
+<p>TA写了一个Python脚本，按照下面的命令调用脚本可以下载并执行用户程序<code>python xmodem-loader.py -p com3 -b 115200 output.bin</code></p>
+<p>你的任务是修改bootloader和python脚本实现如下功能：</p>
+<p>调用命令<code>python xmodem-loader.py -p com3 -b 115200</code>启动脚本并且与板卡建立串口连接，之后可以发送下面的命令。</p>
+<pre><code>    <span class="operator"><span class="keyword">load</span> *.<span class="keyword">bin</span> 下载程序*.<span class="keyword">bin</span>
+    <span class="keyword">go</span> 执行已下载的程序
+    peek addr 以一个字为单位读取内存中addr位置的数据（addr是<span class="number">4</span>字节对齐，十六进行的形式，长度为<span class="number">8</span>，例如 <span class="number">0x00008000</span>），并以十六进制的形式输出
+    poke addr <span class="keyword">data</span> 以一个字为单位修改内存中addr位置的数据为<span class="keyword">data</span>（addr是<span class="number">4</span>字节对齐，十六进行的形式，长 度为<span class="number">8</span>， <span class="keyword">data</span>也是十六进行的形式，长度为<span class="number">8</span>）
+    verify *.<span class="keyword">bin</span> 验证已下载的程序和*.<span class="keyword">bin</span>是否完全相同。</span>
+</code></pre><p>
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-diy-bootloader/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-octopress-on-github-and-bitbucket" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/octopress-on-github-and-bitbucket/" class="article-date">
+  <time datetime="2013-05-10T06:05:00.000Z" itemprop="datePublished">5月 10 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/octopress-on-github-and-bitbucket/">Octopress搭建小记</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>偶然看到了<a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>的介绍，我便被它惊人的载入速度和独特的离线写作模式吸引了。虽然之前的Wordpress使用的也挺不错的，但细想之下其实我还真用不到那么多功能，顿时让我有了把博客迁移到Octopress上的冲动。</p>
+<p>网络上关于Octopress的部署教程已经有很多了，一种不错的方案是使用<a href="http://pages.github.com/" target="_blank" rel="external">Github Pages</a>服务。不过考虑到数据的安全性（比如<code>_config.yml</code>、一些第三方服务的API Key等），我决定同时使用Bitbucket和Github，即使用Bitbucket的私有Repo管理source，使用Github管理生成的页面。</p>
+<p>Ruby环境的搭建以及Octopress的安装方法可以在Octopress的文档中找到，这里主要记录部署过程(Ubuntu环境)。</p>
+<blockquote>
+<p><a href="http://octopress.org/docs/" target="_blank" rel="external">Octopress Documentation</a></p>
+</blockquote>
+
+        
+          <p class="article-more-link">
+            <a href="/octopress-on-github-and-bitbucket/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-raspberrypi-add-linux-syscall" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-add-linux-syscall/" class="article-date">
+  <time datetime="2013-04-22T04:10:43.000Z" itemprop="datePublished">4月 22 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/raspberrypi-add-linux-syscall/">给RaspberryPi增加一个系统调用</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>浙江大学嵌入式系统课程</p>
+</blockquote>
+<p><strong>安装交叉编译工具，并设置NAS</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install gcc-arm-linux-gnueabi</div><div class="line"><span class="built_in">cd</span> ~</div><div class="line">mkdir pi</div><div class="line"><span class="built_in">sudo</span> mount <span class="number">192.168</span>.<span class="number">0.4</span>:/home/pi /home/neo/pi</div></pre></td></tr></table></figure>
+
+<p>详情见<a href="http://www.nilennoct.com/raspberrypi-cross-compile/" target="_blank" rel="external">搭建RaspberryPi的交叉编译环境</a>。</p>
+<p><strong>下载Raspberry Pi的源码</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># PC</span></div><div class="line"><span class="built_in">cd</span> ~/pi</div><div class="line">mkdir kernel</div><div class="line"><span class="built_in">cd</span> kernel</div><div class="line">git clone https://github.com/raspberrypi/linux.git</div><div class="line">git clone https://github.com/raspberrypi/firmware.git</div></pre></td></tr></table></figure>
+
+<p>因为网络原因这一步耗时较长，需要耐心等待。也可以直接在github上下载zip压缩包自行解压，不过无论是使用RPi解压或是通过NAS解压速度都不快，可以考虑取下SD卡在PC上直接解压。<br>
+        
+          <p class="article-more-link">
+            <a href="/raspberrypi-add-linux-syscall/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-shortest-ie-version-detect" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/shortest-ie-version-detect/" class="article-date">
+  <time datetime="2013-04-19T02:21:55.000Z" itemprop="datePublished">4月 19 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/shortest-ie-version-detect/">最短的 IE 版本判断</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>网上看到的一段很酷的代码，留着备用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"><span class="comment">// A short snippet for detecting versions of IE in JavaScript</span></div><div class="line"><span class="comment">// without resorting to user-agent sniffing</span></div><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"><span class="comment">// If you're not in IE (or IE version is less than 5) then:</span></div><div class="line"><span class="comment">//     ie === undefined</span></div><div class="line"><span class="comment">// If you're in IE (&gt;=5) then you can determine which version:</span></div><div class="line"><span class="comment">//     ie === 7; // IE7</span></div><div class="line"><span class="comment">// Thus, to detect IE:</span></div><div class="line"><span class="comment">//     if (ie) {}</span></div><div class="line"><span class="comment">// And to detect the version:</span></div><div class="line"><span class="comment">//     ie === 6 // IE6</span></div><div class="line"><span class="comment">//     ie &gt; 7 // IE8, IE9 ...</span></div><div class="line"><span class="comment">//     ie &lt; 9 // Anything less than IE9</span></div><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"></div><div class="line"><span class="comment">// UPDATE: Now using Live NodeList idea from @jdalton</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> ie = (<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line"></div><div class="line">    <span class="keyword">var</span> undef,</div><div class="line">        v = <span class="number">3</span>,</div><div class="line">        div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>),</div><div class="line">        all = div.getElementsByTagName(<span class="string">'i'</span>);</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (</div><div class="line">        div.innerHTML = <span class="string">''</span>,</div><div class="line">        all[<span class="number">0</span>]</div><div class="line">    );</div><div class="line"></div><div class="line">    <span class="keyword">return</span> v &gt; <span class="number">4</span> ? v : undef;</div><div class="line"></div><div class="line">}());</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
+    </nav>
+  
+</section>
+
+</body>
+</html>

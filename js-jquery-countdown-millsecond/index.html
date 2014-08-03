@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JS实现倒计时的一种方法 | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-js-jquery-countdown-millsecond" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/js-jquery-countdown-millsecond/" class="article-date">
+  <time datetime="2012-08-27T09:42:50.000Z" itemprop="datePublished">8月 27 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS实现倒计时的一种方法
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近因为需要试着用Javascript写了一个带毫秒倒计时的小程序，代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"min"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>:<span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"sec"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>.<span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"millisec"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> inter;</div><div class="line"><span class="keyword">var</span> countdown = <span class="function"><span class="keyword">function</span><span class="params">(min)</span> </span>{</div><div class="line">	<span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">	<span class="keyword">var</span> endTime = date.getTime() + <span class="built_in">parseInt</span>(min) * <span class="number">60</span> * <span class="number">1000</span>;</div><div class="line">	<span class="keyword">var</span> $min = $(<span class="string">'.min'</span>);</div><div class="line">    clearInterval(inter);</div><div class="line">	inter = setInterval(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">		<span class="keyword">var</span> st = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">		<span class="keyword">var</span> startTime = st.getTime();</div><div class="line">		<span class="keyword">var</span> leftTime = <span class="built_in">Math</span>.floor((endTime - startTime) / <span class="number">100</span>);</div><div class="line">		<span class="keyword">if</span> (leftTime &lt;= <span class="number">0</span>) {</div><div class="line">			clearInterval(inter);</div><div class="line">			inter = <span class="literal">null</span>;</div><div class="line">			$.each($min, <span class="function"><span class="keyword">function</span><span class="params">(i, t)</span> </span>{</div><div class="line">				$(t).text(<span class="string">'0'</span>).next().text(<span class="string">'0'</span>).next().text(<span class="string">'0'</span>);</div><div class="line">			});</div><div class="line">			<span class="keyword">return</span>;</div><div class="line">		}</div><div class="line">		$.each($min, <span class="function"><span class="keyword">function</span><span class="params">(i, t)</span> </span>{</div><div class="line">			$(t).text(<span class="built_in">Math</span>.floor(leftTime / <span class="number">600</span>)).next().text(<span class="built_in">Math</span>.floor(leftTime / <span class="number">10</span>) % <span class="number">60</span>).next().text(leftTime % <span class="number">10</span>);</div><div class="line">		});</div><div class="line">	}, <span class="number">100</span>);</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>使用countdown(1)可实现一分钟的倒计时.</p>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/jsdoc-definition/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JSDoc描述
+        
+      </div>
+    </a>
+  
+  
+    <a href="/apache-mod-rewrite-linux/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Apache开启mod_rewrite</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

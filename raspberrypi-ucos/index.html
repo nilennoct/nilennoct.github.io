@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Raspberry Pi上μC/OS II的移植 | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-raspberrypi-ucos" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/raspberrypi-ucos/" class="article-date">
+  <time datetime="2013-05-30T12:30:00.000Z" itemprop="datePublished">5月 30 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/RaspberryPi/">RaspberryPi</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Raspberry Pi上μC/OS II的移植
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>下载μCOS II for Raspberry Pi源码，修改makefile文件</strong></p>
+<p>　　根据自己使用的交叉编译工具链，修改源码根目录下的<code>makefile</code>文件，主要修改的地方有如下两处：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="constant">ARMGNU ?</span>= arm-linux-gnueabi</div><div class="line"><span class="constant"></span></div><div class="line">INCLUDEPATH ?= <span class="string">"./h"</span></div></pre></td></tr></table></figure>
+
+<p><strong>检查源码错误</strong></p>
+<p>　　不知道助教是不是有意“增加”实验难度，这次提供的源码中存在不少小错误，比如<code>makefile</code>文件的第59行的<code>ucos_bcm2835.elf</code>最后多了一个“.”、没有注意文件名大小写（这个与操作系统有关）等。这步可以通过执行<code>make</code>命令找出错误的地方，很快就能解决。<br><a id="more"></a><br><strong>修改usrApp/userApp.c文件</strong></p>
+<p>　　这次实验的要求除了移植μCOS到RPi上以外，还要求实现两个任务的调度。这两个任务能轮流点亮LED，并通过串口发送消息表明自己正在运行。调度和通过串口发消息已经在提供的代码中实现了，主要要做的就是点亮LED了。</p>
+<p>　　这里我直接使用了RPi板子上LED即ACT灯，对应的GPIO号是16。代码如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#<span class="keyword">include</span> "uart.h"</span></div><div class="line"><span class="preprocessor">#<span class="keyword">include</span> "ucos/includes.h"</span></div><div class="line"><span class="keyword">extern</span> <span class="keyword">void</span> PUT32 ( <span class="keyword">unsigned</span> <span class="keyword">int</span>, <span class="keyword">unsigned</span> <span class="keyword">int</span> );</div><div class="line"></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> GPSET0     0x2020001C</span></div><div class="line"><span class="preprocessor">#<span class="keyword">define</span> GPCLR0     0x20200028</span></div><div class="line"></div><div class="line"><span class="keyword">void</span> userApp2(<span class="keyword">void</span> * args) {</div><div class="line">	<span class="keyword">int</span> count = <span class="number">4</span>;</div><div class="line"></div><div class="line">	<span class="keyword">while</span>(<span class="number">1</span>) {</div><div class="line">		<span class="keyword">if</span> (count &gt;= <span class="number">4</span>) {</div><div class="line">			PUT32(GPSET0, <span class="number">1</span> &lt;&lt; <span class="number">16</span>); <span class="comment">// 16是因为LED的GPIO地址为16.</span></div><div class="line">			count = <span class="number">0</span>;</div><div class="line">		}</div><div class="line">		uart_string(<span class="string">"in userApp2"</span>);</div><div class="line">		OSTimeDly(<span class="number">100</span>);</div><div class="line">		count++;</div><div class="line">	}</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">void</span> userApp1(<span class="keyword">void</span> * args) {</div><div class="line">	<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"></div><div class="line">	<span class="keyword">while</span>(<span class="number">1</span>) {</div><div class="line">		<span class="keyword">if</span> (count &gt;= <span class="number">6</span>) {</div><div class="line">			PUT32(GPCLR0, <span class="number">1</span> &lt;&lt; <span class="number">16</span>);</div><div class="line">			count = <span class="number">2</span>;</div><div class="line">		}</div><div class="line">		uart_string(<span class="string">"in userApp1"</span>);</div><div class="line">		OSTimeDly(<span class="number">100</span>);</div><div class="line">		count++;</div><div class="line">	}</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>　　这里说明一下，之所以加入count变量是因为我发现，如果直接对GPIO设置电平值，LED会亮起很短的时间然后马上变暗，无法实现闪烁的效果。</p>
+<p><strong>替换kernel.img</strong></p>
+<p>　　编译内核并复制到SD卡中，上电开机，可以看到ACT灯开始闪烁了，同时在minicom中也能看到两个任务的输出信息。</p>
+<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/05/Lab_06_01.png" alt="Lab_06_01"></p>
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/raspberrypi-roulette-game-gpio/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          用Raspberry Pi制作简单的轮盘游戏机
+        
+      </div>
+    </a>
+  
+  
+    <a href="/raspberrypi-diy-bootloader/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">用于Raspberry Pi的简易bootloader</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

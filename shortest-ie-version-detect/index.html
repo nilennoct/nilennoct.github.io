@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>最短的 IE 版本判断 | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="post-shortest-ie-version-detect" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/shortest-ie-version-detect/" class="article-date">
+  <time datetime="2013-04-19T02:21:55.000Z" itemprop="datePublished">4月 19 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      最短的 IE 版本判断
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>网上看到的一段很酷的代码，留着备用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"><span class="comment">// A short snippet for detecting versions of IE in JavaScript</span></div><div class="line"><span class="comment">// without resorting to user-agent sniffing</span></div><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"><span class="comment">// If you're not in IE (or IE version is less than 5) then:</span></div><div class="line"><span class="comment">//     ie === undefined</span></div><div class="line"><span class="comment">// If you're in IE (&gt;=5) then you can determine which version:</span></div><div class="line"><span class="comment">//     ie === 7; // IE7</span></div><div class="line"><span class="comment">// Thus, to detect IE:</span></div><div class="line"><span class="comment">//     if (ie) {}</span></div><div class="line"><span class="comment">// And to detect the version:</span></div><div class="line"><span class="comment">//     ie === 6 // IE6</span></div><div class="line"><span class="comment">//     ie &gt; 7 // IE8, IE9 ...</span></div><div class="line"><span class="comment">//     ie &lt; 9 // Anything less than IE9</span></div><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"></div><div class="line"><span class="comment">// UPDATE: Now using Live NodeList idea from @jdalton</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> ie = (<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line"></div><div class="line">    <span class="keyword">var</span> undef,</div><div class="line">        v = <span class="number">3</span>,</div><div class="line">        div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>),</div><div class="line">        all = div.getElementsByTagName(<span class="string">'i'</span>);</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (</div><div class="line">        div.innerHTML = <span class="string">''</span>,</div><div class="line">        all[<span class="number">0</span>]</div><div class="line">    );</div><div class="line"></div><div class="line">    <span class="keyword">return</span> v &gt; <span class="number">4</span> ? v : undef;</div><div class="line"></div><div class="line">}());</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/raspberrypi-add-linux-syscall/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          给RaspberryPi增加一个系统调用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/raspberry-pi-arm-instruction/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[RPi] ARM指令</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+
+</body>
+</html>

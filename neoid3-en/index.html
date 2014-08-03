@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>NeoID3 - A Mac app used to convert MP3 tags | Nil-Enn-Oct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="alternative" href="/atom.xml" title="Nil-Enn-Oct" type="application/atom+xml">
+
+
+  <link rel="icon" href="/favicon.png">
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  
+</head>
+
+<body>
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-control">＃</div>
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="#" id="logo">Nil-Enn-Oct</a>
+            </h1>
+            
+            <h2 id="subtitle-wrap">
+                <a href="#" id="subtitle">Record my life.</a>
+            </h2>
+            
+        </div>
+        <div id="header-avatar"></div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/">Home</a>
+                
+                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                
+                <a class="main-nav-link" href="/archives">Archives</a>
+                
+            </nav>
+        </div>
+        <!--<div id="header-search">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://www.nilennoct.com"></form>
+        </div>-->
+    </div>
+</header>
+
+
+<section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/neoid3-en/index.html" class="article-date">
+  <time datetime="2014-05-19T02:49:00.000Z" itemprop="datePublished">5月 19 2014</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NeoID3 - A Mac app used to convert MP3 tags
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><a href="/neoid3">中文版</a></p>
+</blockquote>
+<h2 id="About">About</h2>
+<p><a href="https://github.com/nilennoct/NeoID3" target="_blank" rel="external">NeoID3</a> is a simple Mac app used to convert MP3 tags encoding to UTF-8.</p>
+<blockquote>
+<p>ID3 is a metadata container most often used in conjunction with the MP3 audio file format. It allows information such as the title, artist, album, track number, and other information about the file to be stored in the file itself.</p>
+<p>From <a href="http://en.wikipedia.org/wiki/ID3" title="ID3" target="_blank" rel="external">Wikipedia</a>.</p>
+</blockquote>
+<p>In ID3v2, tags can be stored in several encodings, such as ISO-8859-1 and UTF-8, while the media palyers in common use, like iTunes and Vox, can only read tags encoded in UTF-8.</p>
+<h2 id="Feature">Feature</h2>
+<ul>
+<li>Detect encoding automatically (powered by <a href="https://code.google.com/p/uchardet/" title="uchardet" target="_blank" rel="external">uchardet</a>);</li>
+<li>Convert multiple files;</li>
+<li>Edit MP3 ID3 tag.</li>
+</ul>
+<h2 id="Support_encodings">Support encodings</h2>
+<ul>
+<li>UTF-8</li>
+<li>GB18030</li>
+<li>BIG5</li>
+<li>SHIFT_JIS</li>
+<li>EUC-KR</li>
+</ul>
+<h2 id="Build">Build</h2>
+<p>To build this project, you need install TagLib and uchardet at first.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># use homebrew</span></div><div class="line">brew install taglib uchardet</div></pre></td></tr></table></figure>
+
+
+<p>Tested on Mac OS X 10.9.3 &amp; Xcode 5.1.1.</p>
+<h2 id="Notice">Notice</h2>
+<p>This app uses <a href="http://taglib.github.io" title="TagLib" target="_blank" rel="external">TagLib</a> to read and write ID3 tags. After converting, the MP3 file’s tag would be updated to ID3v2.4. Please check whether your media player supports ID3v2.4 before converting.</p>
+<p>For example, if you would enjoy your music both in Mac OS and in Windows, you should notice the fact below:</p>
+<blockquote>
+<p>Windows Explorer and Windows Media Player cannot handle ID3v2.4 tags in any version, up to and including Windows 8 / Windows Media Player 12. Windows can understand ID3v2 up to and including version 2.3.<a href="http://arstechnica.com/features/2012/10/a-work-in-progress-the-windows-8-multimedia-experience/2/" title="Music and Video in Windows 8: a work in progress" target="_blank" rel="external">[1]</a><a href="http://answers.microsoft.com/en-us/windows/forum/windows_7-pictures/how-to-add-id3v24-support-for-windows-7-64bit/a9427521-eb6f-4fe4-affb-f61532846503" title="Microsoft support community" target="_blank" rel="external">[2]</a></p>
+</blockquote>
+<p><a href="http://pan.baidu.com/s/1kT9g7cz" title="Download NeoID3 Now!" target="_blank" rel="external"><img src="../image/NeoID3-Download.png" alt="Download"></a></p>
+
+      
+    </div>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+
+</body>
+</html>
