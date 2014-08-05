@@ -6,7 +6,18 @@ require.config({
   }
 });
 
-require(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
-  console.log("All scripts loaded.");
-
+require(['jquery'], function($) {
+  $(function() {
+    $('#header-control').on('click', function() {
+      console.log('clicked');
+      $('#header').toggleClass('open');
+    });
+  });
 });
+
+if (false) {
+  require(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
+    console.log("All scripts loaded.");
+
+  });
+}

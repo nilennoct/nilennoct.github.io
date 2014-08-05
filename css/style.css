@@ -10,6 +10,34 @@ body:after {
 body:after {
   clear: both;
 }
+@font-face {
+	font-family: 'Glyphs';
+	src:url('../fonts/Glyphs.eot?-dwaz7j');
+	src:url('../fonts/Glyphs.eot?#iefix-dwaz7j') format('embedded-opentype'),
+		url('../fonts/Glyphs.woff?-dwaz7j') format('woff'),
+		url('../fonts/Glyphs.ttf?-dwaz7j') format('truetype'),
+		url('../fonts/Glyphs.svg?-dwaz7j#Glyphs') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'Glyphs';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-list:before {
+	content: "\e600";
+}
 html,
 body,
 div,
@@ -172,6 +200,7 @@ a {
   position: absolute;
   right: 5px;
   font-size: 24px;
+  line-height: 32px;
   display: none;
 }
 @media screen and (max-width: 479px) {
