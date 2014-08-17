@@ -1,0 +1,28 @@
+<h2 id="Contributing_to_Zepto">Contributing to Zepto</h2>
+<p><strong>Thanks for helping out!</strong></p>
+<p>In order for your code to make it in, several conditions must be met:</p>
+<ul>
+<li>It’s more likely your pull request will make it in if you adhere to <strong>Zepto’s<br>project goals</strong>. Be sure to read the README in its entirety before setting out<br>to code.</li>
+<li>Please talk to the maintainers (@madrobby and @mislav) first if you want<br>to write a plugin, those are better kept in their own repositories.</li>
+<li>Fix only ONE thing or have only ONE feature in your pull request.<br>If you have multiple unrelated code updates, please submit a separate pull request for each one.</li>
+<li><strong>Your pull request must be written in English and be accompanied by a<br>detailed description</strong>, ideally something we can use as documentation.<br>If you’re not fluent in English, try your best and let us know so we’ll help!</li>
+<li>Changes to jQuery-based API methods <strong>must match their jQuery counterparts</strong>.</li>
+<li>Please <strong>do not just copy code from jQuery</strong>. Zepto strives for API compatibility,<br>but has different goals for code style and size and target platforms.<br>In case you do copy code, you must clearly indicate the origin of the code, and<br>which license applies to it. However, it is likely your patch will be denied.</li>
+<li><strong>All code must have tests, and all tests must pass.</strong> See the README on running the test suite.</li>
+<li>Please <strong>also test manually</strong> on as many target platforms you have access to,<br>but at least on latest Chrome (desktop) and Firefox (desktop).<br>See <a href="http://zeptojs.com">http://zeptojs.com</a> for a full list of platforms.</li>
+<li>It’s required that you follow Zepto’s <strong>code style guidelines</strong> (see below)</li>
+</ul>
+<p>Whew, now that we have that out of the way thanks again!</p>
+<h2 id="Code_style_guidelines">Code style guidelines</h2>
+<ul>
+<li>Two spaces “soft tabs” indentation</li>
+<li>Remove any trailing whitespace from the end of lines</li>
+<li><code>function name() { }</code> for named functions</li>
+<li><code>function(){ }</code> for anonymous functions</li>
+<li>No curly braces for single-line control flow statements such as <code>if</code> &amp; friends</li>
+<li>Don’t write <a href="http://mislav.uniqpath.com/2010/05/semicolons/">semicolons that are optional</a></li>
+<li>Put a single semicolon <em>before</em> statements that start with <code>(</code> or <code>[</code><br>(see above article as for why it’s needed)</li>
+<li>Use long, descriptive variable and method names</li>
+<li>Use blank lines to separate “paragraphs” of code for readability</li>
+<li>Use comments to describe non-obvious code behavior</li>
+</ul>

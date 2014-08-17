@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   
   <title>NeoID3 - A Mac app used to convert MP3 tags | Nil-Enn-Oct</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="description" content="中文版
 
 About
@@ -39,18 +40,9 @@ ID3 is a metadata container most often used in conjunction with the MP3 audio fi
 
   <link rel="stylesheet" href="/css/style.css" type="text/css">
 
-  
-  
-<script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?1c4a8ec51af12949dd6b46712e821b53";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css" type="text/css">
 
+  <!---->
 </head>
 
 <body>
@@ -59,23 +51,23 @@ ID3 is a metadata container most often used in conjunction with the MP3 audio fi
         <div id="header-control" class="icon-list"></div>
         <div id="header-title" class="inner">
             <h1 id="logo-wrap">
-                <a href="#" id="logo">Nil-Enn-Oct</a>
+                <a href="javascript:void(0)" id="logo">Nil-Enn-Oct</a>
             </h1>
             
             <h2 id="subtitle-wrap">
-                <a href="#" id="subtitle">Record my life.</a>
+                <a href="/" id="subtitle">Record my life.</a>
             </h2>
             
         </div>
-        <div id="header-avatar"></div>
+        <a href="https://github.com/nilennoct" target="_blank"><div id="header-avatar" class="icon-github"></div></a>
         <div id="header-inner" class="inner">
             <nav id="main-nav">
                 
                 <a class="main-nav-link" href="/">Home</a>
                 
-                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                <a class="main-nav-link" href="/neoid3/">NeoID3</a>
                 
-                <a class="main-nav-link" href="/archives">Archives</a>
+                <a class="main-nav-link" href="/archives/">Archives</a>
                 
             </nav>
         </div>
@@ -86,7 +78,8 @@ ID3 is a metadata container most often used in conjunction with the MP3 audio fi
 </header>
 
 
-<section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+<section id="main">
+    <article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/neoid3-en/index.html" class="article-date">
   <time datetime="2014-05-19T02:49:00.000Z" itemprop="datePublished">5月 19 2014</time>
@@ -94,7 +87,7 @@ ID3 is a metadata container most often used in conjunction with the MP3 audio fi
     
   </div>
   <div class="article-inner">
-    
+    <!---->
     
       <header class="article-header">
         
@@ -110,7 +103,7 @@ ID3 is a metadata container most often used in conjunction with the MP3 audio fi
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p><a href="/neoid3">中文版</a></p>
+<p><a href="/neoid3/">中文版</a></p>
 </blockquote>
 <h2 id="About">About</h2>
 <p><a href="https://github.com/nilennoct/NeoID3" target="_blank" rel="external">NeoID3</a> is a simple Mac app used to convert MP3 tags encoding to UTF-8.</p>
@@ -155,27 +148,29 @@ ID3 is a metadata container most often used in conjunction with the MP3 audio fi
   
 </article>
 
-</section>
 
-
-<script>
-  var disqus_shortname = 'nilennoct';
-  
-  var disqus_url = 'http://www.nilennoct.com/neoid3-en/index.html';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//go.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+    
+<script id="bd-hm">
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?1c4a8ec51af12949dd6b46712e821b53";
+        hm.onload = function() {
+            delete window["_bdhm_loaded_1c4a8ec51af12949dd6b46712e821b53"];
+        };
+        var s = document.getElementById('bd-hm');
+        s.parentNode.insertBefore(hm, s);
+    })();
 </script>
 
+</section>
 
-<script data-main="/js/app.js" src="/lib/requirejs/require.js"></script>
+<div id="loadingMask"><span class="icon-cycle"></span></div>
 
 
+
+
+<script data-main="/js/app.min.js" src="/lib/requirejs/require.min.js"></script>
 
 </body>
 </html>

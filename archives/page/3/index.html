@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   
   <title>Archives | Nil-Enn-Oct</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="description" content="nilennoct's personal blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Nil-Enn-Oct">
@@ -23,18 +24,9 @@
 
   <link rel="stylesheet" href="/css/style.css" type="text/css">
 
-  
-  
-<script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?1c4a8ec51af12949dd6b46712e821b53";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css" type="text/css">
 
+  <!---->
 </head>
 
 <body>
@@ -43,23 +35,23 @@
         <div id="header-control" class="icon-list"></div>
         <div id="header-title" class="inner">
             <h1 id="logo-wrap">
-                <a href="#" id="logo">Nil-Enn-Oct</a>
+                <a href="javascript:void(0)" id="logo">Nil-Enn-Oct</a>
             </h1>
             
             <h2 id="subtitle-wrap">
-                <a href="#" id="subtitle">Record my life.</a>
+                <a href="/" id="subtitle">Record my life.</a>
             </h2>
             
         </div>
-        <div id="header-avatar"></div>
+        <a href="https://github.com/nilennoct" target="_blank"><div id="header-avatar" class="icon-github"></div></a>
         <div id="header-inner" class="inner">
             <nav id="main-nav">
                 
                 <a class="main-nav-link" href="/">Home</a>
                 
-                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                <a class="main-nav-link" href="/neoid3/">NeoID3</a>
                 
-                <a class="main-nav-link" href="/archives">Archives</a>
+                <a class="main-nav-link" href="/archives/">Archives</a>
                 
             </nav>
         </div>
@@ -71,6 +63,46 @@
 
 
 <section id="main">
+    
+  
+    <article id="post-shortest-ie-version-detect" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/shortest-ie-version-detect/" class="article-date">
+  <time datetime="2013-04-19T02:21:55.000Z" itemprop="datePublished">4月 19 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    <!---->
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/shortest-ie-version-detect/">最短的 IE 版本判断</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>网上看到的一段很酷的代码，留着备用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"><span class="comment">// A short snippet for detecting versions of IE in JavaScript</span></div><div class="line"><span class="comment">// without resorting to user-agent sniffing</span></div><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"><span class="comment">// If you're not in IE (or IE version is less than 5) then:</span></div><div class="line"><span class="comment">//     ie === undefined</span></div><div class="line"><span class="comment">// If you're in IE (&gt;=5) then you can determine which version:</span></div><div class="line"><span class="comment">//     ie === 7; // IE7</span></div><div class="line"><span class="comment">// Thus, to detect IE:</span></div><div class="line"><span class="comment">//     if (ie) {}</span></div><div class="line"><span class="comment">// And to detect the version:</span></div><div class="line"><span class="comment">//     ie === 6 // IE6</span></div><div class="line"><span class="comment">//     ie &gt; 7 // IE8, IE9 ...</span></div><div class="line"><span class="comment">//     ie &lt; 9 // Anything less than IE9</span></div><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"></div><div class="line"><span class="comment">// UPDATE: Now using Live NodeList idea from @jdalton</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> ie = (<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line"></div><div class="line">    <span class="keyword">var</span> undef,</div><div class="line">        v = <span class="number">3</span>,</div><div class="line">        div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>),</div><div class="line">        all = div.getElementsByTagName(<span class="string">'i'</span>);</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (</div><div class="line">        div.innerHTML = <span class="string">''</span>,</div><div class="line">        all[<span class="number">0</span>]</div><div class="line">    );</div><div class="line"></div><div class="line">    <span class="keyword">return</span> v &gt; <span class="number">4</span> ? v : undef;</div><div class="line"></div><div class="line">}());</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
   
     <article id="post-raspberry-pi-arm-instruction" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -84,7 +116,7 @@
 
   </div>
   <div class="article-inner">
-    
+    <!---->
     
       <header class="article-header">
         
@@ -135,7 +167,7 @@
 
   </div>
   <div class="article-inner">
-    
+    <!---->
     
       <header class="article-header">
         
@@ -188,7 +220,7 @@
 
   </div>
   <div class="article-inner">
-    
+    <!---->
     
       <header class="article-header">
         
@@ -239,7 +271,7 @@
 
   </div>
   <div class="article-inner">
-    
+    <!---->
     
       <header class="article-header">
         
@@ -278,77 +310,34 @@
 
 
   
-    <article id="post-ubuntu-install-new-version-dropbox-daemon-note" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/ubuntu-install-new-version-dropbox-daemon-note/" class="article-date">
-  <time datetime="2013-03-10T02:02:10.000Z" itemprop="datePublished">3月 10 2013</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/ubuntu-install-new-version-dropbox-daemon-note/">Ubuntu安装新版Dropbox的注意事项</a>
-    </h1>
-  
-
-      </header>
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前的ubuntu图方便是直接用wubi装的，结果前两天手贱把disk.img给误删了，无奈之下，干脆就重装了（可惜我配好的环境啊T T）。</p>
-<p>分区、安装什么的都很顺利，PPA软件源我直接用Ubuntu Tweak管理了，确实很方便。不过在安装Dropbox的时候倒是遇到了一些麻烦。</p>
-<p>Dropbox官网上提供的下载只不过是一个空壳而已，安装后需要使用如下命令安装daemon。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dropbox start -i</div></pre></td></tr></table></figure>
-
-<p>但是由于国内某些特殊原因，需要下载的内容无法直接下载。而因为SSL证书的问题，使用goagent也无法安装。于是提取了<a href="https://dl-web.dropbox.com/u/17/dropbox-lnx.x86-1.6.17.tar.gz" target="_blank" rel="external">下载地址</a>通过浏览器直接下载到了安装包dropbox-lnx.x86-1.6.17.tar.gz。</p>
-<p>按照以前的安装方式，直接解压到~目录，运行.dropbox-dist目录下的dropbox文件即可。不过这次的新版似乎有所不同，之前这样使用都可以开机自动运行，通过dropbox start命令也可以正常启动。但这次dropbox start却一直提示未安装，看来新版的dropbox daemon的安装还是有变化的= =<br>
-        
-          <p class="article-more-link">
-            <a href="/ubuntu-install-new-version-dropbox-daemon-note/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/archives/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/4/">Next &raquo;</a>
     </nav>
   
-</section>
 
-
-<script>
-  var disqus_shortname = 'nilennoct';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//go.disqus.com/count.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+    
+<script id="bd-hm">
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?1c4a8ec51af12949dd6b46712e821b53";
+        hm.onload = function() {
+            delete window["_bdhm_loaded_1c4a8ec51af12949dd6b46712e821b53"];
+        };
+        var s = document.getElementById('bd-hm');
+        s.parentNode.insertBefore(hm, s);
+    })();
 </script>
 
+</section>
 
-<script data-main="/js/app.js" src="/lib/requirejs/require.js"></script>
+<div id="loadingMask"><span class="icon-cycle"></span></div>
 
 
+
+
+<script data-main="/js/app.min.js" src="/lib/requirejs/require.min.js"></script>
 
 </body>
 </html>

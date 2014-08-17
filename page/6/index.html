@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   
   <title>Nil-Enn-Oct</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="description" content="nilennoct's personal blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Nil-Enn-Oct">
@@ -23,18 +24,9 @@
 
   <link rel="stylesheet" href="/css/style.css" type="text/css">
 
-  
-  
-<script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?1c4a8ec51af12949dd6b46712e821b53";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css" type="text/css">
 
+  <!---->
 </head>
 
 <body>
@@ -43,23 +35,23 @@
         <div id="header-control" class="icon-list"></div>
         <div id="header-title" class="inner">
             <h1 id="logo-wrap">
-                <a href="#" id="logo">Nil-Enn-Oct</a>
+                <a href="javascript:void(0)" id="logo">Nil-Enn-Oct</a>
             </h1>
             
             <h2 id="subtitle-wrap">
-                <a href="#" id="subtitle">Record my life.</a>
+                <a href="/" id="subtitle">Record my life.</a>
             </h2>
             
         </div>
-        <div id="header-avatar"></div>
+        <a href="https://github.com/nilennoct" target="_blank"><div id="header-avatar" class="icon-github"></div></a>
         <div id="header-inner" class="inner">
             <nav id="main-nav">
                 
                 <a class="main-nav-link" href="/">Home</a>
                 
-                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                <a class="main-nav-link" href="/neoid3/">NeoID3</a>
                 
-                <a class="main-nav-link" href="/archives">Archives</a>
+                <a class="main-nav-link" href="/archives/">Archives</a>
                 
             </nav>
         </div>
@@ -71,6 +63,60 @@
 
 
 <section id="main">
+    
+  
+    <article id="post-jsdoc-definition" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/jsdoc-definition/" class="article-date">
+  <time datetime="2013-01-31T03:25:19.000Z" itemprop="datePublished">1月 31 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/Javascript/">Javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    <!---->
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/jsdoc-definition/">JSDoc描述</a>
+    </h1>
+  
+
+      </header>
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>@param @argument 指定参数名和说明来描述一个函数参数</p>
+<p>@returns 描述函数的返回值</p>
+<p>@author 指示代码的作者</p>
+<p>@deprecated 指示一个函数已经废弃，而且在将来的代码版本中将彻底删除。要避免使用这段代码</p>
+<p>@see 创建一个HTML链接，指向指定类的描述</p>
+<p>@version 指定发布版本</p>
+<p>@requires 创建一个HTML链接，指向这个类所需的指定类</p>
+<p>@throws @exception 描述函数可能抛出的异常的类型</p>
+<p>{@link} 创建一个HTML链接，指向指定的类。这与@see很类似，但{@link}能嵌在注释文本中</p>
+<p>@fileoverview 这是一个特殊的标记。如果在文件的第一个文档块中使用这个标记，则指定该文档块的余下部分将用来提供这个文件的概述</p>
+<p>@class 提供类的有关信息，用在构造函数的文档中</p>
+<p>@constructor 明确一个函数是某个类的构造函数</p>
+<p>@type 指定函数的返回类型</p>
+<p>@extends 指示一个类派生了另一个类。JSDoc通常自己就可以检测出这种信息，不过，在某些情况下则必须使用这个标记</p>
+<p>@private 指示一个类或函数是私有的。私有类和函数不会出现在HTML文档中，除非运行JSDoc时提供了—private命令行选项</p>
+<p>@final 指示一个值是常量值。要记住JavaScript无法真正保证一个值是常量</p>
+<p>@ignore JSDoc忽略有这个标记的函数</p>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
   
     <article id="post-js-jquery-countdown-millsecond" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -84,7 +130,7 @@
 
   </div>
   <div class="article-inner">
-    
+    <!---->
     
       <header class="article-header">
         
@@ -128,7 +174,7 @@
 
   </div>
   <div class="article-inner">
-    
+    <!---->
     
       <header class="article-header">
         
@@ -168,7 +214,7 @@
 
   </div>
   <div class="article-inner">
-    
+    <!---->
     
       <header class="article-header">
         
@@ -212,7 +258,7 @@
 
   </div>
   <div class="article-inner">
-    
+    <!---->
     
       <header class="article-header">
         
@@ -252,72 +298,34 @@
 
 
   
-    <article id="post-chrome-google-analytics-invalid" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/chrome-google-analytics-invalid/" class="article-date">
-  <time datetime="2012-07-22T05:21:34.000Z" itemprop="datePublished">7月 22 2012</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/chrome-google-analytics-invalid/">Chrome中Google Analytics无法跟踪</a>
-    </h1>
-  
-
-      </header>
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之前给博客加上Google Analytics后遇到了一个问题，就是用Chrome时Google Analytics无法获取到访问记录，但是用IE、Firefox却可以记录。通过Chrome的开发者工具中的Network工具，我发现是因为Google Analytics用来提交数据的__utm.gif文件载入失败。</p>
-<p><img src="http://img.nilennoct.com/wp-content/uploads/2012/07/Network1.jpg" alt=""></p>
-<p>检查了Chrome、杀毒软件的设置后，均未发现可能造成该问题的选项。</p>
-<p>今天在给虚拟机中的Mac安装Chrome时，Chrome自动同步安装了AdBlock，在选择AdBlock的过滤清单时突然看到最后有一个“EasyPrivacy (隐私保护)”清单。</p>
-<p><img src="http://img.nilennoct.com/wp-content/uploads/2012/07/filter-list.jpg" alt=""></p>
-<p>看到这个顿时明白问题的原因了。回到Win7的Chrome，打开AdBlock设置一看，果然是打着勾的。去掉以后刷新，Google Analytics就能正常统计了。</p>
-
-      
-    </div>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
     </nav>
   
-</section>
 
-
-<script>
-  var disqus_shortname = 'nilennoct';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//go.disqus.com/count.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+    
+<script id="bd-hm">
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?1c4a8ec51af12949dd6b46712e821b53";
+        hm.onload = function() {
+            delete window["_bdhm_loaded_1c4a8ec51af12949dd6b46712e821b53"];
+        };
+        var s = document.getElementById('bd-hm');
+        s.parentNode.insertBefore(hm, s);
+    })();
 </script>
 
+</section>
 
-<script data-main="/js/app.js" src="/lib/requirejs/require.js"></script>
+<div id="loadingMask"><span class="icon-cycle"></span></div>
 
 
+
+
+<script data-main="/js/app.min.js" src="/lib/requirejs/require.min.js"></script>
 
 </body>
 </html>

@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   
   <title>用Raspberry Pi制作简单的轮盘游戏机 | Nil-Enn-Oct</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="description" content="浙江大学嵌入式系统课程
 
 之前在Raspberry Pi上做了许多好玩的事情，但与物理计算却是一点关系也没有。所以这次我们来尝试用RPi做一个简单的轮盘游戏机。因为材料有限，“轮盘”将使用一个2位8段数码管模拟。
@@ -66,18 +67,9 @@ Raspberry Pi
 
   <link rel="stylesheet" href="/css/style.css" type="text/css">
 
-  
-  
-<script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?1c4a8ec51af12949dd6b46712e821b53";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css" type="text/css">
 
+  <!---->
 </head>
 
 <body>
@@ -86,23 +78,23 @@ Raspberry Pi
         <div id="header-control" class="icon-list"></div>
         <div id="header-title" class="inner">
             <h1 id="logo-wrap">
-                <a href="#" id="logo">Nil-Enn-Oct</a>
+                <a href="javascript:void(0)" id="logo">Nil-Enn-Oct</a>
             </h1>
             
             <h2 id="subtitle-wrap">
-                <a href="#" id="subtitle">Record my life.</a>
+                <a href="/" id="subtitle">Record my life.</a>
             </h2>
             
         </div>
-        <div id="header-avatar"></div>
+        <a href="https://github.com/nilennoct" target="_blank"><div id="header-avatar" class="icon-github"></div></a>
         <div id="header-inner" class="inner">
             <nav id="main-nav">
                 
                 <a class="main-nav-link" href="/">Home</a>
                 
-                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                <a class="main-nav-link" href="/neoid3/">NeoID3</a>
                 
-                <a class="main-nav-link" href="/archives">Archives</a>
+                <a class="main-nav-link" href="/archives/">Archives</a>
                 
             </nav>
         </div>
@@ -113,7 +105,8 @@ Raspberry Pi
 </header>
 
 
-<section id="main"><article id="post-raspberrypi-roulette-game-gpio" class="article article-type-post" itemscope itemprop="blogPost">
+<section id="main">
+    <article id="post-raspberrypi-roulette-game-gpio" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/raspberrypi-roulette-game-gpio/" class="article-date">
   <time datetime="2013-06-10T11:50:00.000Z" itemprop="datePublished">6月 10 2013</time>
@@ -125,7 +118,7 @@ Raspberry Pi
 
   </div>
   <div class="article-inner">
-    
+    <!---->
     
       <header class="article-header">
         
@@ -159,8 +152,138 @@ Raspberry Pi
 
 <p>安装完成后，你可以使用命令<code>gpio -v</code>测试wiringPi是否已经正确安装。<br><a id="more"></a><br><strong>连线</strong></p>
 <p>RPi上的GPIO与wiringPi中的Pin的对应关系可以参看下表。</p>
-<table style="width: 450px;border: 1px solid #e7e7e7;"><br><tbody><br><tr><br><th style="text-align: center;">wiringPi<br><br>Pin</th><br><th style="text-align: center;">BCM<br><br>GPIO</th><br><th style="text-align: center;">Name</th><br><th style="text-align: center;">Header</th><br><th style="text-align: center;">Name</th><br><th style="text-align: center;">BCM<br><br>GPIO</th><br><th style="text-align: center;">wiringPi<br><br>Pin</th><br></tr><br><tr><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br><td style="text-align: center;"><span style="color: #ff0000;">3.3v</span></td><br><th style="text-align: center;">1 | 2</th><br><td style="text-align: center;" align="center"><span style="color: #ff6600;">5v</span></td><br><td style="text-align: center;" align="center">–</td><br><td style="text-align: center;" align="center">–</td><br></tr><br><tr><br><td style="text-align: center;">8</td><br><td style="text-align: center;">R1:0/R2:2</td><br><td style="text-align: center;"><span style="color: #33cccc;">SDA0</span></td><br><th style="text-align: center;">3 | 4</th><br><td style="text-align: center;"><span style="color: #ff6600;">5v</span></td><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br></tr><br><tr><br><td style="text-align: center;">9</td><br><td style="text-align: center;">R1:1/R2:3</td><br><td style="text-align: center;"><span style="color: #33cccc;">SCL0</span></td><br><th style="text-align: center;">5 | 6</th><br><td style="text-align: center;"><span style="color: #000000;">0v</span></td><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br></tr><br><tr><br><td style="text-align: center;">7</td><br><td style="text-align: center;">4</td><br><td style="text-align: center;"><span style="color: #008000;">GPIO7</span></td><br><th style="text-align: center;">7 | 8</th><br><td style="text-align: center;"><span style="color: #ffff00;">TxD</span></td><br><td style="text-align: center;">14</td><br><td style="text-align: center;">15</td><br></tr><br><tr><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br><td style="text-align: center;"><span style="color: #000000;">0v</span></td><br><th style="text-align: center;">9 | 10</th><br><td style="text-align: center;"><span style="color: #ffff00;">RxD</span></td><br><td style="text-align: center;">15</td><br><td style="text-align: center;">16</td><br></tr><br><tr><br><td style="text-align: center;">0</td><br><td style="text-align: center;">17</td><br><td style="text-align: center;"><span style="color: #008000;">GPIO0</span></td><br><th style="text-align: center;">11 | 12</th><br><td style="text-align: center;"><span style="color: #008000;">GPIO1</span></td><br><td style="text-align: center;">18</td><br><td style="text-align: center;">1</td><br></tr><br><tr><br><td style="text-align: center;">2</td><br><td style="text-align: center;">R1:21/R2:27</td><br><td style="text-align: center;"><span style="color: #008000;">GPIO2</span></td><br><th style="text-align: center;">13 | 14</th><br><td style="text-align: center;"><span style="color: #000000;">0v</span></td><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br></tr><br><tr><br><td style="text-align: center;">3</td><br><td style="text-align: center;">22</td><br><td style="text-align: center;"><span style="color: #008000;">GPIO3</span></td><br><th style="text-align: center;">15 | 16</th><br><td style="text-align: center;"><span style="color: #008000;">GPIO4</span></td><br><td style="text-align: center;">23</td><br><td style="text-align: center;">4</td><br></tr><br><tr><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br><td style="text-align: center;"><span style="color: #ff0000;">3.3v</span></td><br><th style="text-align: center;">17 | 18</th><br><td style="text-align: center;"><span style="color: #008000;">GPIO5</span></td><br><td style="text-align: center;">24</td><br><td style="text-align: center;">5</td><br></tr><br><tr><br><td style="text-align: center;">12</td><br><td style="text-align: center;">10</td><br><td style="text-align: center;"><span style="color: #800080;">MOSI</span></td><br><th style="text-align: center;">19 | 20</th><br><td style="text-align: center;"><span style="color: #000000;">0v</span></td><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br></tr><br><tr><br><td style="text-align: center;">13</td><br><td style="text-align: center;">9</td><br><td style="text-align: center;"><span style="color: #800080;">MISO</span></td><br><th style="text-align: center;">21 | 22</th><br><td style="text-align: center;"><span style="color: #008000;">GPIO6</span></td><br><td style="text-align: center;">25</td><br><td style="text-align: center;">6</td><br></tr><br><tr><br><td style="text-align: center;">14</td><br><td style="text-align: center;">11</td><br><td style="text-align: center;"><span style="color: #800080;">SCLK</span></td><br><th style="text-align: center;">23 | 24</th><br><td style="text-align: center;"><span style="color: #800080;">CE0</span></td><br><td style="text-align: center;">8</td><br><td style="text-align: center;">10</td><br></tr><br><tr><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br><td style="text-align: center;"><span style="color: #000000;">0v</span></td><br><th style="text-align: center;">25 | 26</th><br><td style="text-align: center;"><span style="color: #800080;">CE1</span></td><br><td style="text-align: center;">7</td><br><td style="text-align: center;">11</td><br></tr><br><tr><br><th style="text-align: center;">wiringPi<br><br>Pin</th><br><th style="text-align: center;">BCM<br><br>GPIO</th><br><th style="text-align: center;">Name</th><br><th style="text-align: center;">Header</th><br><th style="text-align: center;">Name</th><br><th style="text-align: center;">BCM<br><br>GPIO</th><br><th style="text-align: center;">wiringPi<br><br>Pin</th><br></tr><br></tbody><br></table>
-
+<table>
+<thead>
+<tr>
+<th style="text-align:center">wiringPi Pin</th>
+<th style="text-align:center">BCM GPIO</th>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Header</th>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">BCM GPIO</th>
+<th style="text-align:center">wiringPi Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">3.3v</td>
+<td style="text-align:center">1 &#124; 2</td>
+<td style="text-align:center">5v</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">R1:0/R2:2</td>
+<td style="text-align:center">SDA0</td>
+<td style="text-align:center">3 &#124; 4</td>
+<td style="text-align:center">5v</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">R1:1/R2:3</td>
+<td style="text-align:center">SCL0</td>
+<td style="text-align:center">5 &#124; 6</td>
+<td style="text-align:center">0v</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">GPIO7</td>
+<td style="text-align:center">7 &#124; 8</td>
+<td style="text-align:center">TxD</td>
+<td style="text-align:center">14</td>
+<td style="text-align:center">15</td>
+</tr>
+<tr>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">0v</td>
+<td style="text-align:center">9 &#124; 10</td>
+<td style="text-align:center">RxD</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">16</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">17</td>
+<td style="text-align:center">GPIO0</td>
+<td style="text-align:center">11 &#124; 12</td>
+<td style="text-align:center">GPIO1</td>
+<td style="text-align:center">18</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">R1:21/R2:27</td>
+<td style="text-align:center">GPIO2</td>
+<td style="text-align:center">13 &#124; 14</td>
+<td style="text-align:center">0v</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">22</td>
+<td style="text-align:center">GPIO3</td>
+<td style="text-align:center">15 &#124; 16</td>
+<td style="text-align:center">GPIO4</td>
+<td style="text-align:center">23</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">3.3v</td>
+<td style="text-align:center">17 &#124; 18</td>
+<td style="text-align:center">GPIO5</td>
+<td style="text-align:center">24</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">MOSI</td>
+<td style="text-align:center">19 &#124; 20</td>
+<td style="text-align:center">0v</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+</tr>
+<tr>
+<td style="text-align:center">13</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">MISO</td>
+<td style="text-align:center">21 &#124; 22</td>
+<td style="text-align:center">GPIO6</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">14</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">SCLK</td>
+<td style="text-align:center">23 &#124; 24</td>
+<td style="text-align:center">CE0</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">10</td>
+</tr>
+<tr>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">0v</td>
+<td style="text-align:center">25 &#124; 26</td>
+<td style="text-align:center">CE1</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">11</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>更多信息请参看<a href="https://projects.drogon.net/raspberry-pi/wiringpi/pins/" target="_blank" rel="external">wiringPi Pins</a></p>
 </blockquote>
@@ -224,27 +347,29 @@ Raspberry Pi
   
 </article>
 
-</section>
 
-
-<script>
-  var disqus_shortname = 'nilennoct';
-  
-  var disqus_url = 'http://www.nilennoct.com//raspberrypi-roulette-game-gpio/';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//go.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+    
+<script id="bd-hm">
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?1c4a8ec51af12949dd6b46712e821b53";
+        hm.onload = function() {
+            delete window["_bdhm_loaded_1c4a8ec51af12949dd6b46712e821b53"];
+        };
+        var s = document.getElementById('bd-hm');
+        s.parentNode.insertBefore(hm, s);
+    })();
 </script>
 
+</section>
 
-<script data-main="/js/app.js" src="/lib/requirejs/require.js"></script>
+<div id="loadingMask"><span class="icon-cycle"></span></div>
 
 
+
+
+<script data-main="/js/app.min.js" src="/lib/requirejs/require.min.js"></script>
 
 </body>
 </html>

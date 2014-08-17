@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   
   <title>Archives: 2013/5 | Nil-Enn-Oct</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="description" content="nilennoct's personal blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Nil-Enn-Oct">
@@ -23,18 +24,9 @@
 
   <link rel="stylesheet" href="/css/style.css" type="text/css">
 
-  
-  
-<script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?1c4a8ec51af12949dd6b46712e821b53";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css" type="text/css">
 
+  <!---->
 </head>
 
 <body>
@@ -43,23 +35,23 @@
         <div id="header-control" class="icon-list"></div>
         <div id="header-title" class="inner">
             <h1 id="logo-wrap">
-                <a href="#" id="logo">Nil-Enn-Oct</a>
+                <a href="javascript:void(0)" id="logo">Nil-Enn-Oct</a>
             </h1>
             
             <h2 id="subtitle-wrap">
-                <a href="#" id="subtitle">Record my life.</a>
+                <a href="/" id="subtitle">Record my life.</a>
             </h2>
             
         </div>
-        <div id="header-avatar"></div>
+        <a href="https://github.com/nilennoct" target="_blank"><div id="header-avatar" class="icon-github"></div></a>
         <div id="header-inner" class="inner">
             <nav id="main-nav">
                 
                 <a class="main-nav-link" href="/">Home</a>
                 
-                <a class="main-nav-link" href="/neoid3">NeoID3</a>
+                <a class="main-nav-link" href="/neoid3/">NeoID3</a>
                 
-                <a class="main-nav-link" href="/archives">Archives</a>
+                <a class="main-nav-link" href="/archives/">Archives</a>
                 
             </nav>
         </div>
@@ -71,6 +63,7 @@
 
 
 <section id="main">
+    
   
     <article id="post-raspberrypi-ucos" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -84,7 +77,7 @@
 
   </div>
   <div class="article-inner">
-    
+    <!---->
     
       <header class="article-header">
         
@@ -130,7 +123,7 @@
 
   </div>
   <div class="article-inner">
-    
+    <!---->
     
       <header class="article-header">
         
@@ -177,31 +170,23 @@
     <article id="post-octopress-on-github-and-bitbucket" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/octopress-on-github-and-bitbucket/" class="article-date">
-  <time datetime="2013-05-10T06:05:00.000Z" itemprop="datePublished">5月 10 2013</time>
+  <time datetime="2013-05-09T16:00:00.000Z" itemprop="datePublished">5月 10 2013</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
-  </div>
-
   </div>
   <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/octopress-on-github-and-bitbucket/">Octopress搭建小记</a>
-    </h1>
-  
-
-      </header>
+    <!---->
     
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>偶然看到了<a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>的介绍，我便被它惊人的载入速度和独特的离线写作模式吸引了。虽然之前的Wordpress使用的也挺不错的，但细想之下其实我还真用不到那么多功能，顿时让我有了把博客迁移到Octopress上的冲动。</p>
+        <hr>
+<p>layout: post<br>title: “Octopress搭建小记”<br>slug: install-octopress-on-github-and-bitbucket<br>date: 2013-05-10 14:05<br>comments: true<br>categories:</p>
+<ul>
+<li>Note<br>tags:<br>-Blog</li>
+</ul>
+<hr>
+<p>偶然看到了<a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>的介绍，我便被它惊人的载入速度和独特的离线写作模式吸引了。虽然之前的Wordpress使用的也挺不错的，但细想之下其实我还真用不到那么多功能，顿时让我有了把博客迁移到Octopress上的冲动。</p>
 <p>网络上关于Octopress的部署教程已经有很多了，一种不错的方案是使用<a href="http://pages.github.com/" target="_blank" rel="external">Github Pages</a>服务。不过考虑到数据的安全性（比如<code>_config.yml</code>、一些第三方服务的API Key等），我决定同时使用Bitbucket和Github，即使用Bitbucket的私有Repo管理source，使用Github管理生成的页面。</p>
 <p>Ruby环境的搭建以及Octopress的安装方法可以在Octopress的文档中找到，这里主要记录部署过程(Ubuntu环境)。</p>
 <blockquote>
@@ -222,25 +207,29 @@
 
   
   
-</section>
 
-
-<script>
-  var disqus_shortname = 'nilennoct';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//go.disqus.com/count.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+    
+<script id="bd-hm">
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?1c4a8ec51af12949dd6b46712e821b53";
+        hm.onload = function() {
+            delete window["_bdhm_loaded_1c4a8ec51af12949dd6b46712e821b53"];
+        };
+        var s = document.getElementById('bd-hm');
+        s.parentNode.insertBefore(hm, s);
+    })();
 </script>
 
+</section>
 
-<script data-main="/js/app.js" src="/lib/requirejs/require.js"></script>
+<div id="loadingMask"><span class="icon-cycle"></span></div>
 
 
+
+
+<script data-main="/js/app.min.js" src="/lib/requirejs/require.min.js"></script>
 
 </body>
 </html>

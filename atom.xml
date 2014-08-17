@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Record my life.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.nilennoct.com/"/>
-  <updated>2014-08-05T15:24:48.460Z</updated>
+  <updated>2014-08-17T09:17:05.826Z</updated>
   <id>http://www.nilennoct.com/</id>
   
   <author>
@@ -13,6 +13,32 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[让百度统计支持 PJAX]]></title>
+    <link href="http://www.nilennoct.com//baidu-analytics-with-pjax/"/>
+    <id>http://www.nilennoct.com//baidu-analytics-with-pjax/</id>
+    <published>2014-08-17T07:07:51.000Z</published>
+    <updated>2014-08-17T09:09:14.000Z</updated>
+    <content type="html"><![CDATA[<p>最近把博客系统迁移到 Hexo 上了，作为一名前端工(zha)程(ma)师(nong)，不得不说 Hexo 的相性更好些。</p>
+<p>重新做了套新皮肤，简单的做了下对 iPhone 访问的优化，同时使用了已不新鲜的 PJAX 技术。不过发现百度统计还没支持 PJAX，只能记录第一次打开的页面。没办法只能拿统计代码开刀了。</p>
+<p>我使用的是百度统计的异步加载模式，整个过程分三步：执行插入页面的异步代码；执行异步加载的<code>hm.js</code>；GET 方式请求<code>hm.gif</code>传递统计信息。后两步肯定是没法改了，那就看看百度统计的异步代码吧。</p>
+<figure class="highlight html"><figcaption><span>百度统计的异步代码</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="keyword">var</span> _hmt = _hmt || [];</div><div class="line">(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">  <span class="keyword">var</span> hm = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</div><div class="line">  hm.src = <span class="string">"//hm.baidu.com/hm.js?/* id here */"</span>;</div><div class="line">  <span class="keyword">var</span> s = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"script"</span>)[<span class="number">0</span>];</div><div class="line">  s.parentNode.insertBefore(hm, s);</div><div class="line">})();</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>好吧突然发现这代码和两年前的一模一样，真稳定= =。代码很简单，新建一个<code>&lt;script&gt;</code>元素，设置<code>src</code>然后插到页面中第一个<code>&lt;script&gt;</code>元素前，剩下的就是<code>hm.js</code>的事了。因此要完成统计工作，实际上只要在每次通过 PJAX 加载后重新加载<code>hm.js</code>就好了。</p>
+<figure class="highlight html"><figcaption><span>修改后的代码</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">id</span>=<span class="value">"bd-hm"</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="keyword">var</span> _hmt = _hmt || [];</div><div class="line">    (<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">        <span class="keyword">var</span> hm = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</div><div class="line">        hm.src = <span class="string">"//hm.baidu.com/hm.js?/* id here */"</span>;</div><div class="line">        hm.onload = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">            <span class="comment">// 清除百度统计的加载标识</span></div><div class="line">            <span class="keyword">delete</span> <span class="built_in">window</span>[<span class="string">"_bdhm_loaded_/* id here */"</span>];</div><div class="line">        };</div><div class="line">        <span class="keyword">var</span> s = <span class="built_in">document</span>.getElementById(<span class="string">'bd-hm'</span>);</div><div class="line">        s.parentNode.insertBefore(hm, s);</div><div class="line">    })();</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>然后在 layout 模板中把这段代码从<code>&lt;/head&gt;</code>前移到合适的位置，在这套主题中，PJAX 请求完替换的是<code>div#main</code>的内容，因此放到它的<code>&lt;/div&gt;</code>前。给<code>&lt;script&gt;</code>加<code>id=&quot;bd-hm&quot;</code>是为了定位统计代码，总不能每次都还是像之前那样插到<code>&lt;head&gt;</code>里吧？你要不介意我也没话说= =。</p>
+]]></content>
+    
+    
+      <category term="Javascript" scheme="http://www.nilennoct.com/tags/Javascript/"/>
+    
+      <category term="Blog" scheme="http://www.nilennoct.com/tags/Blog/"/>
+    
+      <category term="Note" scheme="http://www.nilennoct.com/categories/Note/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[AngularJS 使用体验]]></title>
@@ -220,7 +246,7 @@
     <link href="http://www.nilennoct.com//raspberrypi-roulette-game-gpio/"/>
     <id>http://www.nilennoct.com//raspberrypi-roulette-game-gpio/</id>
     <published>2013-06-10T11:50:00.000Z</published>
-    <updated>2014-03-30T12:22:05.000Z</updated>
+    <updated>2014-08-17T05:09:15.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>浙江大学嵌入式系统课程</p>
 </blockquote>
@@ -240,8 +266,138 @@
 
 <p>安装完成后，你可以使用命令<code>gpio -v</code>测试wiringPi是否已经正确安装。<br><a id="more"></a><br><strong>连线</strong></p>
 <p>RPi上的GPIO与wiringPi中的Pin的对应关系可以参看下表。</p>
-<table style="width: 450px;border: 1px solid #e7e7e7;"><br><tbody><br><tr><br><th style="text-align: center;">wiringPi<br><br>Pin</th><br><th style="text-align: center;">BCM<br><br>GPIO</th><br><th style="text-align: center;">Name</th><br><th style="text-align: center;">Header</th><br><th style="text-align: center;">Name</th><br><th style="text-align: center;">BCM<br><br>GPIO</th><br><th style="text-align: center;">wiringPi<br><br>Pin</th><br></tr><br><tr><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br><td style="text-align: center;"><span style="color: #ff0000;">3.3v</span></td><br><th style="text-align: center;">1 | 2</th><br><td style="text-align: center;" align="center"><span style="color: #ff6600;">5v</span></td><br><td style="text-align: center;" align="center">–</td><br><td style="text-align: center;" align="center">–</td><br></tr><br><tr><br><td style="text-align: center;">8</td><br><td style="text-align: center;">R1:0/R2:2</td><br><td style="text-align: center;"><span style="color: #33cccc;">SDA0</span></td><br><th style="text-align: center;">3 | 4</th><br><td style="text-align: center;"><span style="color: #ff6600;">5v</span></td><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br></tr><br><tr><br><td style="text-align: center;">9</td><br><td style="text-align: center;">R1:1/R2:3</td><br><td style="text-align: center;"><span style="color: #33cccc;">SCL0</span></td><br><th style="text-align: center;">5 | 6</th><br><td style="text-align: center;"><span style="color: #000000;">0v</span></td><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br></tr><br><tr><br><td style="text-align: center;">7</td><br><td style="text-align: center;">4</td><br><td style="text-align: center;"><span style="color: #008000;">GPIO7</span></td><br><th style="text-align: center;">7 | 8</th><br><td style="text-align: center;"><span style="color: #ffff00;">TxD</span></td><br><td style="text-align: center;">14</td><br><td style="text-align: center;">15</td><br></tr><br><tr><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br><td style="text-align: center;"><span style="color: #000000;">0v</span></td><br><th style="text-align: center;">9 | 10</th><br><td style="text-align: center;"><span style="color: #ffff00;">RxD</span></td><br><td style="text-align: center;">15</td><br><td style="text-align: center;">16</td><br></tr><br><tr><br><td style="text-align: center;">0</td><br><td style="text-align: center;">17</td><br><td style="text-align: center;"><span style="color: #008000;">GPIO0</span></td><br><th style="text-align: center;">11 | 12</th><br><td style="text-align: center;"><span style="color: #008000;">GPIO1</span></td><br><td style="text-align: center;">18</td><br><td style="text-align: center;">1</td><br></tr><br><tr><br><td style="text-align: center;">2</td><br><td style="text-align: center;">R1:21/R2:27</td><br><td style="text-align: center;"><span style="color: #008000;">GPIO2</span></td><br><th style="text-align: center;">13 | 14</th><br><td style="text-align: center;"><span style="color: #000000;">0v</span></td><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br></tr><br><tr><br><td style="text-align: center;">3</td><br><td style="text-align: center;">22</td><br><td style="text-align: center;"><span style="color: #008000;">GPIO3</span></td><br><th style="text-align: center;">15 | 16</th><br><td style="text-align: center;"><span style="color: #008000;">GPIO4</span></td><br><td style="text-align: center;">23</td><br><td style="text-align: center;">4</td><br></tr><br><tr><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br><td style="text-align: center;"><span style="color: #ff0000;">3.3v</span></td><br><th style="text-align: center;">17 | 18</th><br><td style="text-align: center;"><span style="color: #008000;">GPIO5</span></td><br><td style="text-align: center;">24</td><br><td style="text-align: center;">5</td><br></tr><br><tr><br><td style="text-align: center;">12</td><br><td style="text-align: center;">10</td><br><td style="text-align: center;"><span style="color: #800080;">MOSI</span></td><br><th style="text-align: center;">19 | 20</th><br><td style="text-align: center;"><span style="color: #000000;">0v</span></td><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br></tr><br><tr><br><td style="text-align: center;">13</td><br><td style="text-align: center;">9</td><br><td style="text-align: center;"><span style="color: #800080;">MISO</span></td><br><th style="text-align: center;">21 | 22</th><br><td style="text-align: center;"><span style="color: #008000;">GPIO6</span></td><br><td style="text-align: center;">25</td><br><td style="text-align: center;">6</td><br></tr><br><tr><br><td style="text-align: center;">14</td><br><td style="text-align: center;">11</td><br><td style="text-align: center;"><span style="color: #800080;">SCLK</span></td><br><th style="text-align: center;">23 | 24</th><br><td style="text-align: center;"><span style="color: #800080;">CE0</span></td><br><td style="text-align: center;">8</td><br><td style="text-align: center;">10</td><br></tr><br><tr><br><td style="text-align: center;">–</td><br><td style="text-align: center;">–</td><br><td style="text-align: center;"><span style="color: #000000;">0v</span></td><br><th style="text-align: center;">25 | 26</th><br><td style="text-align: center;"><span style="color: #800080;">CE1</span></td><br><td style="text-align: center;">7</td><br><td style="text-align: center;">11</td><br></tr><br><tr><br><th style="text-align: center;">wiringPi<br><br>Pin</th><br><th style="text-align: center;">BCM<br><br>GPIO</th><br><th style="text-align: center;">Name</th><br><th style="text-align: center;">Header</th><br><th style="text-align: center;">Name</th><br><th style="text-align: center;">BCM<br><br>GPIO</th><br><th style="text-align: center;">wiringPi<br><br>Pin</th><br></tr><br></tbody><br></table>
-
+<table>
+<thead>
+<tr>
+<th style="text-align:center">wiringPi Pin</th>
+<th style="text-align:center">BCM GPIO</th>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Header</th>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">BCM GPIO</th>
+<th style="text-align:center">wiringPi Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">3.3v</td>
+<td style="text-align:center">1 &#124; 2</td>
+<td style="text-align:center">5v</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">R1:0/R2:2</td>
+<td style="text-align:center">SDA0</td>
+<td style="text-align:center">3 &#124; 4</td>
+<td style="text-align:center">5v</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">R1:1/R2:3</td>
+<td style="text-align:center">SCL0</td>
+<td style="text-align:center">5 &#124; 6</td>
+<td style="text-align:center">0v</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">GPIO7</td>
+<td style="text-align:center">7 &#124; 8</td>
+<td style="text-align:center">TxD</td>
+<td style="text-align:center">14</td>
+<td style="text-align:center">15</td>
+</tr>
+<tr>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">0v</td>
+<td style="text-align:center">9 &#124; 10</td>
+<td style="text-align:center">RxD</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">16</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">17</td>
+<td style="text-align:center">GPIO0</td>
+<td style="text-align:center">11 &#124; 12</td>
+<td style="text-align:center">GPIO1</td>
+<td style="text-align:center">18</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">R1:21/R2:27</td>
+<td style="text-align:center">GPIO2</td>
+<td style="text-align:center">13 &#124; 14</td>
+<td style="text-align:center">0v</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">22</td>
+<td style="text-align:center">GPIO3</td>
+<td style="text-align:center">15 &#124; 16</td>
+<td style="text-align:center">GPIO4</td>
+<td style="text-align:center">23</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">3.3v</td>
+<td style="text-align:center">17 &#124; 18</td>
+<td style="text-align:center">GPIO5</td>
+<td style="text-align:center">24</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">MOSI</td>
+<td style="text-align:center">19 &#124; 20</td>
+<td style="text-align:center">0v</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+</tr>
+<tr>
+<td style="text-align:center">13</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">MISO</td>
+<td style="text-align:center">21 &#124; 22</td>
+<td style="text-align:center">GPIO6</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">14</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">SCLK</td>
+<td style="text-align:center">23 &#124; 24</td>
+<td style="text-align:center">CE0</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">10</td>
+</tr>
+<tr>
+<td style="text-align:center">–</td>
+<td style="text-align:center">–</td>
+<td style="text-align:center">0v</td>
+<td style="text-align:center">25 &#124; 26</td>
+<td style="text-align:center">CE1</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">11</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
 <p>更多信息请参看<a href="https://projects.drogon.net/raspberry-pi/wiringpi/pins/" target="_blank" rel="external">wiringPi Pins</a></p>
 </blockquote>
@@ -420,12 +576,18 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Octopress搭建小记]]></title>
+    <title><![CDATA[]]></title>
     <link href="http://www.nilennoct.com//octopress-on-github-and-bitbucket/"/>
     <id>http://www.nilennoct.com//octopress-on-github-and-bitbucket/</id>
-    <published>2013-05-10T06:05:00.000Z</published>
-    <updated>2014-08-03T16:56:52.000Z</updated>
-    <content type="html"><![CDATA[<p>偶然看到了<a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>的介绍，我便被它惊人的载入速度和独特的离线写作模式吸引了。虽然之前的Wordpress使用的也挺不错的，但细想之下其实我还真用不到那么多功能，顿时让我有了把博客迁移到Octopress上的冲动。</p>
+    <published>2013-05-09T16:00:00.000Z</published>
+    <updated>2014-08-17T09:09:36.000Z</updated>
+    <content type="html"><![CDATA[<hr>
+<p>layout: post<br>title: “Octopress搭建小记”<br>slug: install-octopress-on-github-and-bitbucket<br>date: 2013-05-10 14:05<br>comments: true<br>categories:</p>
+<ul>
+<li>Note<br>tags:<br>-Blog</li>
+</ul>
+<hr>
+<p>偶然看到了<a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>的介绍，我便被它惊人的载入速度和独特的离线写作模式吸引了。虽然之前的Wordpress使用的也挺不错的，但细想之下其实我还真用不到那么多功能，顿时让我有了把博客迁移到Octopress上的冲动。</p>
 <p>网络上关于Octopress的部署教程已经有很多了，一种不错的方案是使用<a href="http://pages.github.com/" target="_blank" rel="external">Github Pages</a>服务。不过考虑到数据的安全性（比如<code>_config.yml</code>、一些第三方服务的API Key等），我决定同时使用Bitbucket和Github，即使用Bitbucket的私有Repo管理source，使用Github管理生成的页面。</p>
 <p>Ruby环境的搭建以及Octopress的安装方法可以在Octopress的文档中找到，这里主要记录部署过程(Ubuntu环境)。</p>
 <blockquote>
@@ -470,15 +632,19 @@
 
 <p>即可实现博客的更新以及Bitbucket的数据备份。</p>
 ]]></content>
-    <summary type="html"><![CDATA[<p>偶然看到了<a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>的介绍，我便被它惊人的载入速度和独特的离线写作模式吸引了。虽然之前的Wordpress使用的也挺不错的，但细想之下其实我还真用不到那么多功能，顿时让我有了把博客迁移到Octopress上的冲动。</p>
+    <summary type="html"><![CDATA[<hr>
+<p>layout: post<br>title: “Octopress搭建小记”<br>slug: install-octopress-on-github-and-bitbucket<br>date: 2013-05-10 14:05<br>comments: true<br>categories:</p>
+<ul>
+<li>Note<br>tags:<br>-Blog</li>
+</ul>
+<hr>
+<p>偶然看到了<a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>的介绍，我便被它惊人的载入速度和独特的离线写作模式吸引了。虽然之前的Wordpress使用的也挺不错的，但细想之下其实我还真用不到那么多功能，顿时让我有了把博客迁移到Octopress上的冲动。</p>
 <p>网络上关于Octopress的部署教程已经有很多了，一种不错的方案是使用<a href="http://pages.github.com/" target="_blank" rel="external">Github Pages</a>服务。不过考虑到数据的安全性（比如<code>_config.yml</code>、一些第三方服务的API Key等），我决定同时使用Bitbucket和Github，即使用Bitbucket的私有Repo管理source，使用Github管理生成的页面。</p>
 <p>Ruby环境的搭建以及Octopress的安装方法可以在Octopress的文档中找到，这里主要记录部署过程(Ubuntu环境)。</p>
 <blockquote>
 <p><a href="http://octopress.org/docs/" target="_blank" rel="external">Octopress Documentation</a></p>
 </blockquote>
 ]]></summary>
-    
-      <category term="Note" scheme="http://www.nilennoct.com/categories/Note/"/>
     
   </entry>
   
@@ -1155,80 +1321,6 @@
 <p>所在若是你在连接移动硬盘后无法在/dev目录中找到设备，请检查移动硬盘供电是否充足。</p>
 <p>因为我是通过ssh连接RPi的，接上移动硬盘后RPi并没有自动挂载。输入如下命令挂载。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> mkdir /media/NAS</div><div class="line"><span class="built_in">sudo</span> mount -o uid=pi,gid=pi /dev/sda5 /media/NAS</div></pre></td></tr></table></figure>
-
-]]></summary>
-    
-      <category term="RaspberryPi" scheme="http://www.nilennoct.com/categories/RaspberryPi/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[RaspberryPi安装JRE&JDK]]></title>
-    <link href="http://www.nilennoct.com//raspberrypi-install-jre-jdk/"/>
-    <id>http://www.nilennoct.com//raspberrypi-install-jre-jdk/</id>
-    <published>2013-03-03T15:32:16.000Z</published>
-    <updated>2014-03-30T12:22:05.000Z</updated>
-    <content type="html"><![CDATA[<blockquote>
-<p>浙江大学嵌入式系统课程</p>
-</blockquote>
-<p>一开始我参考的是Oracle官网上的《<a href="http://www.oracle.com/technetwork/articles/java/raspberrypi-1704896.html" target="_blank" rel="external">Getting Started with Java® SE Embedded on the Raspberry Pi</a>》，从Oracle的网站上下载了ejre-7u10-fcs-b18-linux-arm-vfp-client_headless-28_nov_2012.tar.gz并进行了安装，方法如下。</p>
-<ul>
-<li><p>上传ejre-7u10-fcs-b18-linux-arm-vfp-client_headless-28_nov_2012.tar.gz文件到RPi的/home/pi/文件夹。</p>
-</li>
-<li><p>安装EJRE。</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> mkdir /opt/java</div><div class="line"><span class="built_in">sudo</span> mv ~/ejre-<span class="number">7</span>u10-fcs-b18-linux-arm-vfp-client_headless-<span class="number">28</span>_nov_2012.tar.gz /opt/java</div><div class="line"><span class="built_in">sudo</span> tar -zxvf ejre-<span class="number">7</span>u10-fcs-b18-linux-arm-vfp-client_headless-<span class="number">28</span>_nov_2012.tar.gz</div></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<p>但是却出现了如下图所示的问题。</p>
-<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_03_03.png" alt="Task_03_03"></p>
-<p>即使通过以下命令在/usr/lib/目录下建立libjli.so的链接也依然无法解决。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> ln <span class="operator">-s</span> /opt/java/ejre1.<span class="number">7.0</span>_10/lib/arm/jli/libjli.so /usr/lib/</div></pre></td></tr></table></figure>
-
-<p>经 <a href="http://weibo.com/adoal" target="_blank" rel="external">@adoal</a> 提醒：</p>
-<blockquote>
-<p>Raspberry Pi可以用armel（软浮点）或者armhf（硬浮点）的Debian，但Oracle官方JRE只有软浮点的。</p>
-</blockquote>
-<p>在之前提到的Oracle文档中也提到</p>
-<blockquote>
-<p>NOTE: These instructions are for Debian Squeeze. Other Linux implementations for the Raspberry Pi might work, but they must have been built for the ARM chip’s software floating point. Images linked from the Raspberry Pi website might have been built for hardware floating point; they will not work with Java SE for Embedded.</p>
-</blockquote>
-<p>而我使用的Raspbian确是armhf的，所以无法使用JRE。</p>
-<p>既然无法安装JRE，那我们不妨换一个思路。于是我想到了安装JDK 8 (with JavaFX) for ARM预览版。</p>
-<p>查看官网提供的文档 （<a href="http://jdk8.java.net/fxarmpreview/javafx-arm-developer-preview.html" target="_blank" rel="external">点击这里</a>） ，可以看到这个jdk版本已经在hardfloat Raspbian上测试通过了。</p>
-<blockquote>
-<p><strong>Download the SD card OS image.</strong><br>JavaFX was tested with the hardfloat Raspbian “wheezy” distributions of 2012-09-18 and 2012-10-28. Before deciding which version to download, see RT-26973 in the Known Issues section.</p>
-</blockquote>
-<p>从 <a href="http://jdk8.java.net/fxarmpreview/" target="_blank" rel="external">http://jdk8.java.net/fxarmpreview/</a> 下载到Oracle JDK 8 (with JavaFX) for ARM Early Access（jdk-8-ea-b36e-linux-arm-hflt-29_nov_2012.tar.gz），用同样的方法上传到RPi，进行安装。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> mv ~/jdk-<span class="number">8</span>-ea-b36e-linux-arm-hflt-<span class="number">29</span>_nov_2012.tar.gz /opt/java</div><div class="line"><span class="built_in">sudo</span> tar -zxvf jdk-<span class="number">8</span>-ea-b36e-linux-arm-hflt-<span class="number">29</span>_nov_2012.tar.gz</div></pre></td></tr></table></figure>
-
-<p>没有悬念，这次Java成功运行了，如下图所示。</p>
-<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_03_04.png" alt="Task_03_04"></p>
-<p>接下来就好办了，添加环境变量。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> vi /etc/profile</div></pre></td></tr></table></figure>
-
-<p>在最后添加以下内容：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> JAVA_HOME=/opt/java/jdk1.<span class="number">8.0</span></div><div class="line"><span class="keyword">export</span> JRE_HOME=<span class="variable">$JAVA_HOME</span>/jre</div><div class="line"><span class="keyword">export</span> CLASSPATH=.:<span class="variable">$JAVA_HOME</span>/lib:<span class="variable">$JRE_HOME</span>/lib</div><div class="line"><span class="keyword">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JRE_HOME</span>/bin:<span class="variable">$PATH</span></div></pre></td></tr></table></figure>
-
-<p>最后执行以下命令更新并查看环境变量，如下图，可以看到JAVA的环境变量已经设置好了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">source</span> /etc/profile & env</div></pre></td></tr></table></figure>
-
-<p>赶紧写一个java程序测试一下吧！</p>
-<p><img src="http://img.nilennoct.com/wp-content/uploads/2013/03/Task_03_06.png" alt="Task_03_06"></p>
-]]></content>
-    <summary type="html"><![CDATA[<blockquote>
-<p>浙江大学嵌入式系统课程</p>
-</blockquote>
-<p>一开始我参考的是Oracle官网上的《<a href="http://www.oracle.com/technetwork/articles/java/raspberrypi-1704896.html" target="_blank" rel="external">Getting Started with Java® SE Embedded on the Raspberry Pi</a>》，从Oracle的网站上下载了ejre-7u10-fcs-b18-linux-arm-vfp-client_headless-28_nov_2012.tar.gz并进行了安装，方法如下。</p>
-<ul>
-<li><p>上传ejre-7u10-fcs-b18-linux-arm-vfp-client_headless-28_nov_2012.tar.gz文件到RPi的/home/pi/文件夹。</p>
-</li>
-<li><p>安装EJRE。</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> mkdir /opt/java</div><div class="line"><span class="built_in">sudo</span> mv ~/ejre-<span class="number">7</span>u10-fcs-b18-linux-arm-vfp-client_headless-<span class="number">28</span>_nov_2012.tar.gz /opt/java</div><div class="line"><span class="built_in">sudo</span> tar -zxvf ejre-<span class="number">7</span>u10-fcs-b18-linux-arm-vfp-client_headless-<span class="number">28</span>_nov_2012.tar.gz</div></pre></td></tr></table></figure>
 
 ]]></summary>
     

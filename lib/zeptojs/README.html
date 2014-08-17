@@ -1,0 +1,53 @@
+<h1 id="Zepto-js_–_a_minimalist_JavaScript_library">Zepto.js – a minimalist JavaScript library</h1>
+<p>Zepto is a minimalist JavaScript library for modern browsers with a<br>largely jQuery-compatible API. If you use jQuery, you already know how to use Zepto.</p>
+<p>See <a href="http://zeptojs.com">zeptojs.com</a> for an extended introduction, downloads<br>and documentation.</p>
+<p>Zepto.js is licensed under the terms of the MIT License.</p>
+<p>Want to give us money or a tip? Don’t.<br>Instead please donate to <a href="http://charitywater.org/">charity: water</a>.</p>
+<h2 id="Building">Building</h2>
+<p><a href="http://travis-ci.org/madrobby/zepto"><img src="https://secure.travis-ci.org/madrobby/zepto.png?branch=master" alt="Build Status"></a></p>
+<p>The official site offers a download of the default distribution of Zepto. This<br>is good for starting out. However, at some point you might want to add some<br>optional modules and remove some of the default ones you don’t need, to keep the<br>size at a minimum. That’s when you need to check out Zepto’s source code and use<br>the build commands.</p>
+<p>You will need Node.js installed on your system.</p>
+<pre><code class="sh">$ npm install
+$ npm run-script dist
+
+<span class="comment"># do a custom build</span>
+$ MODULES=<span class="string">"zepto event data"</span> npm run-script dist
+</code></pre>
+<p>The resulting files are:</p>
+<ol>
+<li><code>dist/zepto.js</code></li>
+<li><code>dist/zepto.min.js</code></li>
+</ol>
+<p>If you install CoffeeScript globally, you can run <code>make</code> directly:</p>
+<pre><code class="sh">$ coffee make dist
+$ MODULES=<span class="string">"zepto event data ..."</span> ./make dist
+</code></pre>
+<h2 id="Zepto_modules">Zepto modules</h2>
+<p>Zepto modules are individual files in the “src/“ directory.</p>
+<table><br><thead><tr><br>  <th>module</th> <th>default</th> <th>description</th><br></tr></thead><br><tbody><br>  <tr><br>    <th><a href="src/zepto.js#files">zepto</a></th><br>    <td>✔</td><br>    <td>Core module; contains most methods</td><br>  </tr><br>  <tr><br>    <th><a href="src/event.js#files">event</a></th><br>    <td>✔</td><br>    <td>Event handling via <code>on()</code> &amp; <code>off()</code></td><br>  </tr><br>  <tr><br>    <th><a href="src/ajax.js#files">ajax</a></th><br>    <td>✔</td><br>    <td>XMLHttpRequest and JSONP functionality</td><br>  </tr><br>  <tr><br>    <th><a href="src/form.js#files">form</a></th><br>    <td>✔</td><br>    <td>Serialize &amp; submit web forms</td><br>  </tr><br>  <tr><br>    <th><a href="src/ie.js#files">ie</a></th><br>    <td>✔</td><br>    <td>Support for Internet Explorer 10+ on the desktop and Windows Phone 8</td><br>  </tr><br>  <tr><br>    <th><a href="src/detect.js#files">detect</a></th><br>    <td></td><br>    <td>Provides <code>$.os</code> and <code>$.browser</code> information</td><br>  </tr><br>  <tr><br>    <th><a href="src/fx.js#files">fx</a></th><br>    <td></td><br>    <td>The <code>animate()</code> method</td><br>  </tr><br>  <tr><br>    <th><a href="src/fx_methods.js#files">fx_methods</a></th><br>    <td></td><br>    <td><br>      Animated <code>show</code>, <code>hide</code>, <code>toggle</code>,<br>      and <code>fade*()</code> methods.<br>    </td><br>  </tr><br>  <tr><br>    <th><a href="src/assets.js#files">assets</a></th><br>    <td></td><br>    <td><br>      Experimental support for cleaning up iOS memory after removing<br>      image elements from the DOM.<br>    </td><br>  </tr><br>  <tr><br>    <th><a href="src/data.js#files">data</a></th><br>    <td></td><br>    <td><br>      A full-blown <code>data()</code> method, capable of storing arbitrary<br>      objects in memory.<br>    </td><br>  </tr><br>  <tr><br>    <th><a href="src/deferred.js#files">deferred</a></th><br>    <td></td><br>    <td><br>      Provides <code>$.Deferred</code> promises API.<br>      Depends on the “callbacks” module.<br>    </td><br>  </tr><br>  <tr><br>    <th><a href="src/callbacks.js#files">callbacks</a></th><br>    <td></td><br>    <td><br>      Provides <code>$.Callbacks</code> for use in “deferred” module.<br>    </td><br>  </tr><br>  <tr><br>    <th><a href="src/selector.js#files">selector</a></th><br>    <td></td><br>    <td><br>      Experimental <a href="http://api.jquery.com/category/selectors/jquery-selector-extensions/">jQuery<br>      CSS extensions</a> support for functionality such as <code>$(‘div:first’)</code> and<br>      <code>el.is(‘:visible’)</code>.<br>    </td><br>  </tr><br>  <tr><br>    <th><a href="src/touch.js#files">touch</a></th><br>    <td></td><br>    <td><br>      Fires tap– and swipe–related events on touch devices. This works with both<br>      <code>touch</code> (iOS, Android) and <code>pointer</code> events (Windows Phone).<br>    </td><br>  </tr><br>  <tr><br>    <th><a href="src/gesture.js#files">gesture</a></th><br>    <td></td><br>    <td>Fires pinch gesture events on touch devices</td><br>  </tr><br>  <tr><br>    <th><a href="src/stack.js#files">stack</a></th><br>    <td></td><br>    <td>Provides <code>andSelf</code> &amp; <code>end()</code> chaining methods</td><br>  </tr><br>  <tr><br>    <th><a href="src/ios3.js#files">ios3</a></th><br>    <td></td><br>    <td><br>      String.prototype.trim and Array.prototype.reduce methods<br>      (if they are missing) for compatibility with iOS 3.x.<br>    </td><br>  </tr><br></tbody><br></table>
+
+<h2 id="Contributing">Contributing</h2>
+<p>Please read our <a href="https://github.com/madrobby/zepto/blob/master/CONTRIBUTING.md">contribution guidelines</a><br>for information on how to contribute.</p>
+<p>Get in touch:</p>
+<ul>
+<li>@<a href="http://twitter.com/zeptojs">zeptojs</a></li>
+</ul>
+<h3 id="Write_documentation">Write documentation</h3>
+<p>Zepto docs are written in Markdown and live in the <a href="https://github.com/madrobby/zepto/tree/gh-pages#readme">“gh-pages” branch</a>.<br>They are published on <a href="http://zeptojs.com">zeptojs.com</a>.</p>
+<p>You can use GitHub’s web interface to make quick changes to documentation for<br>specific Zepto features<br>(<a href="https://github.com/madrobby/zepto/blob/gh-pages/ajax/_posts/1900-01-01-Z-ajaxSettings.md">example: ajaxSettings</a>).<br>This will submit a pull request to us that we can review.</p>
+<h3 id="Report_a_bug">Report a bug</h3>
+<ol>
+<li>Check if the bug is already fixed in the <a href="https://github.com/madrobby/zepto/commits/master">master branch</a> since the<br>last release.</li>
+<li>Check <a href="https://github.com/madrobby/zepto/issues">existing issues</a>. Open a new one, including exact browser &amp;<br>platform information. For better formatting of your report, see<br><a href="http://github.github.com/github-flavored-markdown/">GitHub-flavored Markdown</a>.</li>
+</ol>
+<h3 id="Running_tests">Running tests</h3>
+<p>You will need to install <a href="http://code.google.com/p/phantomjs/wiki/Installation">PhantomJS</a>. On OS X, that’s easy:</p>
+<pre><code class="sh">$ brew install phantomjs
+</code></pre>
+<p>To run the automated tests:</p>
+<pre><code class="sh">$ npm test
+</code></pre>
+<p>To run a test server, which you can hit with your browsers and devices:</p>
+<pre><code class="sh">$ npm start
+</code></pre>
+<p>Go to <code>http://your-ip-address:3000/</code> on your browser and follow the<br>instructions. For your convenience test failures and exceptions will be<br>reported to the the console you started the test server in (as well as<br>the browser console if available).</p>

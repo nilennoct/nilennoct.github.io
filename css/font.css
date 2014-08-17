@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'Glyphs';
-	src:url('../fonts/Glyphs.eot?-dwaz7j');
-	src:url('../fonts/Glyphs.eot?#iefix-dwaz7j') format('embedded-opentype'),
-		url('../fonts/Glyphs.woff?-dwaz7j') format('woff'),
-		url('../fonts/Glyphs.ttf?-dwaz7j') format('truetype'),
-		url('../fonts/Glyphs.svg?-dwaz7j#Glyphs') format('svg');
+	src:url('../fonts/Glyphs.eot?bz6952');
+	src:url('../fonts/Glyphs.eot?#iefixbz6952') format('embedded-opentype'),
+		url('../fonts/Glyphs.woff?bz6952') format('woff'),
+		url('../fonts/Glyphs.ttf?bz6952') format('truetype'),
+		url('../fonts/Glyphs.svg?bz6952#Glyphs') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -24,5 +24,11 @@
 }
 
 .icon-list:before {
-	content: "\e600";
+	content: "\e601";
+}
+.icon-github:before {
+	content: "\e602";
+}
+.icon-cycle:before {
+    content: "\e600";
 }
