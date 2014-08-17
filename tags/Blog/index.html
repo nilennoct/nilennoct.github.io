@@ -39,7 +39,7 @@
             </h1>
             
             <h2 id="subtitle-wrap">
-                <a href="/" id="subtitle">Record my life.</a>
+                <a id="subtitle">Record my life.</a>
             </h2>
             
         </div>
@@ -103,6 +103,118 @@
 <figure class="highlight html"><figcaption><span>修改后的代码</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">id</span>=<span class="value">"bd-hm"</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="keyword">var</span> _hmt = _hmt || [];</div><div class="line">    (<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">        <span class="keyword">var</span> hm = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</div><div class="line">        hm.src = <span class="string">"//hm.baidu.com/hm.js?/* id here */"</span>;</div><div class="line">        hm.onload = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">            <span class="comment">// 清除百度统计的加载标识</span></div><div class="line">            <span class="keyword">delete</span> <span class="built_in">window</span>[<span class="string">"_bdhm_loaded_/* id here */"</span>];</div><div class="line">        };</div><div class="line">        <span class="keyword">var</span> s = <span class="built_in">document</span>.getElementById(<span class="string">'bd-hm'</span>);</div><div class="line">        s.parentNode.insertBefore(hm, s);</div><div class="line">    })();</div><div class="line"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <p>然后在 layout 模板中把这段代码从<code>&lt;/head&gt;</code>前移到合适的位置，在这套主题中，PJAX 请求完替换的是<code>div#main</code>的内容，因此放到它的<code>&lt;/div&gt;</code>前。给<code>&lt;script&gt;</code>加<code>id=&quot;bd-hm&quot;</code>是为了定位统计代码，总不能每次都还是像之前那样插到<code>&lt;head&gt;</code>里吧？你要不介意我也没话说= =。</p>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-octopress-on-github-and-bitbucket" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/octopress-on-github-and-bitbucket/" class="article-date">
+  <time datetime="2013-05-10T06:05:00.000Z" itemprop="datePublished">5月 10 2013</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    <!---->
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/octopress-on-github-and-bitbucket/">Octopress搭建小记</a>
+    </h1>
+  
+
+      </header>
+    
+    
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li></ul>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>偶然看到了<a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>的介绍，我便被它惊人的载入速度和独特的离线写作模式吸引了。虽然之前的Wordpress使用的也挺不错的，但细想之下其实我还真用不到那么多功能，顿时让我有了把博客迁移到Octopress上的冲动。</p>
+<p>网络上关于Octopress的部署教程已经有很多了，一种不错的方案是使用<a href="http://pages.github.com/" target="_blank" rel="external">Github Pages</a>服务。不过考虑到数据的安全性（比如<code>_config.yml</code>、一些第三方服务的API Key等），我决定同时使用Bitbucket和Github，即使用Bitbucket的私有Repo管理source，使用Github管理生成的页面。</p>
+<p>Ruby环境的搭建以及Octopress的安装方法可以在Octopress的文档中找到，这里主要记录部署过程(Ubuntu环境)。</p>
+<blockquote>
+<p><a href="http://octopress.org/docs/" target="_blank" rel="external">Octopress Documentation</a></p>
+</blockquote>
+
+        
+          <p class="article-more-link">
+            <a href="/octopress-on-github-and-bitbucket/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ssh-wordpress-plugin" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ssh-wordpress-plugin/" class="article-date">
+  <time datetime="2012-07-07T09:03:58.000Z" itemprop="datePublished">7月 7 2012</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    <!---->
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/ssh-wordpress-plugin/">SF通过SSH安装Wordpress插件</a>
+    </h1>
+  
+
+      </header>
+    
+    
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li></ul>
+
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Putty登录SourceForge的SSH：</p>
+<ol>
+<li>Session</li>
+</ol>
+<p>host name: shell.sourceforge.net, port: 22, SSH</p>
+<ol>
+<li>Connection-&gt;Data</li>
+</ol>
+<p>Login detail Auto-login username: user,project-name</p>
+<ol>
+<li>Connection-&gt;SSH</li>
+</ol>
+<p>Remote command: create (必填，否则会闪退)</p>
+<p>安装插件：</p>
+<p><strong>进入Wordpress插件目录</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /home/project-web/项目名称/htdocs/blog/wp-content/pluginswget</div></pre></td></tr></table></figure>
+
+<p><strong>下载插件包</strong></p>
+<p>在<a href="http://wordpress.org/extend/plugins/" target="_blank" rel="external">http://wordpress.org/extend/plugins/</a>找到链接地址(<a href="http://downloads.wordpress.org/plugin/syntaxhighlighter.zip)，用wget命令下载" target="_blank" rel="external">http://downloads.wordpress.org/plugin/syntaxhighlighter.zip)，用wget命令下载</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://downloads.wordpress.org/plugin/syntaxhighlighter.zip</div></pre></td></tr></table></figure>
+
+<p><strong>解压</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unzip syntaxhighlighter.zip</div></pre></td></tr></table></figure>
+
+<p><strong>进入wordpress后台启用插件</strong></p>
 
       
     </div>

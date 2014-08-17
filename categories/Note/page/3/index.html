@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: Web | Nil-Enn-Oct</title>
+  <title>Category: Note | Nil-Enn-Oct</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="description" content="nilennoct's personal blog">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Nil-Enn-Oct">
-<meta property="og:url" content="http://www.nilennoct.com/categories/Web/page/2/">
+<meta property="og:url" content="http://www.nilennoct.com/categories/Note/page/3/">
 <meta property="og:site_name" content="Nil-Enn-Oct">
 <meta property="og:description" content="nilennoct's personal blog">
 <meta name="twitter:card" content="summary">
@@ -39,7 +39,7 @@
             </h1>
             
             <h2 id="subtitle-wrap">
-                <a href="/" id="subtitle">Record my life.</a>
+                <a id="subtitle">Record my life.</a>
             </h2>
             
         </div>
@@ -65,14 +65,14 @@
 <section id="main">
     
   
-    <article id="post-css-naming-specification" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-ssh-wordpress-plugin" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/css-naming-specification/" class="article-date">
-  <time datetime="2012-07-06T23:17:19.000Z" itemprop="datePublished">7月 7 2012</time>
+    <a href="/ssh-wordpress-plugin/" class="article-date">
+  <time datetime="2012-07-07T09:03:58.000Z" itemprop="datePublished">7月 7 2012</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Web/">Web</a><a class="article-category-link" href="/categories/Web/CSS/">CSS</a>
+    <a class="article-category-link" href="/categories/Note/">Note</a>
   </div>
 
   </div>
@@ -83,46 +83,43 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/css-naming-specification/">关于团队合作的css命名规范</a>
+      <a class="article-title" href="/ssh-wordpress-plugin/">SF通过SSH安装Wordpress插件</a>
     </h1>
   
 
       </header>
     
     
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li></ul>
+
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>(一)常用的css命名规则</strong></p>
-<p>头：header</p>
-<p>内容：content/container</p>
-<p>尾：footer</p>
-<p>导航：nav</p>
-<p>侧栏：sidebar</p>
-<p>栏目：column</p>
-<p>页面外围控制整体布局宽度：wrapper</p>
-<p>左右中：left right center</p>
-<p>登录条：loginbar</p>
-<p>标志：logo</p>
-<p>广告：banner</p>
-<p>页面主体：main</p>
-<p>热点：hot</p>
-<p>新闻：news</p>
-<p>下载：download</p>
-<p>子导航：subnav</p>
-<p>菜单：menu</p>
-<p>子菜单：submenu</p>
-<p>搜索：search</p>
-<p>友情链接：friendlink</p>
-<p>页脚：footer</p>
-<p>版权：copyright</p>
-<p>滚动：scroll</p>
-<p>内容：content</p>
-<p>
-        
-          <p class="article-more-link">
-            <a href="/css-naming-specification/#more">Read More</a>
-          </p>
-        
+        <p>Putty登录SourceForge的SSH：</p>
+<ol>
+<li>Session</li>
+</ol>
+<p>host name: shell.sourceforge.net, port: 22, SSH</p>
+<ol>
+<li>Connection-&gt;Data</li>
+</ol>
+<p>Login detail Auto-login username: user,project-name</p>
+<ol>
+<li>Connection-&gt;SSH</li>
+</ol>
+<p>Remote command: create (必填，否则会闪退)</p>
+<p>安装插件：</p>
+<p><strong>进入Wordpress插件目录</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /home/project-web/项目名称/htdocs/blog/wp-content/pluginswget</div></pre></td></tr></table></figure>
+
+<p><strong>下载插件包</strong></p>
+<p>在<a href="http://wordpress.org/extend/plugins/" target="_blank" rel="external">http://wordpress.org/extend/plugins/</a>找到链接地址(<a href="http://downloads.wordpress.org/plugin/syntaxhighlighter.zip)，用wget命令下载" target="_blank" rel="external">http://downloads.wordpress.org/plugin/syntaxhighlighter.zip)，用wget命令下载</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://downloads.wordpress.org/plugin/syntaxhighlighter.zip</div></pre></td></tr></table></figure>
+
+<p><strong>解压</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">unzip syntaxhighlighter.zip</div></pre></td></tr></table></figure>
+
+<p><strong>进入wordpress后台启用插件</strong></p>
+
       
     </div>
   </div>
@@ -133,7 +130,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/categories/Web/">&laquo; Prev</a><a class="page-number" href="/categories/Web/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/categories/Note/page/2/">&laquo; Prev</a><a class="page-number" href="/categories/Note/">1</a><a class="page-number" href="/categories/Note/page/2/">2</a><span class="page-number current">3</span>
     </nav>
   
 

@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Record my life.]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://www.nilennoct.com/"/>
-  <updated>2014-08-17T09:29:57.638Z</updated>
+  <updated>2014-08-17T16:29:49.669Z</updated>
   <id>http://www.nilennoct.com/</id>
   
   <author>
@@ -576,18 +576,12 @@
   </entry>
   
   <entry>
-    <title><![CDATA[]]></title>
+    <title><![CDATA[Octopress搭建小记]]></title>
     <link href="http://www.nilennoct.com//octopress-on-github-and-bitbucket/"/>
     <id>http://www.nilennoct.com//octopress-on-github-and-bitbucket/</id>
-    <published>2013-05-09T16:00:00.000Z</published>
-    <updated>2014-08-17T09:09:36.000Z</updated>
-    <content type="html"><![CDATA[<hr>
-<p>layout: post<br>title: “Octopress搭建小记”<br>slug: install-octopress-on-github-and-bitbucket<br>date: 2013-05-10 14:05<br>comments: true<br>categories:</p>
-<ul>
-<li>Note<br>tags:<br>-Blog</li>
-</ul>
-<hr>
-<p>偶然看到了<a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>的介绍，我便被它惊人的载入速度和独特的离线写作模式吸引了。虽然之前的Wordpress使用的也挺不错的，但细想之下其实我还真用不到那么多功能，顿时让我有了把博客迁移到Octopress上的冲动。</p>
+    <published>2013-05-10T06:05:00.000Z</published>
+    <updated>2014-08-17T16:19:40.000Z</updated>
+    <content type="html"><![CDATA[<p>偶然看到了<a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>的介绍，我便被它惊人的载入速度和独特的离线写作模式吸引了。虽然之前的Wordpress使用的也挺不错的，但细想之下其实我还真用不到那么多功能，顿时让我有了把博客迁移到Octopress上的冲动。</p>
 <p>网络上关于Octopress的部署教程已经有很多了，一种不错的方案是使用<a href="http://pages.github.com/" target="_blank" rel="external">Github Pages</a>服务。不过考虑到数据的安全性（比如<code>_config.yml</code>、一些第三方服务的API Key等），我决定同时使用Bitbucket和Github，即使用Bitbucket的私有Repo管理source，使用Github管理生成的页面。</p>
 <p>Ruby环境的搭建以及Octopress的安装方法可以在Octopress的文档中找到，这里主要记录部署过程(Ubuntu环境)。</p>
 <blockquote>
@@ -632,19 +626,17 @@
 
 <p>即可实现博客的更新以及Bitbucket的数据备份。</p>
 ]]></content>
-    <summary type="html"><![CDATA[<hr>
-<p>layout: post<br>title: “Octopress搭建小记”<br>slug: install-octopress-on-github-and-bitbucket<br>date: 2013-05-10 14:05<br>comments: true<br>categories:</p>
-<ul>
-<li>Note<br>tags:<br>-Blog</li>
-</ul>
-<hr>
-<p>偶然看到了<a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>的介绍，我便被它惊人的载入速度和独特的离线写作模式吸引了。虽然之前的Wordpress使用的也挺不错的，但细想之下其实我还真用不到那么多功能，顿时让我有了把博客迁移到Octopress上的冲动。</p>
+    <summary type="html"><![CDATA[<p>偶然看到了<a href="http://octopress.org/" target="_blank" rel="external">Octopress</a>的介绍，我便被它惊人的载入速度和独特的离线写作模式吸引了。虽然之前的Wordpress使用的也挺不错的，但细想之下其实我还真用不到那么多功能，顿时让我有了把博客迁移到Octopress上的冲动。</p>
 <p>网络上关于Octopress的部署教程已经有很多了，一种不错的方案是使用<a href="http://pages.github.com/" target="_blank" rel="external">Github Pages</a>服务。不过考虑到数据的安全性（比如<code>_config.yml</code>、一些第三方服务的API Key等），我决定同时使用Bitbucket和Github，即使用Bitbucket的私有Repo管理source，使用Github管理生成的页面。</p>
 <p>Ruby环境的搭建以及Octopress的安装方法可以在Octopress的文档中找到，这里主要记录部署过程(Ubuntu环境)。</p>
 <blockquote>
 <p><a href="http://octopress.org/docs/" target="_blank" rel="external">Octopress Documentation</a></p>
 </blockquote>
 ]]></summary>
+    
+      <category term="Blog" scheme="http://www.nilennoct.com/tags/Blog/"/>
+    
+      <category term="Note" scheme="http://www.nilennoct.com/categories/Note/"/>
     
   </entry>
   
@@ -745,16 +737,14 @@
     <link href="http://www.nilennoct.com//shortest-ie-version-detect/"/>
     <id>http://www.nilennoct.com//shortest-ie-version-detect/</id>
     <published>2013-04-19T02:21:55.000Z</published>
-    <updated>2014-03-30T12:22:05.000Z</updated>
+    <updated>2014-08-17T16:27:44.000Z</updated>
     <content type="html"><![CDATA[<p>网上看到的一段很酷的代码，留着备用。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"><span class="comment">// A short snippet for detecting versions of IE in JavaScript</span></div><div class="line"><span class="comment">// without resorting to user-agent sniffing</span></div><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"><span class="comment">// If you're not in IE (or IE version is less than 5) then:</span></div><div class="line"><span class="comment">//     ie === undefined</span></div><div class="line"><span class="comment">// If you're in IE (&gt;=5) then you can determine which version:</span></div><div class="line"><span class="comment">//     ie === 7; // IE7</span></div><div class="line"><span class="comment">// Thus, to detect IE:</span></div><div class="line"><span class="comment">//     if (ie) {}</span></div><div class="line"><span class="comment">// And to detect the version:</span></div><div class="line"><span class="comment">//     ie === 6 // IE6</span></div><div class="line"><span class="comment">//     ie &gt; 7 // IE8, IE9 ...</span></div><div class="line"><span class="comment">//     ie &lt; 9 // Anything less than IE9</span></div><div class="line"><span class="comment">// ----------------------------------------------------------</span></div><div class="line"></div><div class="line"><span class="comment">// UPDATE: Now using Live NodeList idea from @jdalton</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> ie = (<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line"></div><div class="line">    <span class="keyword">var</span> undef,</div><div class="line">        v = <span class="number">3</span>,</div><div class="line">        div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>),</div><div class="line">        all = div.getElementsByTagName(<span class="string">'i'</span>);</div><div class="line"></div><div class="line">    <span class="keyword">while</span> (</div><div class="line">        div.innerHTML = <span class="string">''</span>,</div><div class="line">        all[<span class="number">0</span>]</div><div class="line">    );</div><div class="line"></div><div class="line">    <span class="keyword">return</span> v &gt; <span class="number">4</span> ? v : undef;</div><div class="line"></div><div class="line">}());</div></pre></td></tr></table></figure>
 
 ]]></content>
     
     
-      <category term="Web" scheme="http://www.nilennoct.com/categories/Web/"/>
-    
-      <category term="Javascript" scheme="http://www.nilennoct.com/categories/Web/Javascript/"/>
+      <category term="Javascript" scheme="http://www.nilennoct.com/categories/Javascript/"/>
     
   </entry>
   
@@ -958,7 +948,7 @@
     <link href="http://www.nilennoct.com//raspberrypi-install-ruby/"/>
     <id>http://www.nilennoct.com//raspberrypi-install-ruby/</id>
     <published>2013-03-10T03:14:53.000Z</published>
-    <updated>2014-03-30T12:22:05.000Z</updated>
+    <updated>2014-08-17T16:27:44.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>浙江大学嵌入式系统课程</p>
 </blockquote>
@@ -1040,7 +1030,7 @@
     <link href="http://www.nilennoct.com//raspberrypi-install-dhcp-server/"/>
     <id>http://www.nilennoct.com//raspberrypi-install-dhcp-server/</id>
     <published>2013-03-08T09:24:25.000Z</published>
-    <updated>2014-03-30T12:22:05.000Z</updated>
+    <updated>2014-08-17T16:27:44.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>浙江大学嵌入式系统课程</p>
 </blockquote>
@@ -1089,7 +1079,7 @@
     <link href="http://www.nilennoct.com//raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs/"/>
     <id>http://www.nilennoct.com//raspberrypi-nas-chinese-encode-samba-sftp-dlna-nfs/</id>
     <published>2013-03-07T10:00:55.000Z</published>
-    <updated>2014-03-30T12:22:05.000Z</updated>
+    <updated>2014-08-17T16:25:49.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>浙江大学嵌入式系统课程</p>
 <p>在RPi上搭建NAS的过程详见《<a href="http://www.nilennoct.com/raspberrypi-nas-samba-sftp/" target="_blank" rel="external">在RaspberryPi上搭建NAS</a>》</p>
@@ -1159,7 +1149,7 @@
     <link href="http://www.nilennoct.com//raspberrypi-airplay-shairport/"/>
     <id>http://www.nilennoct.com//raspberrypi-airplay-shairport/</id>
     <published>2013-03-05T14:56:35.000Z</published>
-    <updated>2014-03-30T12:22:05.000Z</updated>
+    <updated>2014-08-17T16:27:44.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>浙江大学嵌入式系统课程</p>
 </blockquote>
@@ -1226,7 +1216,7 @@
     <link href="http://www.nilennoct.com//raspberrypi-nas-samba-sftp/"/>
     <id>http://www.nilennoct.com//raspberrypi-nas-samba-sftp/</id>
     <published>2013-03-05T07:08:18.000Z</published>
-    <updated>2014-03-30T12:22:05.000Z</updated>
+    <updated>2014-08-17T16:27:44.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>浙江大学嵌入式系统课程</p>
 </blockquote>
